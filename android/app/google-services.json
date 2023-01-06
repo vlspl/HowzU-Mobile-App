@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "510234675595",
+    "firebase_url": "https://visionarylife-3391f.firebaseio.com",
+    "project_id": "visionarylife-3391f",
+    "storage_bucket": "visionarylife-3391f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510234675595:android:65e2d06d3e53a50631c78e",
+        "android_client_info": {
+          "package_name": "com.howzu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510234675595-umrp0it2bbp0bq7io0bodq8qq9lu2atl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhn8a8x3lpWax56cr_5YDC4FKqLQsS10I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510234675595-umrp0it2bbp0bq7io0bodq8qq9lu2atl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "510234675595-b6c69f1lfmimnnpvgmcuqk4422uvc0e9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.visionary.Howzu",
+                "app_store_id": "1481816983"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510234675595:android:0489cf591b5a85b731c78e",
+        "android_client_info": {
+          "package_name": "com.voiceappnavgation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510234675595-umrp0it2bbp0bq7io0bodq8qq9lu2atl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhn8a8x3lpWax56cr_5YDC4FKqLQsS10I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510234675595-umrp0it2bbp0bq7io0bodq8qq9lu2atl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "510234675595-b6c69f1lfmimnnpvgmcuqk4422uvc0e9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.visionary.Howzu",
+                "app_store_id": "1481816983"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

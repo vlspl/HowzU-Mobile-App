@@ -1,0 +1,56 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# $FirebaseSDKVersion = '7.0.0'
+platform :ios, '10.0'
+pod 'Firebase/Analytics'
+target 'HowzU' do
+  config = use_native_modules!
+
+  use_react_native!(:path => config["reactNativePath"])
+
+  # pod 'react-native-date-picker', :path => '../node_modules/react-native-date-picker'
+
+  pod 'RNFBDynamicLinks', :path => '../node_modules/@react-native-firebase/dynamic-links'
+  pod 'GoogleSignIn', '~> 6.2.2'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'RealmJS', :path => '../node_modules/realm'
+
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+ 
+
+  pod 'RNGoogleSignin', :path => '../node_modules/@react-native-google-signin/google-signin'
+
+  target 'HowzUTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable these next few lines.
+ 
+
+use_flipper!
+post_install do |installer|
+ react_native_post_install(installer)
+__apply_Xcode_12_5_M1_post_install_workaround(installer)
+end
+ # post_install do |installer|
+   # flipper_post_install(installer)
+  #end
+end
+
+target 'HowzU-tvOS' do
+  # Pods for HowzU-tvOS
+
+  target 'HowzU-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
