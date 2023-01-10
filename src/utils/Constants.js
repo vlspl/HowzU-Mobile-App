@@ -1,5 +1,5 @@
 // Live Server
-const SERVER = "http://endpoint.visionarylifescience.com/";
+const SERVER = "https://endpoint.visionarylifescience.com/";
 
 // Testing Server
 // const SERVER = "http://endpoint.visionarylifesciences.in/";
