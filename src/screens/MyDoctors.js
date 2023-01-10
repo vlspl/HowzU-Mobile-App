@@ -132,17 +132,12 @@ class MyDoctors extends Component {
   // };
 
   getDoctorlist = async (empty) => {
-    console.log(this.state.pageNo);
-    console.log(Constants.PER_PAGE_RECORD);
-    console.log(this.state.searchString);
-
     try {
       let response = await axios.post(Constants.GET_DOCTOR_LIST, {
         pageNumber: this.state.pageNo,
         pageSize: Constants.PER_PAGE_RECORD,
         Searching: this.state.searchString
       });
-      console.log("My Doctors  data==============", response.data);
       this.setState({ loading: false });
 
       if (response.data.Status) {
@@ -315,10 +310,8 @@ class MyDoctors extends Component {
     // let info = this.state.ApprovedRequestList[index];
     let info = this.state.AllMyDoctors[index];
     let drname = info.DoctorName.split(" ");
-    console.log(drname[0] != "Dr.", drname[0] != "Dr", "split name");
     let doctorname;
     if (drname[0] != "Dr" && drname[0] != "Dr." && drname[0] != "Dr.") {
-      console.log("if if ");
       doctorname = "Dr " + info.DoctorName;
     } else {
       doctorname = info.DoctorName;
@@ -350,7 +343,6 @@ class MyDoctors extends Component {
     //   // Constants.DELETE_DOCFROM_PATIENTLISST + "MyDoctorId =" + info.MyDoctorId
     // );
     let drname = info.DoctorName.split(" ");
-    console.log(drname[0], "dr ame ");
     try {
       let response = await axios.get(
         Constants.DELETE_DOCFROM_PATIENTLISST + "MyDoctorId=" + info.MyDoctorId
@@ -428,7 +420,6 @@ class MyDoctors extends Component {
     // });
   };
   makeCalltoDoc = (contact) => {
-    console.log(contact, "make call to doc ");
     if (contact.length != 10) {
       alert("Incorrect contact number");
       return;
@@ -551,40 +542,40 @@ class MyDoctors extends Component {
             </View>
           </ScrollView>
           {this.state.AllMyDoctors.length <= 0 &&
-          !this.state.isLoading &&
-          !this.state.searchLoading &&
-          !this.state.refreshing ? (
+            !this.state.isLoading &&
+            !this.state.searchLoading &&
+            !this.state.refreshing ? (
             <NoDataAvailable
               onPressRefresh={this.onRefresh}
               source={require("../../icons/nodatamydoc.png")}
-              // source={require("../../icons/newnodataoc.png")}
+            // source={require("../../icons/newnodataoc.png")}
             />
           ) : // <View
-          //   style={{
-          //     height: "100%",
-          //     width: "100%",
-          //     backgroundColor: "white",
-          //     alignItems: "center",
-          //     justifyContent: "center"
-          //     // margin: 10
-          //   }}
-          // >
-          //   <Image
-          //     // source={require("../../icons/nodatafoundDoc.jpeg")}
-          //     // source={require("../../icons/nodatamydoc.jpeg")}
-          //     // source={require("../../icons/nodatadoc.jpeg")} //mydocnodata
-          //     //  mydocnodata
-          //     // source={require("../../icons/nodatamydoc.png")}
-          //     style={{
-          //       height: "70%",
-          //       width: "94%"
-          //     }}
-          //   />
-          //   <TouchableOpacity onPress={this.onRefresh}>
-          //     {/* <Text style={{ color: 'green' ,backgroundColor:'white'}}>click to refresh</Text> */}
-          //   </TouchableOpacity>
-          // </View>
-          null}
+            //   style={{
+            //     height: "100%",
+            //     width: "100%",
+            //     backgroundColor: "white",
+            //     alignItems: "center",
+            //     justifyContent: "center"
+            //     // margin: 10
+            //   }}
+            // >
+            //   <Image
+            //     // source={require("../../icons/nodatafoundDoc.jpeg")}
+            //     // source={require("../../icons/nodatamydoc.jpeg")}
+            //     // source={require("../../icons/nodatadoc.jpeg")} //mydocnodata
+            //     //  mydocnodata
+            //     // source={require("../../icons/nodatamydoc.png")}
+            //     style={{
+            //       height: "70%",
+            //       width: "94%"
+            //     }}
+            //   />
+            //   <TouchableOpacity onPress={this.onRefresh}>
+            //     {/* <Text style={{ color: 'green' ,backgroundColor:'white'}}>click to refresh</Text> */}
+            //   </TouchableOpacity>
+            // </View>
+            null}
         </View>
         <ActionButton
           style={{

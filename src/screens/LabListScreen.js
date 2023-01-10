@@ -295,11 +295,6 @@ export default class LabListScreen extends Component {
   //handling onPress action
   OpenBookAppointment = (index) => {
     let labinfo = this.state.AllLabList[index];
-    console.log(
-      "navigating to book appoint====================================",
-      index,
-      labinfo
-    );
     this.props.navigation.navigate("BookAppointment", {
       labinfo: labinfo,
       from: "manually"
@@ -414,9 +409,9 @@ export default class LabListScreen extends Component {
                 </View>
               </ScrollView>
               {this.state.AllLabList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable onPressRefresh={this.onRefresh} />
               ) : null}
             </View>

@@ -170,7 +170,6 @@ export default class BedTimeHydScreen extends Component {
       const value = await AsyncStorage.getItem("Hydration");
       if (value !== null) {
         // We have data!!
-        console.log(JSON.parse(value));
         const bmiDetail = JSON.parse(value);
         this.setState({
           selectedIndex: getIndex(bmiDetail.weight, wightkg),
@@ -189,7 +188,6 @@ export default class BedTimeHydScreen extends Component {
       const value = await AsyncStorage.getItem("Hydration");
       if (value !== null) {
         // We have data!!
-        console.log(JSON.parse(value), "///////////****");
         const hydrationDetail = JSON.parse(value);
         this.setState(
           {
@@ -210,14 +208,6 @@ export default class BedTimeHydScreen extends Component {
   };
   SaveHydationDatatoDB = async () => {
     let Intakegoal = Number(this.state.weight) * 0.033 * 1000;
-
-    console.log("==========bmiresult", this.state.Wakeuptime);
-    console.log("===========bmiheight", this.state.Bedtime);
-
-    console.log("===========bmiweight", this.state.weight);
-
-    console.log("Intakegoal===========Intakegoal", Intakegoal + "ML");
-
     this.setState({ isLoading: true });
 
     // await AsyncStorage.removeItem("Hydration");
@@ -231,7 +221,6 @@ export default class BedTimeHydScreen extends Component {
         Intakegoal: Intakegoal + " ML",
         ActionStatus: "I"
       });
-      console.log("data==============", response.data);
       this.setState({ isLoading: false });
       if (response.data.Status) {
         // this.state.AllMyPatients = [...this.state.AllMyPatients,...response.data.DoctorList];

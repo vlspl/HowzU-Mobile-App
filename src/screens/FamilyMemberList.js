@@ -267,7 +267,6 @@ export default class FamilyMemberList extends Component {
         // console.log(responseData, 'Response data');
         let responseData = this.state.AccessMembertList;
         response.data.PatientList.map((item) => {
-          console.log(item, "access mener ");
           // item.isShow=false;
           responseData.push(item);
         });
@@ -389,7 +388,6 @@ export default class FamilyMemberList extends Component {
   //Delete meber from granted access
   onPressDeleteAccessMember = (index) => {
     let info = this.state.AccessMembertList[index];
-    console.log("index====================================", index, info);
     this.setState({ requestId: info.RequestId }, () => {
       //this.updateRequestStatus();
       Alert.alert(
@@ -562,14 +560,10 @@ export default class FamilyMemberList extends Component {
         refreshing: false
       });
       Toast.show("Something Went Wrong, Please Try Again Later");
-
-      console.log(error, "Errors @@@");
     }
   }
 
   updateRequestStatus = async () => {
-    console.log("this.state.requestId====", this.state.requestId);
-    console.log("this.state.status=====", this.state.status);
     this.setState({ isLoading: true });
 
     try {
@@ -581,7 +575,6 @@ export default class FamilyMemberList extends Component {
       this.setState({ isLoading: false });
 
       if (response.data.Status) {
-        console.log(response.data.Msg);
         Toast.show(response.data.Msg);
         this.setState(
           {
@@ -628,7 +621,7 @@ export default class FamilyMemberList extends Component {
           title="Family Members"
           from={this.props.route.params}
           navigation={this.props.navigation}
-          // onPress={this.AddDoc}
+        // onPress={this.AddDoc}
         />
         <View
           style={{ flex: 1, flexDirection: "column", backgroundColor: "white" }}
@@ -760,12 +753,12 @@ export default class FamilyMemberList extends Component {
                           onPressClose={() =>
                             this.onPressDeleteAccessMember(index)
                           }
-                          // onPressRow={
-                          //   item.RequestStatus == "Accepted"
-                          //     ? () =>
-                          //         this.onPressSelecGrantedAccesstMember(index)
-                          //     : null
-                          // }
+                        // onPressRow={
+                        //   item.RequestStatus == "Accepted"
+                        //     ? () =>
+                        //         this.onPressSelecGrantedAccesstMember(index)
+                        //     : null
+                        // }
                         ></FamilyMembercard>
                       </View>
                     );
@@ -778,11 +771,11 @@ export default class FamilyMemberList extends Component {
               </View>
             </ScrollView>
             {this.state.ApprovedRequestList.length <= 0 &&
-            this.state.AccessMembertList.length <= 0 &&
-            this.state.PendingRequestList.length <= 0 &&
-            !this.state.isLoading &&
-            !this.state.searchLoading &&
-            !this.state.refreshing ? (
+              this.state.AccessMembertList.length <= 0 &&
+              this.state.PendingRequestList.length <= 0 &&
+              !this.state.isLoading &&
+              !this.state.searchLoading &&
+              !this.state.refreshing ? (
               <NoDataAvailable
                 onPressRefresh={this.onRefresh}
                 source={require("../../icons/family.png")}

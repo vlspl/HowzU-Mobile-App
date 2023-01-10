@@ -93,7 +93,6 @@ export default class MedicationStartDate extends React.Component {
   };
 
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log(nextProp.route.params.color);
     // console.log(
     //   ' MedstartDate componentWillReceiveProps==============================',
     //   nextProp.route.params.tabName,
@@ -138,13 +137,11 @@ export default class MedicationStartDate extends React.Component {
         secondDoseQuantity: nextProp.route.params.secondDoseQuantity,
         thirdDoseQuantity: nextProp.route.params.thirdDoseQuantity
       },
-      () => {}
+      () => { }
     );
   };
 
   componentDidMount = async () => {
-    console.log("MedstartDate componentDidMount=", this.props.route.params);
-
     // this.backHandler = BackHandler.addEventListener(
     //   'hardwareBackPress',
     //   this.hardwarebBackAction
@@ -193,7 +190,7 @@ export default class MedicationStartDate extends React.Component {
         secondDoseQuantity: this.props.route.params.secondDoseQuantity,
         thirdDoseQuantity: this.props.route.params.thirdDoseQuantity
       },
-      () => {}
+      () => { }
     );
   };
   hardwarebBackAction = () => {
@@ -253,7 +250,7 @@ export default class MedicationStartDate extends React.Component {
           thirdDoseQuantity: this.state.thirdDoseQuantity,
           comparestartdate: this.state.comparedateforenddate
         });
-      } catch (e) {}
+      } catch (e) { }
     }
   };
 

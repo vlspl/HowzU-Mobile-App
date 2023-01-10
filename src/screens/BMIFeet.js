@@ -437,10 +437,6 @@ export default class BMIFeet extends Component {
           Constants.BMIDETAIL_KEY,
           JSON.stringify(items)
         );
-        console.log(
-          "this.state.feet ////????==================",
-          this.state.bmiheight
-        );
         this.props.navigation.navigate("BMIResult", { refresh: "refresh" });
       } catch (e) {
         Toast.show("Something Went Wrong, Please Try Again Later");

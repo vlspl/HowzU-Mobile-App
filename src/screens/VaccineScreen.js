@@ -377,10 +377,10 @@ export default class VaccineScreen extends Component {
       // console.log(pincode, "pincode");
       let response = await axios.get(
         "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?" +
-          "pincode=" +
-          this.state.pincode +
-          "&date=" +
-          date
+        "pincode=" +
+        this.state.pincode +
+        "&date=" +
+        date
       );
       this.setState({ isLoading: false });
 
@@ -407,11 +407,6 @@ export default class VaccineScreen extends Component {
   };
 
   render() {
-    console.log(
-      "=======///",
-      JSON.stringify(this.state.VaccinationdatabyPIN),
-      "data after filetering"
-    );
     return (
       <Container>
         <Loader loading={this.state.isLoading} />

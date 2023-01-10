@@ -61,25 +61,21 @@ export default class ForgetPassReset extends Component {
     );
 
     // this.setState({ password: text });
-    console.log(text, "text", Passwordreg.test(text), "ma", name);
     if (name == "pass") {
       this.setState({ password: text });
     } else {
       this.setState({ confirmpass: text });
     }
     if (text.length < 6) {
-      console.log("password need to be 6 dgit");
       // this.setState({ Password: text });
       this.setState({ isErr: true });
     } else if (Passwordreg.test(text)) {
-      console.log("Password matched");
       if (name == "pass") {
         this.setState({ isErr: false, password: text });
       } else {
         this.setState({ isErr: false, confirmpass: text });
       }
     } else {
-      console.log("Errr*******");
       this.setState({ password: text });
       this.setState({ isErr: true });
     }

@@ -52,12 +52,6 @@ export default class DetailmedHistory extends React.Component {
 
   componentDidMount = () => {
     let self = this;
-
-    console.log(
-      "Component Did MOunt ****************Medication Calendar Home****************",
-      this.props.route.params
-    );
-
     this.setState(
       {
         medicationInfo: [],
@@ -74,8 +68,6 @@ export default class DetailmedHistory extends React.Component {
 
   async FetchMedicationData() {
     let temparray = [];
-    console.log(this.state.selectedId, "id");
-
     try {
       let response = await axios.post(
         Constants.GET_IN_DETAIL_MEDICATION_HISORY,
@@ -83,14 +75,11 @@ export default class DetailmedHistory extends React.Component {
           MasterId: this.state.selectedId
         }
       );
-      console.log(response.data, "???????>>>>");
       this.setState({
         isLoading: false
       });
       if (response.data.Status) {
         response.data.ReportList.map((item) => {
-          console.log(item, "@#@#@#@#@####@#@##@#infetch data ");
-
           const value = item;
 
           temparray.push(value);
@@ -99,7 +88,6 @@ export default class DetailmedHistory extends React.Component {
         removeduplicate.sort(function (a, b) {
           return a.counter - b.counter;
         });
-        console.log(removeduplicate);
         this.setState({
           medicationInfo: removeduplicate, //this.removeDuplicate(temparray),
           isLoading: false
@@ -126,11 +114,6 @@ export default class DetailmedHistory extends React.Component {
     });
   };
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log(
-      " Unsafe componentWillReceiveProps==============================",
-      nextProp.route.params.data
-    );
-
     this.setState(
       {
         medicationInfo: [],

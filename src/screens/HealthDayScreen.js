@@ -149,7 +149,6 @@ export default class HealthDayScreen extends Component {
 
     try {
       const ShareResponse = await Share.open(shareOptions);
-      console.log(JSON.stringify(ShareResponse));
     } catch (error) {
       console.log("Error => ", error);
     }
@@ -159,7 +158,7 @@ export default class HealthDayScreen extends Component {
     return <Loader loading={this.state.isLoading} />;
   }
 
-  CheckStatuscall = async () => {};
+  CheckStatuscall = async () => { };
 
   render() {
     //const { navigate } = this.props.navigation;

@@ -16,8 +16,6 @@ import Modal from "react-native-modal";
 
 const AddAccount = (props) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
-
-  // console.log(props.CurrentActiveUser.Email, 'Current actiove user');
   const [data, setData] = useState({
     getAllActiveAccounts: [],
     mobile: "",
@@ -27,19 +25,16 @@ const AddAccount = (props) => {
     try {
       await AsyncStorage.getItem("Users", (err, res) => {
         var array = [];
-        if (!res) console.log("No Data Found");
+        if (!res) {
+
+        }
         else {
           var items = JSON.parse(res);
-          // (items, 'items ');
           items.map((itm, key) => {
             if (itm.Mobile === props.activeNumber) {
-              // console.log(itm.Mobile, 'This is the cureent Active Account');
             } else {
-              // console.log(itm.Mobile, '**********past active accnt data');
-
               array.push(itm);
             }
-            // console.log(array, 'array is ');
           });
           setData({
             ...data,
@@ -48,7 +43,6 @@ const AddAccount = (props) => {
         }
       });
     } catch (e) {
-      // console.log(e, 'Err ******');
     }
   };
 
@@ -199,7 +193,7 @@ const AddAccount = (props) => {
             {
               flex:
                 data.getAllActiveAccounts.length > 0 ||
-                data.getAllActiveAccounts.length === 1
+                  data.getAllActiveAccounts.length === 1
                   ? data.getAllActiveAccounts.length > 2
                     ? 0.5
                     : 0.4

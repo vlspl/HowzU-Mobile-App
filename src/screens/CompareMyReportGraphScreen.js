@@ -36,14 +36,12 @@ const padder = require("pkcs7-padding");
 import Toast from "react-native-tiny-toast";
 
 function range(start, end, step, offset) {
-  console.log("start", start, "end ", end);
   let strt = Math.round(start / 10) * 10;
   let endel = end;
   // let endel = Math.round(end / 10) * 10; //
   // console.log(endel, "endl");
   let s1 = strt;
   let s2 = endel;
-  console.log(s1, "start", s2, "end");
   if (endel == 0 || endel < end) {
     endel = end;
   } else {
@@ -142,7 +140,6 @@ export default class CompareMyReportGraphScreen extends Component {
   }
 
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log("------", nextProp.route.params);
     this.setState(
       {
         isLoading: true,
@@ -180,7 +177,6 @@ export default class CompareMyReportGraphScreen extends Component {
   };
 
   componentDidMount = () => {
-    console.log("------", this.props.route.params);
     this.setState(
       {
         isLoading: true,
@@ -223,15 +219,10 @@ export default class CompareMyReportGraphScreen extends Component {
   groupBy = (array, key) => {
     // Return the end result
     return array.reduce((result, currentValue) => {
-      console.log("result[currentValue[key]", result[currentValue[key]]);
-      console.log(result, "reducer function"); //first time {}
-      console.log(currentValue, "currentValue function"); //1st time 1st   onject
-
       // If an array already present for key, push it to the array. Else create an array and push the object
       (result[currentValue[key]] = result[currentValue[key]] || []).push(
         currentValue
       );
-      console.log(result, "befor returning the results>>>.");
       // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
       return result;
     }, {}); // empty object is the initial value for result object
@@ -241,7 +232,6 @@ export default class CompareMyReportGraphScreen extends Component {
     this.setState({ isLoading: true }); //OldReport
     if (this.state.flag == "OldReport") {
       try {
-        console.log("ols test id ===");
         const response = await axios.post(Constants.COMPARE_OLDREPORTGRAPH, {
           ParameterName: this.state.testname
         });
@@ -381,7 +371,6 @@ export default class CompareMyReportGraphScreen extends Component {
           });
         }
       } catch (error) {
-        console.log(error, "********$$$$");
         Toast.show("Something Went Wrong, Please Try Again Later");
 
         this.setState({
@@ -396,12 +385,9 @@ export default class CompareMyReportGraphScreen extends Component {
       }
     } else {
       try {
-        console.log(this.state.testid, "test id ");
         const response = await axios.get(
           Constants.COMPARE_REPORTGRAPH + "TestId=" + this.state.testid
         );
-
-        console.log(">>><<<<<<", response.data, "for the lab reports ");
         this.setState({ isLoading: false });
         if (response.data.Status) {
           let responseData = [];
@@ -426,16 +412,12 @@ export default class CompareMyReportGraphScreen extends Component {
             xaxiosdata = [];
             refrange = element.Female != "" ? element.Female : element.Male;
             RefArray = refrange.split("-");
-
-            console.log(element, "subanlyet==");
             dt = element.TestDate.split(",");
-            console.log(dt, "after splic test dteag==");
             let temp = {};
             temp.Analyte = element.Analyte;
             temp.Subanalyte = element.SubAnalyte;
             values = [];
             for (let i = 0; i < dt.length; i++) {
-              console.log(dt[i], "==========/////date ");
               let yaxios = Number(this.Decrypt(dt[i + 1]));
               let value = isNaN(yaxios) ? 0 : yaxios;
 
@@ -542,10 +524,6 @@ export default class CompareMyReportGraphScreen extends Component {
             const xaxiosorting = xaxiosdata.sort(function (a, b) {
               return new Date(b.date) - new Date(a.date);
             });
-            console.log(
-              desendingsortarrydata,
-              "desendingsortarrydata******Yaxiosdata"
-            );
             // temp.data = dataplot;
             // new changes soreted the data
             temp.data = desendingsortarrydata;
@@ -709,12 +687,6 @@ export default class CompareMyReportGraphScreen extends Component {
     );
   };
   render() {
-    console.log(
-      "!!!!!!!!!%%^%^^%^/////",
-      JSON.stringify(this.state.newcomplexgraph),
-      "%%%^^^^^"
-    );
-
     return (
       <Container>
         <CustomeHeader

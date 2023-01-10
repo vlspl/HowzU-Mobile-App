@@ -74,7 +74,6 @@ function StatusBarPlaceHolder() {
   );
 }
 function range(start, end, step, offset) {
-  console.log("start", start, "end ", end);
   let strt = Math.round(start / 10) * 10;
   // let strt = 10;
   let endel = end;
@@ -82,7 +81,6 @@ function range(start, end, step, offset) {
   // console.log(endel, "endl");
   let s1 = strt;
   let s2 = endel;
-  console.log(s1, "start", s2, "end");
   if (endel == 0 || endel < end) {
     endel = end;
   } else {
@@ -203,7 +201,6 @@ export default class MyOxygengraph extends React.Component {
         let Yaxiosdata = [];
         let xaxiosdata = [];
         responsiveLineData = [];
-        console.log(response.data);
         response.data.List.map((item) => {
           let datesetX = {};
           let tempreport = {};
@@ -302,24 +299,11 @@ export default class MyOxygengraph extends React.Component {
   }
 
   showGraphUsingDates = async () => {
-    console.log(
-      "this.state.fromdate",
-      this.state.fromdate,
-      "this.state.todate",
-      this.state.todate,
-      "type of",
-      typeof this.state.fromdate,
-      "///",
-      typeof this.state.todate,
-      this.state.isLoading
-    );
     try {
       let response = await axios.post(Constants.GET_OXYGEN_BYDATES, {
         FromDate: moment(this.state.fromdate).format("DD/MM/YYYY"),
         ToDate: moment(this.state.todate).format("DD/MM/YYYY")
       });
-      console.log(response.data, "$$%%%% by Oxye data ");
-
       this.setState({ isLoading: false });
       if (response.data.Status) {
         let responseData = [];
@@ -388,8 +372,6 @@ export default class MyOxygengraph extends React.Component {
   };
   onSelectFromDate = (date) => {
     let formatdate = moment(date).format("DD/MM/YYYY");
-    console.log(formatdate, "formate date ");
-    console.log("from date ", date);
     this.setState(
       {
         fromdate: date,
@@ -417,9 +399,7 @@ export default class MyOxygengraph extends React.Component {
     );
   };
   onSelectToDate = (date) => {
-    console.log(date, "//////onselect to date");
     let formatdate = moment(date).format("DD/MM/YYYY");
-    console.log(formatdate, "tod ate formate date ");
     this.setState({ todate: date, isShowDataPicker: false }, () => {
       if (this.state.fromdate == "") {
       } else {
@@ -440,7 +420,6 @@ export default class MyOxygengraph extends React.Component {
   };
 
   onChangeSelectFromDate = (event, selectedDate) => {
-    console.log(event, "//////");
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -477,7 +456,6 @@ export default class MyOxygengraph extends React.Component {
     }
   };
   onChangeSelectToDate = (event, selectedDate) => {
-    console.log(event, "//////");
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -700,8 +678,8 @@ export default class MyOxygengraph extends React.Component {
           </View>
 
           {this.state.activebtn == "report" &&
-          this.state.activebtn != "graphdata" &&
-          this.state.isLoading == false ? (
+            this.state.activebtn != "graphdata" &&
+            this.state.isLoading == false ? (
             <View
               style={{
                 justifyContent: "center",
@@ -722,139 +700,24 @@ export default class MyOxygengraph extends React.Component {
                 {this.state.reportDetailArr.length <= 0
                   ? null
                   : this.state.reportDetailArr.map((itm) => (
-                      <View style={styles.container}>
-                        <View
-                          style={{
-                            flex: 1,
-                            flexDirection: "column",
-                            backgroundColor: "white"
-                          }}
-                        >
-                          <View
-                            style={{
-                              flex: 1,
-                              flexDirection: "row",
-                              marginTop: 5
-                            }}
-                          >
-                            <Image
-                              source={require("../../icons/lab.png")}
-                              style={{ height: 15, width: 14, marginLeft: 5 }}
-                            />
-                            <Text
-                              style={{
-                                fontSize: 12,
-                                paddingTop: 2,
-                                color: "gray",
-                                marginLeft: 10,
-                                width: 65,
-                                backgroundColor: "white"
-                              }}
-                            >
-                              Name:
-                            </Text>
-                            <Text
-                              style={{
-                                flex: 1,
-                                fontSize: 12,
-                                marginTop: 0,
-                                color: "black",
-                                marginRight: 10,
-                                textAlign: "right",
-                                backgroundColor: "white",
-                                padding: 2
-                              }}
-                            >
-                              {this.state.healthName}
-                            </Text>
-                          </View>
-                          <View
-                            style={{
-                              height: 0.5,
-                              backgroundColor: "lightgray",
-                              marginTop: 5,
-                              padding: 0.5
-                            }}
-                          ></View>
-                        </View>
-
-                        <View
-                          style={{
-                            flex: 1,
-                            flexDirection: "column",
-                            backgroundColor: "white"
-                          }}
-                        >
-                          <View
-                            style={{
-                              flex: 1,
-                              flexDirection: "row",
-                              marginTop: 5
-                            }}
-                          >
-                            <Image
-                              source={require("../../icons/oxygennew.png")}
-                              style={{ height: 26, width: 26, marginLeft: 1 }}
-                            />
-                            <Text
-                              style={{
-                                fontSize: 12,
-                                paddingTop: 2,
-                                color: "gray",
-                                marginLeft: 10,
-                                width: 100,
-                                // width: 75,
-                                textAlign: "left",
-                                backgroundColor: "white"
-                              }}
-                              numberOfLines={1}
-                            >
-                              Oxygen(%)
-                            </Text>
-                            <View
-                              style={{
-                                flex: 1,
-                                alignItems: "flex-end",
-                                flexDirection: "row",
-                                justifyContent: "flex-end",
-                                marginLeft: 165
-                              }}
-                            ></View>
-                            <Text
-                              style={{
-                                marginLeft: -90,
-
-                                fontSize: 12,
-                                marginTop: 0,
-                                color: "black",
-                                marginRight: 10,
-                                textAlign: "right",
-                                backgroundColor: "white"
-                              }}
-                            >
-                              {itm.systolic}
-                            </Text>
-                          </View>
-                        </View>
-                        <View
-                          style={{
-                            height: 0.5,
-                            backgroundColor: "lightgray",
-                            marginTop: 5
-                          }}
-                        ></View>
-
+                    <View style={styles.container}>
+                      <View
+                        style={{
+                          flex: 1,
+                          flexDirection: "column",
+                          backgroundColor: "white"
+                        }}
+                      >
                         <View
                           style={{
                             flex: 1,
                             flexDirection: "row",
-                            marginTop: 5,
-                            backgroundColor: "white"
+                            marginTop: 5
                           }}
                         >
                           <Image
-                            source={require("../../icons/heart512.png")}
-                            style={{ height: 30, width: 18, marginLeft: 5 }}
+                            source={require("../../icons/lab.png")}
+                            style={{ height: 15, width: 14, marginLeft: 5 }}
                           />
                           <Text
                             style={{
@@ -862,13 +725,11 @@ export default class MyOxygengraph extends React.Component {
                               paddingTop: 2,
                               color: "gray",
                               marginLeft: 10,
-                              width: 100,
-                              backgroundColor: "white",
-                              textAlign: "left"
+                              width: 65,
+                              backgroundColor: "white"
                             }}
-                            numberOfLines={1}
                           >
-                            Pulse Rate:
+                            Name:
                           </Text>
                           <Text
                             style={{
@@ -882,7 +743,7 @@ export default class MyOxygengraph extends React.Component {
                               padding: 2
                             }}
                           >
-                            {itm.pulse}
+                            {this.state.healthName}
                           </Text>
                         </View>
                         <View
@@ -893,7 +754,15 @@ export default class MyOxygengraph extends React.Component {
                             padding: 0.5
                           }}
                         ></View>
+                      </View>
 
+                      <View
+                        style={{
+                          flex: 1,
+                          flexDirection: "column",
+                          backgroundColor: "white"
+                        }}
+                      >
                         <View
                           style={{
                             flex: 1,
@@ -902,8 +771,8 @@ export default class MyOxygengraph extends React.Component {
                           }}
                         >
                           <Image
-                            source={require("../../icons/calendergray.jpg")}
-                            style={{ height: 16, width: 14, marginLeft: 5 }}
+                            source={require("../../icons/oxygennew.png")}
+                            style={{ height: 26, width: 26, marginLeft: 1 }}
                           />
                           <Text
                             style={{
@@ -912,86 +781,251 @@ export default class MyOxygengraph extends React.Component {
                               color: "gray",
                               marginLeft: 10,
                               width: 100,
+                              // width: 75,
+                              textAlign: "left",
                               backgroundColor: "white"
                             }}
                             numberOfLines={1}
                           >
-                            Record Date:
+                            Oxygen(%)
                           </Text>
-                          <Text
+                          <View
                             style={{
                               flex: 1,
+                              alignItems: "flex-end",
+                              flexDirection: "row",
+                              justifyContent: "flex-end",
+                              marginLeft: 165
+                            }}
+                          ></View>
+                          <Text
+                            style={{
+                              marginLeft: -90,
+
                               fontSize: 12,
                               marginTop: 0,
                               color: "black",
                               marginRight: 10,
                               textAlign: "right",
-                              backgroundColor: "white",
-                              padding: 2
+                              backgroundColor: "white"
                             }}
                           >
-                            {itm.recorddate}
+                            {itm.systolic}
                           </Text>
                         </View>
-                        <View
-                          style={{
-                            height: 0.5,
-                            backgroundColor: "lightgray",
-                            marginTop: 5
-                          }}
-                        ></View>
+                      </View>
+                      <View
+                        style={{
+                          height: 0.5,
+                          backgroundColor: "lightgray",
+                          marginTop: 5
+                        }}
+                      ></View>
 
-                        <View
+                      <View
+                        style={{
+                          flex: 1,
+                          flexDirection: "row",
+                          marginTop: 5,
+                          backgroundColor: "white"
+                        }}
+                      >
+                        <Image
+                          source={require("../../icons/heart512.png")}
+                          style={{ height: 30, width: 18, marginLeft: 5 }}
+                        />
+                        <Text
+                          style={{
+                            fontSize: 12,
+                            paddingTop: 2,
+                            color: "gray",
+                            marginLeft: 10,
+                            width: 100,
+                            backgroundColor: "white",
+                            textAlign: "left"
+                          }}
+                          numberOfLines={1}
+                        >
+                          Pulse Rate:
+                        </Text>
+                        <Text
                           style={{
                             flex: 1,
-                            flexDirection: "row",
-                            marginTop: 5
+                            fontSize: 12,
+                            marginTop: 0,
+                            color: "black",
+                            marginRight: 10,
+                            textAlign: "right",
+                            backgroundColor: "white",
+                            padding: 2
                           }}
                         >
-                          <Image
-                            source={require("../../icons/calendergray.jpg")}
-                            style={{ height: 16, width: 14, marginLeft: 5 }}
-                          />
-                          <Text
-                            style={{
-                              fontSize: 12,
-                              paddingTop: 2,
-                              color: "gray",
-                              marginLeft: 10,
-                              width: 100,
-                              backgroundColor: "white"
-                            }}
-                            numberOfLines={1}
-                          >
-                            Created Date
-                          </Text>
-                          <Text
-                            style={{
-                              flex: 1,
-                              fontSize: 12,
-                              marginTop: 0,
-                              color: "black",
-                              marginRight: 10,
-                              textAlign: "right",
-                              backgroundColor: "white",
-                              padding: 2
-                            }}
-                          >
-                            {itm.createddate}
-                          </Text>
-                        </View>
-                        <View
+                          {itm.pulse}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          height: 0.5,
+                          backgroundColor: "lightgray",
+                          marginTop: 5,
+                          padding: 0.5
+                        }}
+                      ></View>
+
+                      <View
+                        style={{
+                          flex: 1,
+                          flexDirection: "row",
+                          marginTop: 5
+                        }}
+                      >
+                        <Image
+                          source={require("../../icons/calendergray.jpg")}
+                          style={{ height: 16, width: 14, marginLeft: 5 }}
+                        />
+                        <Text
                           style={{
-                            height: 0.5,
-                            backgroundColor: "lightgray",
-                            marginTop: 5
+                            fontSize: 12,
+                            paddingTop: 2,
+                            color: "gray",
+                            marginLeft: 10,
+                            width: 100,
+                            backgroundColor: "white"
                           }}
-                        ></View>
+                          numberOfLines={1}
+                        >
+                          Record Date:
+                        </Text>
+                        <Text
+                          style={{
+                            flex: 1,
+                            fontSize: 12,
+                            marginTop: 0,
+                            color: "black",
+                            marginRight: 10,
+                            textAlign: "right",
+                            backgroundColor: "white",
+                            padding: 2
+                          }}
+                        >
+                          {itm.recorddate}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          height: 0.5,
+                          backgroundColor: "lightgray",
+                          marginTop: 5
+                        }}
+                      ></View>
+
+                      <View
+                        style={{
+                          flex: 1,
+                          flexDirection: "row",
+                          marginTop: 5
+                        }}
+                      >
+                        <Image
+                          source={require("../../icons/calendergray.jpg")}
+                          style={{ height: 16, width: 14, marginLeft: 5 }}
+                        />
+                        <Text
+                          style={{
+                            fontSize: 12,
+                            paddingTop: 2,
+                            color: "gray",
+                            marginLeft: 10,
+                            width: 100,
+                            backgroundColor: "white"
+                          }}
+                          numberOfLines={1}
+                        >
+                          Created Date
+                        </Text>
+                        <Text
+                          style={{
+                            flex: 1,
+                            fontSize: 12,
+                            marginTop: 0,
+                            color: "black",
+                            marginRight: 10,
+                            textAlign: "right",
+                            backgroundColor: "white",
+                            padding: 2
+                          }}
+                        >
+                          {itm.createddate}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          height: 0.5,
+                          backgroundColor: "lightgray",
+                          marginTop: 5
+                        }}
+                      ></View>
+                      <View
+                        style={{
+                          flex: 1,
+                          flexDirection: "row",
+                          marginTop: 5
+                        }}
+                      >
+                        <Image
+                          source={require("../../icons/notes2.png")}
+                          style={{ height: 16, width: 14, marginLeft: 5 }}
+                        />
+                        <Text
+                          style={{
+                            fontSize: 12,
+                            paddingTop: 2,
+                            color: "gray",
+                            marginLeft: 10,
+                            width: 100,
+                            backgroundColor: "white"
+                          }}
+                          numberOfLines={1}
+                        >
+                          Result:
+                        </Text>
+                        <Text
+                          style={{
+                            flex: 1,
+                            fontSize: 12,
+                            marginTop: 0,
+                            color: "black",
+                            marginRight: 10,
+                            textAlign: "right",
+                            backgroundColor: "white",
+                            padding: 2
+                          }}
+                        >
+                          {itm.result}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          height: 0.5,
+                          backgroundColor: "lightgray",
+                          marginTop: 5
+                        }}
+                      ></View>
+
+                      <View
+                        style={{
+                          flex: 1,
+                          flexDirection: "column",
+                          marginTop: 5,
+                          backgroundColor: "white"
+                        }}
+                      >
                         <View
                           style={{
                             flex: 1,
                             flexDirection: "row",
-                            marginTop: 5
+                            marginTop: 5,
+                            backgroundColor: "white"
                           }}
                         >
                           <Image
@@ -1003,95 +1037,39 @@ export default class MyOxygengraph extends React.Component {
                               fontSize: 12,
                               paddingTop: 2,
                               color: "gray",
-                              marginLeft: 10,
-                              width: 100,
+                              marginLeft: 5,
+                              width: 70,
                               backgroundColor: "white"
                             }}
-                            numberOfLines={1}
                           >
-                            Result:
-                          </Text>
-                          <Text
-                            style={{
-                              flex: 1,
-                              fontSize: 12,
-                              marginTop: 0,
-                              color: "black",
-                              marginRight: 10,
-                              textAlign: "right",
-                              backgroundColor: "white",
-                              padding: 2
-                            }}
-                          >
-                            {itm.result}
+                            Note:
                           </Text>
                         </View>
-                        <View
-                          style={{
-                            height: 0.5,
-                            backgroundColor: "lightgray",
-                            marginTop: 5
-                          }}
-                        ></View>
 
-                        <View
+                        <Text
                           style={{
                             flex: 1,
-                            flexDirection: "column",
-                            marginTop: 5,
-                            backgroundColor: "white"
+                            fontSize: 12,
+                            marginTop: 10,
+                            color: "black",
+                            marginLeft: 5,
+                            textAlign: "left",
+                            backgroundColor: "white",
+                            padding: 2
                           }}
                         >
-                          <View
-                            style={{
-                              flex: 1,
-                              flexDirection: "row",
-                              marginTop: 5,
-                              backgroundColor: "white"
-                            }}
-                          >
-                            <Image
-                              source={require("../../icons/notes2.png")}
-                              style={{ height: 16, width: 14, marginLeft: 5 }}
-                            />
-                            <Text
-                              style={{
-                                fontSize: 12,
-                                paddingTop: 2,
-                                color: "gray",
-                                marginLeft: 5,
-                                width: 70,
-                                backgroundColor: "white"
-                              }}
-                            >
-                              Note:
-                            </Text>
-                          </View>
-
-                          <Text
-                            style={{
-                              flex: 1,
-                              fontSize: 12,
-                              marginTop: 10,
-                              color: "black",
-                              marginLeft: 5,
-                              textAlign: "left",
-                              backgroundColor: "white",
-                              padding: 2
-                            }}
-                          >
-                            {itm.note}
-                          </Text>
-                        </View>
-                        {/* <View
+                          {itm.note}
+                        </Text>
+                      </View>
+                      {/* <View
                             style={{
                               height: 0.5,
                               backgroundColor: "lightgray",
                               marginTop: 5,
                             }}
                           ></View> */}
-                      </View>
-                    ))}
+                    </View>
+                  ))}
 
                 {this.state.reportstatus == "Pending" &&
                   this.state.from == "Doctor" &&
@@ -1226,7 +1204,6 @@ export default class MyOxygengraph extends React.Component {
                           date={this.state.todate}
                           isVisible={this.state.isShowDataPicker}
                           onPress={() => {
-                            console.log("pressed");
                             this.setState({
                               isShowDataPicker: !this.state.isShowDataPicker
                             });
@@ -1241,7 +1218,6 @@ export default class MyOxygengraph extends React.Component {
                           date={this.state.todate}
                           isVisible={this.state.isShowDataPicker}
                           onPress={() => {
-                            console.log("pressed");
                             this.setState({
                               isShowDataPicker: !this.state.isShowDataPicker
                             });

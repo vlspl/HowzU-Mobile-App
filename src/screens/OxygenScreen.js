@@ -268,7 +268,6 @@ export default class OxygenScreen extends React.Component {
       } catch (err) {
         Toast.show({ text: "Something went wrong, please try again later" });
         this.setState({ isLoading: false });
-        console.log(err, "blood pressure ");
       }
     }
   };

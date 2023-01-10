@@ -86,13 +86,10 @@ export default class FamilyHistoryScreen extends Component {
     );
   }
   getSaveData = async () => {
-    console.log(this.state.type, "type///");
     try {
       let response = await axios.post(Constants.GET_ALLERGIES_DETAILS, {
         type: this.state.type
       });
-
-      console.log(response.data, "GET_ALLERGIES_DETAILS//////");
       this.setState({ isLoading: false });
       if (response.data.Status) {
         let responseData = [];
@@ -138,8 +135,6 @@ export default class FamilyHistoryScreen extends Component {
     this.setState({ FoodAllergey: values, isfoodallergy: false });
   };
   handleRemove = async (i, id) => {
-    console.log(i, id);
-
     try {
       let response = await axios.post(Constants.ADD_ALLERGIES, {
         type: this.state.type,
@@ -166,8 +161,6 @@ export default class FamilyHistoryScreen extends Component {
     }
   };
   handleAllRemove = async (i) => {
-    console.log(i, "////");
-
     try {
       let response = await axios.post(Constants.ADD_ALLERGIES, {
         userprofileDtlsId: i,
@@ -180,8 +173,6 @@ export default class FamilyHistoryScreen extends Component {
         col10: "",
         actionStatus: "D"
       });
-
-      console.log(response.data, "@#@#@3");
       this.setState({ isLoading: false });
 
       if (response.data.Status) {
@@ -195,7 +186,6 @@ export default class FamilyHistoryScreen extends Component {
   };
   render() {
     const screenWidth = Math.round(Dimensions.get("window").width);
-    console.log(this.state.Allergey, "Allergy");
     return (
       <Container>
         <Loader loading={this.state.isLoading} />

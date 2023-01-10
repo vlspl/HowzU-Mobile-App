@@ -114,16 +114,12 @@ export default class RegisterScreen extends Component {
     );
 
     this.setState({ Password: text });
-    console.log(text, "text", Passwordreg.test(text));
     if (text.length < 6) {
-      console.log("password need to be 6 dgit");
       // this.setState({ Password: text });
       this.setState({ isErr: true });
     } else if (Passwordreg.test(text)) {
-      console.log("Password matched");
       this.setState({ isErr: false, Password: text });
     } else {
-      console.log("Errr*******");
       this.setState({ Password: text });
       this.setState({ isErr: true });
     }
@@ -137,13 +133,6 @@ export default class RegisterScreen extends Component {
     }
   }
   async SignupAPicall() {
-    console.log(this.state.FullName);
-    console.log(this.state.Mobile);
-    console.log(this.state.EmailId);
-    console.log(this.state.Password);
-    console.log(this.state.BirthDate);
-    console.log(this.state.activeGender);
-
     try {
       let response = await axios.post(Constants.GET_SIGNUP, {
         FullName: this.state.FullName,
@@ -157,8 +146,6 @@ export default class RegisterScreen extends Component {
         Pincode: this.state.Pincode,
         ChannelPartnerCode: this.state.channelcode
       });
-
-      console.log(response.data);
       this.setState({ loading: false });
       if (response.data.Status) {
         this.saveData(response.data.Token, response.data.Role, response);
@@ -183,7 +170,6 @@ export default class RegisterScreen extends Component {
     }
   }
   saveData = async (Token, Role, response) => {
-    console.log(Role, "Active role while signup", Token, response);
     let UserId = response.data.UserId;
     try {
       await analytics().setUserId(UserId + "");

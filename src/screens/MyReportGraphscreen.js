@@ -382,7 +382,6 @@ export default class MyReportGraphscreen extends Component {
   };
   // PAtient can view his own Report
   async ReportDetailCall() {
-    console.log("ReportId", this.state.ReportId);
     this.setState({ isLoading: true }); //OldReport
     if (this.state.flag == "OldReport") {
       if (this.state.from == "FamilyMember") {
@@ -592,7 +591,6 @@ export default class MyReportGraphscreen extends Component {
               temp.Minvalue = minvalue;
               temp.Maxvalue = maxvalue;
               let Inrange = IsvalueBetweenRange(RefArray, value);
-              console.log(Inrange, "Inrange");
               let iszero = IsRefFangvalueZero(RefArray, 0);
               temp.iszero = iszero;
               // console.log(
@@ -1355,8 +1353,8 @@ export default class MyReportGraphscreen extends Component {
           </View>
 
           {this.state.activebtn == "report" &&
-          this.state.activebtn != "graphdata" &&
-          this.state.isLoading == false ? (
+            this.state.activebtn != "graphdata" &&
+            this.state.isLoading == false ? (
             <View
               style={{
                 justifyContent: "center",

@@ -74,12 +74,6 @@ export default class AllergiesScreen extends Component {
 
   handleSelectionMultiple = (id) => {
     var selectedIds = [...this.state.selectedIds]; // clone state
-    console.log(
-      selectedIds.includes(id),
-      "selectedIds.includes(id)",
-      "TestID==============================",
-      id
-    );
     if (selectedIds.includes(id)) {
       selectedIds = selectedIds.filter((_id) => _id !== id);
     } else {
@@ -88,7 +82,6 @@ export default class AllergiesScreen extends Component {
     this.setState({ selectedIds });
   };
   toggleModal = () => {
-    console.log("toggle modal");
     this.setState({ isLoading: true }, () => {
       this.getFamilyRelationList();
     });
@@ -98,8 +91,6 @@ export default class AllergiesScreen extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
   selectRelation = (index) => {
-    console.log("index====================================");
-
     let info = this.state.relationList[index];
 
     this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -153,7 +144,6 @@ export default class AllergiesScreen extends Component {
         response.data.ObjProfileDetail.map((item) => {
           responseData.push(item);
         });
-        console.log(responseData, "/////");
         this.setState({
           AllergeyList: responseData,
           isMedCondtionModal: true
@@ -204,7 +194,6 @@ export default class AllergiesScreen extends Component {
   }
 
   async getFamilyMemberList() {
-    console.log("////getFamilyMemberList");
     try {
       let forslef = {};
       let forAddnew = {};
@@ -224,13 +213,6 @@ export default class AllergiesScreen extends Component {
         pageSize: Constants.PER_PAGE_RECORD,
         Searching: this.state.searchString
       });
-
-      console.log(
-        "FAMILY_MEMBERLIST",
-        response.data,
-        ApprovalPendinglist.data,
-        "ApprovalPendinglist"
-      );
       this.setState({ isLoading: false });
       if (response.data.Status || ApprovalPendinglist.data.Status) {
         //Toast.show(response.data.Msg)
@@ -250,7 +232,6 @@ export default class AllergiesScreen extends Component {
           });
         }
         responseData.push(forAddnew);
-        console.log(responseData, "///????????res ");
         this.setState({
           // ApprovedRequestList: this.removeDuplicate(responseData),
           FamilyMemberList: this.removeDuplicate(responseData),
@@ -273,7 +254,6 @@ export default class AllergiesScreen extends Component {
         // Toast.show(response.data.Msg);
       }
     } catch (error) {
-      console.log(error, "which err");
       Toast.show("Something Went Wrong, Please Try Again Later");
       this.setState({
         isLoading: false
@@ -284,7 +264,6 @@ export default class AllergiesScreen extends Component {
 
   handleAdd = () => {
     const values = [...this.state.selectedIds];
-    console.log(values, "$%%$^#$%^#$^%$^#%^%$");
     if (values.length == 0) {
       this.setState({
         isMedCondtionModal: false
@@ -300,7 +279,6 @@ export default class AllergiesScreen extends Component {
   selectedName = (index) => {
     let info = this.state.FamilyMemberList[index];
     if (info.Name == "Add New") {
-      console.log("Add in the else ///-------selectedName");
 
       this.setState({ isnew: true });
     } else {
@@ -310,11 +288,6 @@ export default class AllergiesScreen extends Component {
     }
   };
   Submit = () => {
-    console.log(
-      ".././/././././././Submit",
-      this.state.name,
-      this.state.relation
-    );
     if (this.state.name == "Name") {
       Toast.show("Please enter  name");
     } else if (!isNaN(this.state.name)) {
@@ -331,7 +304,6 @@ export default class AllergiesScreen extends Component {
     }
   };
   SubmitApicall = async () => {
-    console.log(".././/././././././");
     try {
       let response = await axios.post(Constants.ADD_ALLERGIES, {
         userprofileDtlsId: 0,
@@ -344,8 +316,6 @@ export default class AllergiesScreen extends Component {
         col10: "",
         actionStatus: "I"
       });
-
-      console.log(response.data, "//////");
       this.setState({ isLoading: false });
       if (response.data.Status) {
         this.props.navigation.navigate("FamilyHis", {
@@ -849,10 +819,6 @@ export default class AllergiesScreen extends Component {
                       }}
                       // style={styles.closeBtn}
                       onPress={() => {
-                        console.log(
-                          this.state.dummynm.length,
-                          "Enter  Name Enter  Name/////"
-                        );
                         this.setState({
                           isNameModal: !this.state.isNameModal,
                           name:

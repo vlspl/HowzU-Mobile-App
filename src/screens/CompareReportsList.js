@@ -92,7 +92,6 @@ class CompareReportsList extends Component {
   };
 
   getRports = async (empty) => {
-    console.log("**************", this.state.pageNo);
     if (empty) {
       //  console.log("**************");
       this.setState({ AllLabList: [] });
@@ -103,7 +102,6 @@ class CompareReportsList extends Component {
         pageSize: Constants.PER_PAGE_RECORD,
         Searching: this.state.searchString
       });
-      console.log(response.data, "////");
       let oldreportlist = await axios.post(
         Constants.GET_COMPARE_OLDREPORT_LIST,
         {
@@ -244,7 +242,6 @@ class CompareReportsList extends Component {
     for (let i = 0; i < datalist.length; i++) {
       lookupObject[datalist[i].TestName] = datalist[i];
     }
-    console.log(lookupObject);
     for (i in lookupObject) {
       newArray.push(lookupObject[i]);
     }
@@ -391,10 +388,10 @@ class CompareReportsList extends Component {
                 </View>
               </ScrollView>
               {this.state.AllReportList.length <= 0 &&
-              this.state.PendingRequestList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                this.state.PendingRequestList.length <= 0 &&
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable
                   onPressRefresh={this.onRefresh}
                   // source={require("../../icons/trendanyalysisnodata.jpg")}

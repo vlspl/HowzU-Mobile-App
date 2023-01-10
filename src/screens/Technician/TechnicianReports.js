@@ -103,9 +103,6 @@ class TechnicianReport extends Component {
 
   DeldReportDetail = (index) => {
     let labinfo = this.state.AllReportList[index];
-
-    console.log("/////****$$$$%%%%5", labinfo.ReportId);
-
     this.setState({ repId: labinfo.ReportId }, () => {
       //this.updateRequestStatus();
       Alert.alert(
@@ -125,13 +122,11 @@ class TechnicianReport extends Component {
   };
 
   async deleteRep() {
-    console.log("requestId====", this.state.repId);
     this.setState({ isLoading: true });
     try {
       const response = await axios.post(
         Constants.DEL_TESTREP_BY_TECH + "ReportId=" + this.state.repId
       );
-      console.log("response=======", response.data);
       this.setState({ isLoading: false });
       if (response.data.Status) {
         //Toast.show(response.data.Msg)
@@ -298,8 +293,6 @@ class TechnicianReport extends Component {
 
   render() {
     const { data, isLoading } = this.state;
-    console.log(this.state.isLoading, "this.state.isLoading my reports ===");
-
     return (
       <Container>
         <Loader loading={this.state.isLoading} />
@@ -473,10 +466,10 @@ class TechnicianReport extends Component {
                 </View>
               </ScrollView>
               {this.state.AllReportList.length <= 0 &&
-              this.state.PendingRequestList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                this.state.PendingRequestList.length <= 0 &&
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable onPressRefresh={this.onRefresh} />
               ) : null}
             </View>

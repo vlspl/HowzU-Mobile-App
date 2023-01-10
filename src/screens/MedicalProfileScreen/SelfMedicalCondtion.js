@@ -61,7 +61,7 @@ export default class SelfMedicalConditionScreen extends Component {
         userDetails: [],
         activebtn: nextProp.route.params.role
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -72,7 +72,7 @@ export default class SelfMedicalConditionScreen extends Component {
         // isLoading: true,
         activebtn: this.props.route.params.role
       },
-      () => {}
+      () => { }
     );
   }
 
@@ -91,7 +91,6 @@ export default class SelfMedicalConditionScreen extends Component {
   };
   render() {
     const screenWidth = Math.round(Dimensions.get("window").width);
-    console.log(this.state.FoodAllergey);
     return (
       <Container>
         <Loader loading={this.state.isLoading} />

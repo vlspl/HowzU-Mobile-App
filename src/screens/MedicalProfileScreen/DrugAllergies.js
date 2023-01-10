@@ -63,19 +63,15 @@ export default class DrugAllergyScreen extends Component {
       let response = await axios.post(Constants.GET_ALLERGIES, {
         type: this.state.type
       });
-
-      console.log(response.data, "getAllergey in get FoodAllergey/////");
       this.setState({ isLoading: false });
       if (response.data.Status) {
         let responseData = this.state.getallergyList;
         response.data.ObjProfileDetail.map((item) => {
           if (item.UserDetailsID != 0) {
-            console.log("//////////", item.UserDetailsID);
             selectedIds.push(item.name);
           }
           responseData.push(item);
         });
-        console.log(responseData, "/////");
         this.setState({
           getallergyList: responseData,
           selectedIds: selectedIds,
@@ -112,23 +108,13 @@ export default class DrugAllergyScreen extends Component {
     var selectedIds = [...this.state.selectedIds]; // clone state
     var removeselected = [...this.state.removeselected]; // clone state
     var newselectedIDS = [...this.state.newselectedIDS];
-    console.log(
-      selectedIds.includes(id),
-      "selectedIds.includes(id)",
-      "TestID==============================",
-      id,
-      " this.setState({ removeselected });",
-      removeselected
-    );
     if (selectedIds.includes(id.name)) {
       selectedIds = selectedIds.filter((_id) => _id !== id.name);
-      console.log(selectedIds, "////");
       let tmp = {};
       tmp.removid = id.UserDetailsID;
       tmp.name = id.name;
       removeselected.push(tmp);
       if (newselectedIDS.includes(id.name)) {
-        console.log(newselectedIDS, "////");
         newselectedIDS = newselectedIDS.filter((_id) => _id !== id.name);
       }
     } else {
@@ -140,7 +126,6 @@ export default class DrugAllergyScreen extends Component {
     this.setState({ newselectedIDS });
   };
   saveAllergiestoDB = async (typeofinsertion, userid) => {
-    console.log(typeofinsertion, "////.//./.tylrelfd sinsm", userid);
     this.setState({ isLoading: true });
 
     let obj = {};
@@ -157,8 +142,6 @@ export default class DrugAllergyScreen extends Component {
         col10: "",
         actionStatus: typeofinsertion
       });
-
-      console.log(response.data, "//////");
       this.setState({ isLoading: false });
       if (response.data.Status) {
         this.setState({ newselectedIDS: [] });
@@ -173,7 +156,6 @@ export default class DrugAllergyScreen extends Component {
     }
   };
   getSaveData = async () => {
-    console.log(this.state.selectedIds, "/////////////");
     try {
       let response = await axios.post(Constants.GET_ALLERGIES_DETAILS, {
         type: this.state.type
@@ -210,12 +192,6 @@ export default class DrugAllergyScreen extends Component {
     // console.log("add presed", this.state.selectedIds);
     const values = [...this.state.selectedIds];
     const remove = [...this.state.removeselected];
-    console.log(
-      "removeselected======vslues presed",
-      this.state.removeselected,
-      "valuesold",
-      this.state.newselectedIDS
-    );
     if (remove.length > 0) {
       this.setState({ isLoading: true });
       remove.map((itm) => {
@@ -230,8 +206,6 @@ export default class DrugAllergyScreen extends Component {
     this.setState({ isfoodallergy: false });
   };
   handleRemove = async (i, id) => {
-    console.log("/////????", i, "name", id, "del tid ");
-
     try {
       let response = await axios.post(Constants.ADD_ALLERGIES, {
         type: this.state.type,
@@ -246,8 +220,6 @@ export default class DrugAllergyScreen extends Component {
         col10: "",
         actionStatus: "D"
       });
-
-      console.log(response.data, "//////");
       this.setState({ isLoading: false });
       if (response.data.Status) {
         this.getSaveData();
@@ -260,7 +232,6 @@ export default class DrugAllergyScreen extends Component {
   };
   render() {
     const screenWidth = Math.round(Dimensions.get("window").width);
-    console.log(this.state.selectedIds, "/////selectedids");
     return (
       <Container>
         <Loader loading={this.state.isLoading} />
@@ -479,8 +450,8 @@ export default class DrugAllergyScreen extends Component {
                             // fontSize: 17
                           }
                         ]}
-                        // numberOfLines={1}
-                        // ellipsizeMode="clip"
+                      // numberOfLines={1}
+                      // ellipsizeMode="clip"
                       >
                         {this.state.screentitle}
                       </Text>
@@ -502,10 +473,6 @@ export default class DrugAllergyScreen extends Component {
                       <TouchableOpacity
                         style={styles.SuggestTesttouch}
                         onPress={() => {
-                          console.log(
-                            this.state.selectedIds,
-                            "selectedIds///selectedIds///////"
-                          );
                           this.setState(
                             {
                               // isfoodallergy: true,
@@ -602,7 +569,6 @@ export default class DrugAllergyScreen extends Component {
   }
 }
 
-console.log(screenWidth, "/////screen widht");
 const styles = StyleSheet.create({
   title: {
     fontSize: 16,

@@ -146,7 +146,6 @@ export default class Myhealthgraph extends React.Component {
 
   onSelectToDate = (date) => {
     //let info = this.state.ApprovedRequestList[index];
-    console.log("select to date ====================================", date);
     // if (this.state.fromdate == ''){
 
     this.setState({ todate: date, isShowDataPicker: false }, () => {
@@ -169,7 +168,6 @@ export default class Myhealthgraph extends React.Component {
   };
 
   onChangeSelectFromDate = (event, selectedDate) => {
-    console.log(event, "//////");
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -206,7 +204,6 @@ export default class Myhealthgraph extends React.Component {
     }
   };
   onChangeSelectToDate = (event, selectedDate) => {
-    console.log(event, "//////");
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -243,7 +240,6 @@ export default class Myhealthgraph extends React.Component {
     }
   };
   hideDateTimePicker = () => {
-    console.log("on cancel in BMI");
     this.setState({ isDateTimePickerVisible: false, isShowDataPicker: false });
   };
   async ReportDetailCall() {
@@ -323,7 +319,6 @@ export default class Myhealthgraph extends React.Component {
   }
 
   showGraphUsingDates = async () => {
-    console.log(this.state.healthName, this.state.fromdate, this.state.todate);
     try {
       let response = await axios.post(Constants.BYDATES_GRAPH, {
         AnalyteName: this.state.healthName,
@@ -617,16 +612,11 @@ export default class Myhealthgraph extends React.Component {
                       maxDate={new Date()}
                       isVisible={this.state.isShowDataPicker}
                       onPress={() => {
-                        console.log("pressed");
                         this.setState({
                           isShowDataPicker: !this.state.isShowDataPicker
                         });
                       }}
                       onCancel={() => {
-                        console.log(
-                          "cance pressed by end date ",
-                          !this.state.isShowDataPicker
-                        );
                         this.setState({
                           isShowDataPicker: !this.state.isShowDataPicker
                         });
@@ -639,7 +629,6 @@ export default class Myhealthgraph extends React.Component {
                       date={this.state.todate}
                       isVisible={this.state.isShowDataPicker}
                       onPress={() => {
-                        console.log("pressed");
                         this.setState({
                           isShowDataPicker: !this.state.isShowDataPicker
                         });

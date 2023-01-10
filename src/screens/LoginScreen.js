@@ -56,18 +56,14 @@ export default class LoginScreen extends Component {
     }
   }
   async onGoogleButtonPress() {
-    console.log("pressed it Response");
     // Get the users ID token
     const { idToken } = await GoogleSignin.signIn();
-    console.log(idToken, ":::::::id token ");
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    console.log(googleCredential, "::::::googleCredential:id token ");
     // Sign-in the user with the credential
     return auth().signInWithCredential(googleCredential);
   }
   googleLogin = () => {
-    console.log("Google SignIn");
     this.onGoogleButtonPress().then((res) =>
       console.log("Signed in with Google!", res)
     );
@@ -134,15 +130,12 @@ export default class LoginScreen extends Component {
   // };
 
   async onFetchLoginRecords() {
-    console.log(this.state.mobile);
-    console.log(this.state.passWord);
     try {
       let response = await axios.post(Constants.GET_SIGNIN, {
         Username: this.state.mobile,
         Password: this.state.passWord
       });
       this.setState({ loading: false });
-      console.log("Feching Login Response**************", response.data);
       if (response.data.Status) {
         this.saveData(
           response.data.Token,
@@ -166,7 +159,6 @@ export default class LoginScreen extends Component {
   }
 
   saveData = async (Token, Role, Name, response) => {
-    console.log(Role, "././/../././");
     //var items = [["token", Token], ["mobile", this.state.mobile]]
     var user = [];
     let item = {};
@@ -561,7 +553,7 @@ export default class LoginScreen extends Component {
                     </Text>
                     <TouchableOpacity
                       onPress={() => navigate("RegisterScreen")}
-                      // onPress={() => navigate("AreUDoc")}
+                    // onPress={() => navigate("AreUDoc")}
                     >
                       <Text
                         style={{

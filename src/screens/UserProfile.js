@@ -119,7 +119,6 @@ export default class UserProfile extends Component {
   }
 
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log(nextProp.route.params, "/////");
     this.setState(
       {
         isLoading: true,
@@ -135,7 +134,6 @@ export default class UserProfile extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.route.params, ">?>>?>>>");
     this.setState(
       {
         userDetails: [],
@@ -168,8 +166,6 @@ export default class UserProfile extends Component {
   onPressLogoutYes = async () => {
     try {
       response = await axios.post(Constants.FIREBASE_REGISTER_TOKEN + null);
-
-      console.log("fcm token on logo]=t  ==============", response.data);
     } catch (errors) {
       //Toast.show("Something Went Wrong, Please Try Again Later");
       console.log(errors, "errors");
@@ -211,7 +207,6 @@ export default class UserProfile extends Component {
     // console.log("././.8888888888");
     try {
       const response = await axios.get(Constants.GET_DOCTOR_PROFILE);
-      console.log("././.8888888888", response.data);
       this.setState({ isLoading: false });
       //Toast.show(response.data.Msg)
       if (response.data.Status) {
@@ -234,15 +229,12 @@ export default class UserProfile extends Component {
   }
 
   async getProfileDetail() {
-    console.log(this.state.activebtn, "getProfileDetailacitve btn");
     if (this.state.activebtn == "doctor") {
       this.getDoctorProfileDetail();
     } //if (this.state.activebtn == "doctor")
     else {
-      console.log("77777", this.state.activebtn);
       try {
         const response = await axios.get(Constants.GET_USERPROFILE);
-        console.log(response.data, "edit profile getting profile pic");
         this.setState({ isLoading: false });
         //Toast.show(response.data.Msg)
         // let responseData = this.state.userDetails;
@@ -253,7 +245,6 @@ export default class UserProfile extends Component {
           // console.log(responseData, '@ getting profile pic  ResponaseData');
           response.data.MyDetails.map((item) => {
             // item.isShow=false;
-            console.log(item, "////???");
             responseData.push(item);
 
             seetingitms.push(tmp);
@@ -265,7 +256,7 @@ export default class UserProfile extends Component {
               userDetails: responseData,
               isLoading: false
             },
-            () => {}
+            () => { }
           );
         } else {
           // console.log(response.data.Msg, "else ");
@@ -300,7 +291,6 @@ export default class UserProfile extends Component {
     } else return "";
   };
   onComeBackAgain = () => {
-    console.log("on come back again /////", this.state.activebtn);
     this.setState(
       {
         userDetails: [],
@@ -311,7 +301,6 @@ export default class UserProfile extends Component {
       }
     );
     var role = AsyncStorage.getItem(Constants.ACCOUNT_ROLE);
-    console.log(role, "......./././//././.");
     this.props.navigation.navigate("PatientDashboard", {
       refresh: "refresh"
       // role: this.state.activebtn,
@@ -328,7 +317,6 @@ export default class UserProfile extends Component {
   };
 
   QRCode = () => {
-    console.log(":::::????", "oewlkddsm,as,m");
     this.setState({ isshowQRTab: true });
   };
   EditProfile = () => {
@@ -350,14 +338,6 @@ export default class UserProfile extends Component {
   };
 
   renderSubitms = (title, itmnm) => {
-    console.log(
-      "*(*(*(rendersubitmes$$$$",
-
-      "title",
-      title,
-      " this.state.userDetails itmnm",
-      itmnm
-    );
     // return this.state.userDetails.map((item) => {
     return (
       <>
@@ -647,7 +627,7 @@ export default class UserProfile extends Component {
                           </Text>
                         </TabHeading>
                       }
-                      // textStyle={styles.title}
+                    // textStyle={styles.title}
                     >
                       <ScrollView
                         alwaysBounceVertical={true}
@@ -708,7 +688,7 @@ export default class UserProfile extends Component {
                                               color: "gray"
                                             }
                                           ]}
-                                          // numberOfLines={1}
+                                        // numberOfLines={1}
                                         >
                                           {item.title}
                                         </Text>
@@ -1519,7 +1499,7 @@ export default class UserProfile extends Component {
         </View>
 
         {this.state.activebtn == "patient" ||
-        this.state.activebtn == "employee" ? (
+          this.state.activebtn == "employee" ? (
           <CustomFooter
             onPressBookTest={this.onPressBookTest}
             onPressHome={this.onPressHome}

@@ -48,7 +48,6 @@ export default class OrganizationTest extends PureComponent {
   }
 
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log("retriveData././././././././", nextProp.route.params);
     // this.retriveData();
     this.setState(
       {
@@ -63,7 +62,6 @@ export default class OrganizationTest extends PureComponent {
   };
 
   retriveData = () => {
-    console.log("retriveData././././././././");
     let id;
     AsyncStorage.getItem(Constants.ORG_ID).then((val) => {
       id = Number(JSON.parse(val));
@@ -72,7 +70,6 @@ export default class OrganizationTest extends PureComponent {
     });
   };
   componentDidMount = () => {
-    console.log("componed did ", this.props.route.params);
     // this.retriveData();
     this.setState(
       {
@@ -88,15 +85,6 @@ export default class OrganizationTest extends PureComponent {
   };
 
   getSuggestedTest = async () => {
-    console.log("/////in retirve data", this.state.orgid);
-
-    console.log(
-      this.state.orgid,
-      "Constatn",
-      Constants.ENTERPRSE_LABTESTLIST,
-      "swagger apis",
-      "http://endpoint.visionarylifesciences.in/Enterprise/EnterPriseLabTestList/42"
-    );
     //  "http://endpoint.visionarylifescience.com/Enterprise/EnterPriseLabTestList/"
     if (this.state.orgid != 0) {
       try {
@@ -349,9 +337,9 @@ export default class OrganizationTest extends PureComponent {
           </View>
 
           {this.state.AllSuggetstedTest.length <= 0 &&
-          !this.state.isLoading &&
-          !this.state.searchLoading &&
-          !this.state.refreshing ? (
+            !this.state.isLoading &&
+            !this.state.searchLoading &&
+            !this.state.refreshing ? (
             <NoDataAvailable onPressRefresh={this.onRefresh} />
           ) : null}
         </View>

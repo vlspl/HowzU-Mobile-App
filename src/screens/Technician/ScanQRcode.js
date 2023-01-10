@@ -75,9 +75,7 @@ export default class ScanQRcode extends React.Component {
     //   isNaN(e.data)
     // );
     let parseddata = JSON.parse(e.data);
-    console.log(parseddata.FullName, "====scanned "); //undefined for empty
     const check = e.data.substring(0, 4);
-    console.log("scanned data" + check);
     this.setState({
       result: JSON.parse(e.data),
       scan: false,
@@ -96,7 +94,6 @@ export default class ScanQRcode extends React.Component {
         ScanResult: true
       });
     } else {
-      console.log("????????");
       Toast.show("Something Went Wrong ,Try Again Later");
 
       this.setState({
@@ -112,12 +109,6 @@ export default class ScanQRcode extends React.Component {
     this.setState({ scan: true, ScanResult: false });
   };
   OnProcess = async () => {
-    console.log(
-      "./.?????org Scanned Users ==============",
-      this.state.userid,
-      this.state.org_id,
-      this.state.orgid != 0
-    );
     this.setState({ isLoading: true });
     if (this.state.orgid != 0) {
       try {
@@ -126,12 +117,6 @@ export default class ScanQRcode extends React.Component {
           healthcampId: 1,
           org_id: this.state.orgid
         });
-        console.log(
-          "./.?????org Suggested test==============",
-          response.data,
-          "response.data.LabList[0].LabName"
-        );
-
         this.setState({ isLoading: false });
         this.props.navigation.navigate("TechAddreport", {
           refresh: "",
@@ -239,7 +224,6 @@ export default class ScanQRcode extends React.Component {
   };
   render() {
     const { scan, ScanResult, result } = this.state;
-    console.log(ScanResult, ":::?//", this.props.navigation);
     return (
       <View style={styles.scrollViewStyle}>
         <Loader loading={this.state.isLoading} />
@@ -353,7 +337,7 @@ export default class ScanQRcode extends React.Component {
               <ScrollView
                 alwaysBounceVertical={true}
                 showsHorizontalScrollIndicator={false}
-                // style={{ backgroundColor: "white", marginTop: 0 }}
+              // style={{ backgroundColor: "white", marginTop: 0 }}
               >
                 <View
                   style={{

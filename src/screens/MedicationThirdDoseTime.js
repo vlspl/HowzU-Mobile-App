@@ -139,17 +139,17 @@ export default class MedicationThirdDoseTime extends React.Component {
         {Platform.OS === "ios"
           ? "ios"
           : "android" && (
-              <RNDateTimePicker
-                testID="dateTimePicker"
-                value={new Date()}
-                mode="time"
-                is24Hour={false}
-                display="default"
-                // minimumDate={new Date()}
-                // maximumDate={new Date('12/10/2021')}
-                onChange={this.onChange}
-              />
-            )}
+            <RNDateTimePicker
+              testID="dateTimePicker"
+              value={new Date()}
+              mode="time"
+              is24Hour={false}
+              display="default"
+              // minimumDate={new Date()}
+              // maximumDate={new Date('12/10/2021')}
+              onChange={this.onChange}
+            />
+          )}
       </>
     );
   };
@@ -216,7 +216,7 @@ export default class MedicationThirdDoseTime extends React.Component {
         secondDoseQuantity: nextProp.route.params.secondDoseQuantity,
         thirdDoseQuantity: nextProp.route.params.thirdDoseQuantity
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -261,7 +261,7 @@ export default class MedicationThirdDoseTime extends React.Component {
         thirdDoseQuantity: this.props.route.params.thirdDoseQuantity,
         selectedtcolor: this.props.route.params.color
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -271,15 +271,14 @@ export default class MedicationThirdDoseTime extends React.Component {
   // };
 
   onPressSelect = (selectStr) => {
-    console.log("selectStr=================", selectStr);
     if (selectStr == "Morning") {
-      this.setState({ dose: "Morning" }, () => {});
+      this.setState({ dose: "Morning" }, () => { });
     } else if (selectStr == "Noon") {
-      this.setState({ dose: "Noon" }, () => {});
+      this.setState({ dose: "Noon" }, () => { });
     } else if (selectStr == "Evening") {
-      this.setState({ dose: "Evening" }, () => {});
+      this.setState({ dose: "Evening" }, () => { });
     } else if (selectStr == "Night") {
-      this.setState({ dose: "Night" }, () => {});
+      this.setState({ dose: "Night" }, () => { });
     }
   };
 
@@ -308,8 +307,6 @@ export default class MedicationThirdDoseTime extends React.Component {
   };
 
   saveFirstDose = async () => {
-    console.log("First Dose call =================");
-
     if (this.state.dose == "") {
       Toast.show("Please Select Dose Time");
 
@@ -330,7 +327,6 @@ export default class MedicationThirdDoseTime extends React.Component {
   };
 
   Dosetimenext = async () => {
-    console.log("Third  Dose call =================");
     if (
       this.state.dose == "" ||
       this.state.dosetime == "" ||
@@ -382,8 +378,6 @@ export default class MedicationThirdDoseTime extends React.Component {
     const { StatusBarManager } = NativeModules;
     const STATUSBAR_HEIGHT =
       Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
-    console.log("statusheight===", StatusBarManager.HEIGHT);
-
     ///const { navigate } = this.props.navigation;
     const screenWidth = Math.round(Dimensions.get("window").width);
 

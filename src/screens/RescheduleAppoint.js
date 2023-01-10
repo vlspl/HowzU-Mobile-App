@@ -101,7 +101,6 @@ export default class RescheduleAppoint extends Component {
         pageSize: Constants.PER_PAGE_RECORD,
         Searching: this.state.searchString
       });
-      console.log("data AppointmentList ==============", response.data);
       this.setState({ loading: false });
 
       if (response.data.Status) {
@@ -293,7 +292,7 @@ export default class RescheduleAppoint extends Component {
                   <RefreshControl
                     refreshing={this.state.refreshing}
                     onRefresh={this.onRefresh}
-                    //colors="red"
+                  //colors="red"
                   />
                 }
               >
@@ -325,9 +324,9 @@ export default class RescheduleAppoint extends Component {
                 </View>
               </ScrollView>
               {this.state.AllRescheduleAppoints.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable
                   onPressRefresh={this.onRefresh}
                   source={require("../../icons/resheduledappointmentnodata.png")}

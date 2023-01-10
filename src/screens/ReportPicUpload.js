@@ -107,8 +107,6 @@ export default class ReportPicUpload extends React.Component {
       .catch((e) => {
         Toast.show("Something Went Wrong, Please Try Again Later");
         this.setState({ isUploading: false, isLoading: false });
-
-        console.log("error response=================", e);
       });
   };
 
@@ -187,7 +185,6 @@ export default class ReportPicUpload extends React.Component {
   };
 
   onPressAppointment = () => {
-    console.log("onPressMyDoctor=================");
     this.props.navigation.navigate("Appointments");
   };
 
@@ -263,7 +260,7 @@ export default class ReportPicUpload extends React.Component {
         selectedIds: [],
         isLoading: false,
       },
-      () => {}
+      () => { }
     );
     // this.backHandler = BackHandler.addEventListener(
     //   'hardwareBackPress',
@@ -282,7 +279,7 @@ export default class ReportPicUpload extends React.Component {
         isLoading: false,
         AllTestList: [],
       },
-      () => {}
+      () => { }
     );
   };
   hardwarebBackAction = () => {
@@ -576,8 +573,6 @@ export default class ReportPicUpload extends React.Component {
         }
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the camera");
-
         this.setState({ isPrescription: false }, () => {
           setTimeout(() => {
             launchImageLibrary(options, (response) => {
@@ -628,20 +623,11 @@ export default class ReportPicUpload extends React.Component {
       this.setState({ isPrescription: false }, () => {
         setTimeout(() => {
           launchImageLibrary(options, (response) => {
-            console.log("Response = @@@@@@@@@@@@@ ", response);
-
             if (response.didCancel) {
               console.log("User cancelled image picker");
             } else if (response.error) {
               console.log("ImagePicker Error: ", response.error);
             } else {
-              console.log(
-                response.assets[0].uri,
-                "Loging the res ======",
-                response.assets[0].type,
-                response.assets[0].fileName,
-                response.assets
-              );
               if (response.size > 5000000) {
                 Toast.show("Please select image size upto 5MB");
               } else {
@@ -657,8 +643,6 @@ export default class ReportPicUpload extends React.Component {
                     ? response.assets[0].fileName
                     : response.fileName,
                 });
-
-                console.log(prescriptionPic, "prescritopn pic");
                 this.setState(
                   {
                     // isLoading: true,
@@ -681,7 +665,7 @@ export default class ReportPicUpload extends React.Component {
   };
   ClosePOPup = () => {
     // console.log("ClosePOPup=================");
-    this.setState({ isPrescription: false }, () => {});
+    this.setState({ isPrescription: false }, () => { });
   };
 
   render() {

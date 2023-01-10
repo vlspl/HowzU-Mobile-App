@@ -175,8 +175,6 @@ export default class RegOTPverification extends Component {
     }
   }
   callbackForOTP = (otpfromchild) => {
-    console.log("otpfromchild==>", otpfromchild.length);
-
     this.setState({ otp: otpfromchild });
   };
   render() {

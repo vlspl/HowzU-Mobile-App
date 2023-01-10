@@ -184,7 +184,6 @@ export default class WakeUpHydScreen extends Component {
   };
 
   saveData = async () => {
-    console.log(this.state.hour);
     var items = {};
     if (this.state.hour == "00") {
       Toast.show("Please select Time");
@@ -214,11 +213,6 @@ export default class WakeUpHydScreen extends Component {
   };
 
   render() {
-    console.log(
-      this.state.selectedgender,
-      "wake up time ",
-      this.state.selectedItemIndex
-    );
     const { navigate } = this.props.navigation;
 
     const windowWidth = 100;
@@ -259,7 +253,7 @@ export default class WakeUpHydScreen extends Component {
                       ? require("../../../icons/Wake-up-time-female.png")
                       : require("../../../icons/Wake-up-time-male.png")
                   }
-                  // source={require("../../../icons/Wake-up-time-female.png")}
+                // source={require("../../../icons/Wake-up-time-female.png")}
                 />
               </View>
 

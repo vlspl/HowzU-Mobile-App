@@ -137,10 +137,10 @@ export default FilterForm = (props) => {
                   },
                   item.id === selectedItem
                     ? {
-                        backgroundColor: "#F8F8FF",
-                        borderLeftColor: colors.text,
-                        borderLeftWidth: 5,
-                      }
+                      backgroundColor: "#F8F8FF",
+                      borderLeftColor: colors.text,
+                      borderLeftWidth: 5,
+                    }
                     : null,
                 ]}
               >
@@ -169,7 +169,6 @@ export default FilterForm = (props) => {
                 items={ColorChart}
                 selectedItems={color.color}
                 onSelectionsChange={(itm, ind) => {
-                  console.log(itm, "selection");
                   setColor({ ...color, color: itm });
                 }}
               />
@@ -182,7 +181,6 @@ export default FilterForm = (props) => {
                 items={SizeChart}
                 selectedItems={size.size}
                 onSelectionsChange={(itm, ind) => {
-                  console.log(itm, "selection");
                   setSelectedSize({ ...size, size: itm });
                 }}
               />

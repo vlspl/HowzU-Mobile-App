@@ -62,11 +62,8 @@ export default class AllDoctorList extends Component {
   };
 
   handleSelectionMultiple = (id) => {
-    console.log("^^^TestID==============================", id);
-
     var selectedIds = [...this.state.selectedIds]; // clone state
     if (selectedIds.includes(id)) {
-      console.log(selectedIds);
       selectedIds = selectedIds.filter((_id) => _id !== id);
     } else selectedIds.push(id);
     this.setState({ selectedIds });
@@ -397,9 +394,9 @@ export default class AllDoctorList extends Component {
             </View>
           </ScrollView>
           {this.state.AllMyDoctors.length <= 0 &&
-          !this.state.isLoading &&
-          !this.state.searchLoading &&
-          !this.state.refreshing ? (
+            !this.state.isLoading &&
+            !this.state.searchLoading &&
+            !this.state.refreshing ? (
             <NoDataAvailable onPressRefresh={this.onRefresh} />
           ) : null}
         </View>

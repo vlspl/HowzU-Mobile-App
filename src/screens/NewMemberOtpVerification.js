@@ -60,7 +60,7 @@ export default class NewMemberOtpVerification extends Component {
         from: nextProp.route.params.from,
         mobile: nextProp.route.params.mobile
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -78,7 +78,7 @@ export default class NewMemberOtpVerification extends Component {
         from: this.props.route.params.from,
         mobile: this.props.route.params.mobile
       },
-      () => {}
+      () => { }
     );
     this.backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
       return true;
@@ -114,8 +114,6 @@ export default class NewMemberOtpVerification extends Component {
 
   async otpVerifyCall() {
     // console.log(this.state.FamilyMemberId);
-    console.log(this.state.otp);
-
     try {
       let response = await axios.post(Constants.VERIFY_FAMILYMEMBER, {
         FamilyMemberId: this.state.FamilyMemberId,
@@ -161,19 +159,11 @@ export default class NewMemberOtpVerification extends Component {
     //Toast.show(this.state.mobile)
 
     const mobilestr = this.state.mobile;
-    console.log(
-      "%^%^%^%^^^%^%^new resend otp",
-      this.state.FamilyMemberId,
-      ":::::://////"
-    );
-
     try {
       // const response = await axios.get(Constants.GET_SENDOTP + mobilestr);
       const response = await axios.get(
         Constants.RESEND_FAMILYMEMBER_OTP + this.state.FamilyMemberId
       );
-
-      console.log(response.data);
       this.setState({ loading: false });
 
       if (response.data.OTPSend) {
@@ -234,8 +224,6 @@ export default class NewMemberOtpVerification extends Component {
     }
   };
   callbackForOTP = (otpfromchild) => {
-    console.log("otpfromchild==>", otpfromchild.length);
-
     this.setState({ otp: otpfromchild });
   };
   render() {

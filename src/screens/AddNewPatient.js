@@ -41,7 +41,6 @@ export default class AddNewPatient extends Component {
   }
 
   onTextChanged(text) {
-    console.log(isNaN(text), "mobile");
     if (isNaN(text)) {
       Toast.show("Please enter only number");
     } else {
@@ -49,7 +48,6 @@ export default class AddNewPatient extends Component {
     }
   }
   onTextAgeChanged(text) {
-    console.log(isNaN(text), "mobile");
     if (isNaN(text)) {
       Toast.show("Please enter only number");
     } else {
@@ -70,14 +68,6 @@ export default class AddNewPatient extends Component {
   };
 
   async PatientRegApiCall() {
-    console.log(
-      this.state.patientname,
-      this.state.Mobile,
-      this.state.activeGender,
-      this.state.email,
-      this.state.age,
-      this.state.address
-    );
     try {
       let response = await axios.post(Constants.Add_NEW_PATIENT, {
         FullName: this.state.patientname,
@@ -91,7 +81,6 @@ export default class AddNewPatient extends Component {
         Aadharnumber: "",
         Pincode: ""
       });
-      console.log(response.data);
       if (response.data.Status) {
         Toast.show(response.data.Msg);
         // this.props.navigation.navigate("MyPatients");
@@ -116,7 +105,6 @@ export default class AddNewPatient extends Component {
       }
     } catch (err) {
       Toast.show("Something Went Wrong, Please Try Again Later");
-      console.log(err, "//////");
     }
   }
 
@@ -180,7 +168,7 @@ export default class AddNewPatient extends Component {
               </View>
               <KeyboardAwareScrollView
                 enableOnAndroid={true}
-                // style={{ marginBottom: scale(80) }}
+              // style={{ marginBottom: scale(80) }}
               >
                 <View
                   style={{
@@ -218,7 +206,7 @@ export default class AddNewPatient extends Component {
                     icon={require("../../icons/date-of-birth.png")}
                     onchangeTxt={(text) => this.onTextAgeChanged(text)}
                     inputvalue={this.state.age}
-                    //   onchangeTxt={(text) => this.setState({ age: text })}
+                  //   onchangeTxt={(text) => this.setState({ age: text })}
                   />
 
                   <View

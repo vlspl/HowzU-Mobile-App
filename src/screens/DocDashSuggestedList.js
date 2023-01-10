@@ -96,10 +96,6 @@ export default class DocDashSuggestedList extends PureComponent {
         pageSize: Constants.PER_PAGE_RECORD,
         Searching: this.state.searchString
       });
-      console.log(
-        "........Doc All Suggested List Test==============",
-        response.data
-      );
       this.setState({ isLoading: false });
 
       if (response.data.Status) {
@@ -171,7 +167,6 @@ export default class DocDashSuggestedList extends PureComponent {
   };
 
   onChangeTextClick = async (val) => {
-    console.log(val, "searching");
     this.setState({ isLoadingSecond: true });
     if (this.state.typingTimeout) {
       clearTimeout(this.state.typingTimeout);
@@ -301,7 +296,7 @@ export default class DocDashSuggestedList extends PureComponent {
                 <RefreshControl
                   refreshing={this.state.refreshing}
                   onRefresh={this.onRefresh}
-                  // colors='red'
+                // colors='red'
                 />
               }
             >
@@ -318,7 +313,7 @@ export default class DocDashSuggestedList extends PureComponent {
                   date1={moment(item.RecommendedDate).format(
                     " DD MMM YY, hh:mm A"
                   )}
-                  // lablogo={require('../../icons/lab.png')}
+                // lablogo={require('../../icons/lab.png')}
                 ></DocDashAllSuggestRow>
               ))}
 
@@ -332,9 +327,9 @@ export default class DocDashSuggestedList extends PureComponent {
               </View>
             </ScrollView>
             {this.state.AllSuggetstedTest.length <= 0 &&
-            !this.state.isLoading &&
-            !this.state.searchLoading &&
-            !this.state.refreshing ? (
+              !this.state.isLoading &&
+              !this.state.searchLoading &&
+              !this.state.refreshing ? (
               <NoDataAvailable onPressRefresh={this.onRefresh} />
             ) : null}
           </View>

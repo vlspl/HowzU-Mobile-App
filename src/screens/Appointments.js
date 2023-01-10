@@ -151,9 +151,6 @@ class Appointments extends Component {
           Searching: this.state.searchString
         }
       );
-
-      console.log("data==============", response.data);
-
       this.setState({ isLoading: false });
 
       if (response.data.Status) {
@@ -397,7 +394,6 @@ class Appointments extends Component {
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           // Once user grant the permission start downloading
-          console.log("Storage Permission Granted.");
           this.downloadImage(img);
           // this.actualDownload(img);
         } else {
@@ -418,7 +414,6 @@ class Appointments extends Component {
     return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
   };
   downloadImage = (img) => {
-    console.log(img, "to downlaod");
     // Main function to download the image
 
     // To add the time suffix in filename
@@ -453,22 +448,20 @@ class Appointments extends Component {
       .then((res) => {
         this.setState({ isLoading: false });
         // Showing alert after successful downloading
-        console.log("res -> ", JSON.stringify(res));
         if (Platform.OS === "ios") {
-          console.log("os ios ");
           RNFetchBlob.fs.writeFile(
             PictureDir +
-              "/image_" +
-              Math.floor(date.getTime() + date.getSeconds() / 2) +
-              ext,
+            "/image_" +
+            Math.floor(date.getTime() + date.getSeconds() / 2) +
+            ext,
             res.data,
             "base64"
           );
           RNFetchBlob.ios.previewDocument(
             PictureDir +
-              "/image_" +
-              Math.floor(date.getTime() + date.getSeconds() / 2) +
-              ext
+            "/image_" +
+            Math.floor(date.getTime() + date.getSeconds() / 2) +
+            ext
           );
         } else {
           alert("Image Downloaded Successfully.");
@@ -520,10 +513,8 @@ class Appointments extends Component {
     RNFetchBlob.config(configOptions)
       .fetch("GET", image_URL)
       .then((res) => {
-        console.log(res, "======///downlaod complete ");
         this.setState({ isLoading: false });
         if (Platform.OS === "ios") {
-          console.log("os ios ");
           RNFetchBlob.fs.writeFile(configfb.path, res.data, "base64");
           RNFetchBlob.ios.previewDocument(configfb.path);
         } else {
@@ -534,7 +525,6 @@ class Appointments extends Component {
       .catch((e) => {
         this.setState({ isLoading: false });
         Toast.show(e.message);
-        console.log("The file saved to ERROR", e.message);
       });
   };
 
@@ -631,8 +621,8 @@ class Appointments extends Component {
                 }
               >
                 {this.state.searchLoading == false &&
-                this.state.searchString == "" &&
-                this.state.PendingRequestList.length != 0 ? (
+                  this.state.searchString == "" &&
+                  this.state.PendingRequestList.length != 0 ? (
                   <View
                     style={{
                       flex: 1,
@@ -760,10 +750,10 @@ class Appointments extends Component {
                 </View>
               </ScrollView>
               {this.state.AllMyAppointment.length <= 0 &&
-              this.state.PendingRequestList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                this.state.PendingRequestList.length <= 0 &&
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 // <NoDataAvailable onPressRefresh={this.onRefresh} />
                 <View
                   style={{

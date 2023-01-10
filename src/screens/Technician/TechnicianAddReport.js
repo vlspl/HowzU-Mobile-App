@@ -132,7 +132,6 @@ export default class TechnicianAddReport extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log("retriveData././././././././", nextProp.route.params);
     // this.retriveData();
     if (nextProp.route.params.orgid != undefined) {
       this.setState(
@@ -152,7 +151,6 @@ export default class TechnicianAddReport extends React.Component {
   };
 
   componentDidMount = () => {
-    console.log("componed did ", this.props.route.params);
     // this.retriveData();
     if (this.props.route.params.orgid != undefined) {
       this.setState(
@@ -177,7 +175,6 @@ export default class TechnicianAddReport extends React.Component {
   // new changes for technician role when he uplaod records
   getLabNames = async () => {
     let formatdate = moment().format("DD/MM/YYYY");
-    console.log(formatdate, "/////current date ");
     let labName;
 
     if (this.state.orgid != 0) {
@@ -185,8 +182,6 @@ export default class TechnicianAddReport extends React.Component {
         let response = await axios.get(
           Constants.ENTERPRSE_LABLIST + this.state.orgid
         );
-
-        console.log(response.data, "lab name respmsklm");
         labName = response.data.LabList[0].LabName;
         this.setState({ loading: false, labName: labName });
         if (response.data.Status) {
@@ -278,14 +273,12 @@ export default class TechnicianAddReport extends React.Component {
   };
 
   getScannedUserTOken = async () => {
-    console.log(this.state.mobile, "///");
     try {
       let response = await axios.post(Constants.GET_SIGNIN, {
         Username: this.state.mobile,
         // Password: 1,
         Password: "Vls@123#!@"
       });
-      console.log(response.data, "scanned user===");
       this.setState({
         token: response.data.Token
       });
@@ -295,14 +288,6 @@ export default class TechnicianAddReport extends React.Component {
     }
   };
   ReportManualPunchAPI = async () => {
-    console.log("this.state.token ===================", this.state.token);
-    console.log("this.state.labName ===================", this.state.labName);
-    console.log(
-      "this.state.selectedId ===================",
-      this.state.bookingdate
-    );
-    console.log("this.state.testid ===================", this.state.selectedId);
-
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + this.state.token);
     myHeaders.append("Content-Type", "application/json");
@@ -313,8 +298,6 @@ export default class TechnicianAddReport extends React.Component {
       TestId: this.state.selectedId,
       Testdate: this.state.bookingdate
     };
-    console.log(" =================== generating the booking id");
-
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -325,7 +308,6 @@ export default class TechnicianAddReport extends React.Component {
     fetch(Constants.MANUAL_REPORTPUNCH, requestOptions)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response, "=================== generating the booking id");
         if (response.Status) {
           this.setState(
             {
@@ -403,14 +385,7 @@ export default class TechnicianAddReport extends React.Component {
   };
 
   GetReportValuesAPI = async () => {
-    console.log(
-      this.state.orgid,
-      "orgid",
-      " this.state.selectedId,",
-      this.state.selectedId
-    );
     var myHeaders = new Headers();
-    console.log(this.state.token, " this.state.token");
     myHeaders.append("Authorization", "Bearer " + this.state.token);
     myHeaders.append("Content-Type", "application/json");
 
@@ -421,17 +396,15 @@ export default class TechnicianAddReport extends React.Component {
     };
     fetch(
       Constants.GET_REPORTVALUES_REFRANGE_PERRESULT +
-        "=" +
-        this.state.selectedId,
+      "=" +
+      this.state.selectedId,
       // this.state.BookingId,
       requestOptions
     )
       .then((response) => {
-        console.log(response, "response /////");
         return response.json();
       })
       .then((response) => {
-        console.log(response, "in sdisd//*(*(");
         if (response.Status) {
           let responseData = this.state.AnalyteList;
 
@@ -478,8 +451,6 @@ export default class TechnicianAddReport extends React.Component {
 
   uploadPrescription = () => {
     var that = this;
-
-    console.log("uploadPrescriptionnormal punching//////////????");
     let responseData = [];
     this.state.AnalyteTempList.map((item) => {
       (item.ReportPath = ""), delete item["InterpretationList"];
@@ -510,11 +481,6 @@ export default class TechnicianAddReport extends React.Component {
   }
 
   BookAppointments = async () => {
-    console.log(
-      "AnalyteTempList APi data  =================",
-      this.state.AnalyteTempList
-    );
-
     var myHeaders = new Headers();
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + this.state.token);
@@ -522,10 +488,6 @@ export default class TechnicianAddReport extends React.Component {
     let responseData = [];
 
     this.state.AnalyteTempList.map((item) => {
-      console.log(
-        "****************GET_REPORTVALUE==============*************",
-        item
-      );
       let temp = {};
       temp = item;
       (temp.ReportId = this.state.ReportId),
@@ -548,7 +510,6 @@ export default class TechnicianAddReport extends React.Component {
     fetch(Constants.ADD_REPORT, requestOptions)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response, "added reports succesfulsmsdm");
         if (response.Status) {
           this.setState({
             isLoading: false,
@@ -762,23 +723,16 @@ export default class TechnicianAddReport extends React.Component {
   //   this.setState({ AnalyteList, filledAnalyteList });
   // };
   onChangeTextValueDiscription = async (val, index, resultlist) => {
-    console.log("======", val, resultlist);
     resultlist.map((item) => {
       let ReferenceRange =
         item.FemaleRange == "" ? item.MaleRange : item.FemaleRange;
-      console.log("ReferenceRange", ReferenceRange);
       var RefArray = ReferenceRange.split("-");
-      console.log(RefArray, "////");
       let result = IsvalueBetweenSubAnaRefRange(RefArray, val + "");
       if (result == "Yes") {
-        console.log(index, "index");
         this.setState({ resultIndex: index }, () => {
           this.onpickervalueselected(item);
         });
-
-        console.log(item.Result, " item.Result", index);
       }
-      console.log(IsvalueBetweenSubAnaRefRange(RefArray, val + ""), "////");
     });
 
     let AnalyteList = [...this.state.AnalyteList];
@@ -793,7 +747,6 @@ export default class TechnicianAddReport extends React.Component {
     this.setState({ AnalyteList, filledAnalyteList });
   };
   BMIonChangeTextValueDiscription = (val, nm) => {
-    console.log("BMIonChangeTextValueDiscription");
     if (nm == "Weight") {
       this.setState({ BMI_Weight: val }, () => {
         this.calculate();
@@ -804,25 +757,8 @@ export default class TechnicianAddReport extends React.Component {
         this.calculate();
       });
     }
-    console.log(
-      "this.state.BMI_Height",
-      this.state.BMI_Height,
-      "Calculate  @@@==============",
-      "this.state.BMI_Weight",
-      this.state.BMI_Weight,
-      this.state.BMI_Height != 0 && this.state.BMI_Weight != 0
-    );
   };
   calculate = () => {
-    console.log(
-      "this.state.BMI_Height",
-      this.state.BMI_Height,
-      "Calculate  @@@==============",
-      "this.state.BMI_Weight",
-      this.state.BMI_Weight,
-      this.state.BMI_Height != 0 && this.state.BMI_Weight != 0
-    );
-
     if (this.state.BMI_Height != 0 && this.state.BMI_Weight != 0) {
       // let addzeros = this.addZeroes(this.state.BMI_Height);
       // console.log("Addzerso", addzeros);
@@ -836,14 +772,11 @@ export default class TechnicianAddReport extends React.Component {
       }
 
       let bmiheight = heght0 + height1;
-
-      console.log("BMI ///';';'");
       var result =
         (parseFloat(this.state.BMI_Weight) /
           (parseFloat(bmiheight) * parseFloat(bmiheight))) *
         10000;
       result = parseFloat(result.toFixed(2));
-      console.log("Result @@@==============", result.toString());
 
       this.setState({ BMI_Value: result });
 
@@ -907,16 +840,10 @@ export default class TechnicianAddReport extends React.Component {
       num = num.toFixed(2);
     }
     // Return the number
-    console.log(num, "//////before ret");
     return num;
   };
 
   onPressSubmit = () => {
-    console.log(
-      "onPressSubmit response=================",
-      this.state.testName,
-      this.state.isother
-    );
 
     if (this.state.labName == "") {
       Toast.show("Please enter Lab Name");
@@ -931,7 +858,6 @@ export default class TechnicianAddReport extends React.Component {
     //   Toast.show("BookingId not generate");
     // }
     else {
-      console.log("onPressSubmit else paer $%$% response=================");
       let responseData = [];
       let iszero = "";
       let filtered;
@@ -950,14 +876,11 @@ export default class TechnicianAddReport extends React.Component {
             }
 
             let bmiheight = heght0 + height1;
-
-            console.log("BMI ///';';'");
             var result =
               (parseFloat(this.state.BMI_Weight) /
                 (parseFloat(bmiheight) * parseFloat(bmiheight))) *
               10000;
             result = parseFloat(result.toFixed(2));
-            console.log("Result @@@==============", result.toString());
             item.Value = result;
             if (result < 18.5) {
               item.Result = "Underweight";
@@ -999,7 +922,7 @@ export default class TechnicianAddReport extends React.Component {
                 if (item.iszero == "No") {
                   Toast.show(
                     "Please Fill the Value description, Where Result is selected for " +
-                      item.AnalyteName
+                    item.AnalyteName
                   );
                 }
                 responseData = [];
@@ -1009,7 +932,7 @@ export default class TechnicianAddReport extends React.Component {
                 if (item.iszero == "No") {
                   Toast.show(
                     "Please select the result, Where Value description is filled for " +
-                      item.AnalyteName
+                    item.AnalyteName
                   );
                 } else {
                   Toast.show(
@@ -1044,8 +967,6 @@ export default class TechnicianAddReport extends React.Component {
           Toast.show("Please select result ");
         }
       } else {
-        console.log("else else after isother true ");
-
         this.setState(
           {
             AnalyteTempList: responseData
@@ -1081,11 +1002,10 @@ export default class TechnicianAddReport extends React.Component {
 
   ClosePOPup = () => {
     // console.log('ClosePOPup=================');
-    this.setState({ isPrescription: false }, () => {});
+    this.setState({ isPrescription: false }, () => { });
   };
 
   hardwarebBackAction = () => {
-    console.log("Back true ");
     this.props.navigation.navigate("Scanner", { refreshing: true });
     // this.props.navigation.goBack();
     return true;
@@ -1095,7 +1015,6 @@ export default class TechnicianAddReport extends React.Component {
   };
 
   onpickervalueselected = (value) => {
-    console.log(value, "onpickervalueselectedonpickervalueselected");
     this.setState(
       {
         selectPicker: value.Result
@@ -1121,7 +1040,6 @@ export default class TechnicianAddReport extends React.Component {
     );
   };
   QRCode = () => {
-    console.log(":::::????", "oewlkddsm,as,m");
     this.props.navigation.navigate("Scanner", { refreshing: true });
   };
   backbtnPress = () => {
@@ -1279,9 +1197,9 @@ export default class TechnicianAddReport extends React.Component {
                   }}
                 >
                   {this.state.AllTestList.length <= 0 &&
-                  !this.state.isLoading &&
-                  !this.state.searchLoading &&
-                  !this.state.refreshing ? (
+                    !this.state.isLoading &&
+                    !this.state.searchLoading &&
+                    !this.state.refreshing ? (
                     <NoDataAvailable />
                   ) : null}
                 </View>

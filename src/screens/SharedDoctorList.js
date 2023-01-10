@@ -108,7 +108,6 @@ export default class SharedDoctorList extends Component {
   //   }
   // };
   handleSelectionMultiple = (id, flag) => {
-    console.log("Shard report id ==============================", id, flag);
     var selectedIds = [...this.state.selectedIds]; // clone state
     var selectedIdswithflag = [...this.state.selectedIdswithflag];
     // console.log(",,,..,..,,.", selectedIds);
@@ -193,7 +192,6 @@ export default class SharedDoctorList extends Component {
   };
 
   UnshareReportCall = async () => {
-    console.log("bookingid ==============");
     let normalids = [],
       oldreportids = [];
     const myObjStr = this.state.selectedIds.toString();
@@ -350,9 +348,6 @@ export default class SharedDoctorList extends Component {
           Searching: ""
         }
       );
-      console.log("../../data==============", response.data);
-      console.log("old data==============", oldreportresponse.data);
-
       this.setState({ isLoading: false });
 
       if (response.data.Status) {
@@ -595,7 +590,7 @@ export default class SharedDoctorList extends Component {
                 <RefreshControl
                   refreshing={this.state.refreshing}
                   onRefresh={this.onRefresh}
-                  // colors='red'
+                // colors='red'
                 />
               }
             >
@@ -703,9 +698,9 @@ export default class SharedDoctorList extends Component {
                 ) : null}
               </View>
               {this.state.AllreportList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable onPressRefresh={this.onRefresh} />
               ) : null}
             </ScrollView>
