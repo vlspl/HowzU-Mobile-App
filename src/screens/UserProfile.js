@@ -40,7 +40,6 @@ const Rijndael = require("rijndael-js");
 //const bufferFrom = require('buffer-from')
 global.Buffer = global.Buffer || require("buffer").Buffer;
 const padder = require("pkcs7-padding");
-// import { TabView, SceneMap } from "react-native-tab-view";
 
 export default class UserProfile extends Component {
   constructor(props) {
