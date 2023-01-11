@@ -34,7 +34,7 @@ module.exports = {
   //https://visionarylifescience.com/Images/APP%20FEATURE2.png
   SILDER_IMG_URL: "https://visionarylifescience.com/",
   GET_SLIDER_IMG:
-    "http://endpoint.visionarylifescience.com/" + AUTH + "GetSliderPath",
+    "https://endpoint.visionarylifescience.com/" + AUTH + "GetSliderPath",
 
   //Helath grphs
 
