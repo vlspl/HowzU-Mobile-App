@@ -44,7 +44,6 @@ export default class LoginWithMobileOTP extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.route.params);
     /// this.retrieveData()
     if (this.props.route.params.from == "cowin-certifcate") {
       this.setState({ from: this.props.route.params.from });
@@ -77,7 +76,6 @@ export default class LoginWithMobileOTP extends Component {
     ) {
       Toast.show("Please enter valid OTP");
     } else if (this.state.from == "cowin-certifcate") {
-      console.log("--==-=", this.state.sha256otp); // this.convertSHA256otp();
       //  console.log(hashotp, "has ");
       this.VerifyCowinOtp();
     } else {
@@ -99,7 +97,6 @@ export default class LoginWithMobileOTP extends Component {
     //   this.convertSHA256otp();
     // });
     this.setState({ loading: true });
-    console.log("this.sha256otp", this.state.sha256otp);
     try {
       let response = await axios.post(
         "https://cdn-api.co-vin.in/api/v2/auth/public/confirmOTP",
@@ -126,7 +123,6 @@ export default class LoginWithMobileOTP extends Component {
       };
 
       // let response = await axios(config);
-      console.log(response.data.token, "After Otp Verification");
       // this.setState({ loading: false });
       if (response.data.token) {
         this.setState({ loading: false });
@@ -189,7 +185,6 @@ export default class LoginWithMobileOTP extends Component {
       // let response = await axios(config);
 
       this.setState({ loading: false });
-      console.log(response.data.txnId, "=======");
       if (response.data.txnId) {
         this.setState({ isotpsend: true, txnId: response.data.txnId });
       } else {
@@ -215,17 +210,9 @@ export default class LoginWithMobileOTP extends Component {
         // Password: 1,
         Password: "Vls@123#!@"
       });
-      console.log(
-        "Signi api calling Login Response**************",
-        response.data
-      );
       this.setState({ loading: false });
 
       if (response.data.Status) {
-        console.log(
-          "Signi api calling Login Response**************",
-          response.data
-        );
         this.saveLoginData(
           response.data.Token,
           response.data.Role,
@@ -248,14 +235,6 @@ export default class LoginWithMobileOTP extends Component {
   }
 
   async otpVerifyCall() {
-    console.log(
-      this.state.otp[0],
-      this.state.otp[0] +
-        this.state.otp[1] +
-        this.state.otp[2] +
-        this.state.otp[3],
-      " this.state.otp"
-    );
     let tmp;
     this.state.otp.map((itm) => {
       console.log(itm, "otpskl");
@@ -269,7 +248,6 @@ export default class LoginWithMobileOTP extends Component {
           this.state.otp[2] +
           this.state.otp[3]
       });
-      console.log(response.data, "After Otp Verification");
 
       if (response.data.Status) {
         this.setState({ loading: false });
@@ -316,7 +294,6 @@ export default class LoginWithMobileOTP extends Component {
   };
 
   saveLoginData = async (Token, Role, Name, response) => {
-    console.log("tostring", this.props.navigation);
     //var items = [["token", Token], ["mobile", this.state.mobile]]
     var user = [];
     let item = {};
@@ -378,21 +355,14 @@ export default class LoginWithMobileOTP extends Component {
         this.props.navigation.navigate("OTPverification");
       }
     } catch (e) {
-      console.log(e, "?????////");
       //alert('Failed to save the data to the storage')
     }
   };
   async onPressSendOTPcall() {
-    console.log(
-      this.state.mobile,
-      "@#@##@#@#@#//////for otp send and resend button  "
-    );
-
     try {
       const response = await axios.get(
         Constants.FORGOTPASS_SENDOTP + this.state.mobile
       );
-      console.log(response.data);
       this.setState({ loading: false });
       if (response.data.OTPSend) {
         this.saveData();
@@ -422,12 +392,9 @@ export default class LoginWithMobileOTP extends Component {
   };
 
   callbackForOTP = (otpfromchild) => {
-    console.log("otpfromchild==>", otpfromchild.length);
-
     this.setState({ otp: otpfromchild });
   };
   render() {
-    console.log(this.state.otp);
     const { navigate } = this.props.navigation;
 
     const screenHeight = Math.round(Dimensions.get("window").height);
@@ -550,18 +517,18 @@ export default class LoginWithMobileOTP extends Component {
                       {/* <AutoFillOtp></AutoFillOtp> */}
                     </>
                   ) : // <TextInputCard
-                  //   keyboardtype={"numeric"}
-                  //   inputfield="Enter OTP"
-                  //   maxlength={this.state.from == "cowin-certifcate" ? 10 : 4}
-                  //   placeholder="Enter OTP"
-                  //   icon={require("../../icons/mobile-number.png")}
-                  //   // onchangeTxt={(text) => this.setState({ otp: text })}
-                  //   onchangeTxt={(text) => {
-                  //     this.convertSHA256otp(text);
-                  //   }}
-                  // ></TextInputCard>
+                    //   keyboardtype={"numeric"}
+                    //   inputfield="Enter OTP"
+                    //   maxlength={this.state.from == "cowin-certifcate" ? 10 : 4}
+                    //   placeholder="Enter OTP"
+                    //   icon={require("../../icons/mobile-number.png")}
+                    //   // onchangeTxt={(text) => this.setState({ otp: text })}
+                    //   onchangeTxt={(text) => {
+                    //     this.convertSHA256otp(text);
+                    //   }}
+                    // ></TextInputCard>
 
-                  null}
+                    null}
                   {this.state.isotpsend == false ? (
                     <TouchableOpacity
                       style={{

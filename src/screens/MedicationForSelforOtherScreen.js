@@ -33,7 +33,6 @@ import Rediobutton from "../appComponents/Rediobutton";
 import Modal from "react-native-modal";
 const numColumns = 4;
 const dwidth = Dimensions.get("window").width;
-console.log(dwidth, "///");
 function StatusBarPlaceHolder() {
   return (
     <View
@@ -58,8 +57,6 @@ const formatData = (data, numColumns) => {
     data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
     numberOfElementsLastRow++;
   }
-
-  console.log(data, "befor returning ///", numberOfElementsLastRow);
   return data;
 };
 export default class MedicationForSelforOtherScreen extends React.Component {
@@ -193,7 +190,6 @@ export default class MedicationForSelforOtherScreen extends React.Component {
       let forAddnew = {};
       let userid = await AsyncStorage.getItem(Constants.USER_ID);
       let name = await AsyncStorage.getItem(Constants.USER_NAME);
-      console.log(name, ">>????");
       let responseData = this.state.ApprovedRequestList;
 
       forslef.Name = name + "(Myself)";
@@ -270,14 +266,12 @@ export default class MedicationForSelforOtherScreen extends React.Component {
         selectedtName: testname,
         isnew: false
       },
-      () => {}
+      () => { }
     );
   };
   selectRelation = (index) => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
     let info = this.state.FamilyMemberList[index];
-
-    console.log(info.Name, "///////");
     if (info.Name == "Add New") {
       this.props.navigation.navigate("AddNewFamilyMember", {
         refresh: "",
@@ -293,7 +287,6 @@ export default class MedicationForSelforOtherScreen extends React.Component {
   };
 
   renderItem = ({ item, index }) => {
-    console.log(item.empty, ",.,.,.,.,.", item);
     // if (item.empty === true) {
     //   return <View style={[styles.item, { backgroundColor: item.color }]} />;
     // }
@@ -323,8 +316,6 @@ export default class MedicationForSelforOtherScreen extends React.Component {
     const { StatusBarManager } = NativeModules;
     const STATUSBAR_HEIGHT =
       Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
-    console.log("statusheight===", this.state.selectedtcolor);
-
     ///const { navigate } = this.props.navigation;
     const screenWidth = Math.round(Dimensions.get("window").width);
 

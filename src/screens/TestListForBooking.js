@@ -82,7 +82,6 @@ export default class TestListForBooking extends Component {
     let totalamount = 0;
     // console.log(testlist, "-====testlist selected");
     if (selectedIds.includes(id.TestId)) {
-      console.log("if ");
       selectedIds = selectedIds.filter((_id) => _id !== id.TestId);
       selectedIdswithPriceandOtherDetails =
         selectedIdswithPriceandOtherDetails.filter(
@@ -102,7 +101,6 @@ export default class TestListForBooking extends Component {
       totalprice: totalamount,
       selectedIdswithPriceandOtherDetails,
     });
-    console.log(totalamount, " totalamount");
   };
 
   removeDuplicate = (datalist) => {
@@ -274,17 +272,7 @@ export default class TestListForBooking extends Component {
   //handling onPress action
   OpenCheckStatus = () => {
     //Alert.alert(item.key,item.title);
-
-    console.log(
-      "*****ProcProceed callllllll==============================",
-      this.state.selectedIds
-    );
     const myObjStr = this.state.selectedIds.toString();
-    console.log(
-      "&&&&&Proceed Test List from coose test s==============================",
-      myObjStr
-    );
-
     if (this.state.selectedIds.length == 0) {
       Toast.show("Please Select Test");
     } else {
@@ -305,13 +293,10 @@ export default class TestListForBooking extends Component {
         totaltestnames = subitem.TestName + "," + totaltestnames;
       });
       let str2 = totaltestnames.replace(/,(?=\s*$)/, "");
-      console.log(str2, "======removed ,");
       temp.Total = totalamount;
       temp.Testids = myObjStr;
       temp.Testidprices = totaltestprices;
       temp.Testnames = str2;
-      console.log(temp, "---+++===============");
-
       this.props.navigation.navigate("BookAppointment", {
         labinfo: temp,
         from: "manually",
@@ -419,9 +404,9 @@ export default class TestListForBooking extends Component {
           </View>
 
           {this.state.AllTestList.length <= 0 &&
-          !this.state.isLoading &&
-          !this.state.searchLoading &&
-          !this.state.refreshing ? (
+            !this.state.isLoading &&
+            !this.state.searchLoading &&
+            !this.state.refreshing ? (
             <NoDataAvailable onPressRefresh={this.onRefresh} />
           ) : null}
         </View>

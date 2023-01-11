@@ -54,12 +54,8 @@ export default class RegUserDetails extends React.Component {
     );
   }
   async getProfileDetail() {
-    console.log(this.state.activebtn, "getProfileDetailacitve btn");
-
-    console.log("77777", this.state.activebtn);
     try {
       const response = await axios.get(Constants.GET_USERPROFILE);
-      console.log(response.data, "edit profile getting profile pic");
       this.setState({ isLoading: false });
       //Toast.show(response.data.Msg)
       // let responseData = this.state.userDetails;
@@ -70,7 +66,6 @@ export default class RegUserDetails extends React.Component {
         // console.log(responseData, '@ getting profile pic  ResponaseData');
         response.data.MyDetails.map((item) => {
           // item.isShow=false;
-          console.log(item, "////???");
           responseData.push(item);
 
           seetingitms.push(tmp);
@@ -82,7 +77,7 @@ export default class RegUserDetails extends React.Component {
             userDetails: responseData,
             isLoading: false
           },
-          () => {}
+          () => { }
         );
       } else {
         // console.log(response.data.Msg, "else ");
@@ -130,7 +125,6 @@ export default class RegUserDetails extends React.Component {
     } else return "";
   };
   render() {
-    console.log(this.state.userDetails.Gender, "?????");
     return (
       <View style={styles.scrollViewStyle}>
         <Fragment>
@@ -205,7 +199,7 @@ export default class RegUserDetails extends React.Component {
           <ScrollView
             alwaysBounceVertical={true}
             showsHorizontalScrollIndicator={false}
-            // style={{ backgroundColor: "white", marginTop: 0 }}
+          // style={{ backgroundColor: "white", marginTop: 0 }}
           >
             <View
               style={{

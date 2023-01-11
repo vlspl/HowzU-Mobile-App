@@ -42,11 +42,9 @@ class FCMService {
     messaging()
       .getToken()
       .then((fcmToken) => {
-        console.log("---token---", fcmToken);
         if (fcmToken) {
           onRegister(fcmToken);
         } else {
-          console.log("user dontb hjave device token");
         }
       })
       .catch((error) => {
@@ -98,10 +96,6 @@ class FCMService {
       .then((remoteMessage) => {
         if (remoteMessage) {
           const notification = remoteMessage.notification;
-          console.log(
-            "when the applicstion is opened from a quite state--------",
-            remoteMessage
-          );
           onOpenNotification(remoteMessage);
           // if (Platform.OS === "android") {
           //   onNotification(remoteMessage, true);

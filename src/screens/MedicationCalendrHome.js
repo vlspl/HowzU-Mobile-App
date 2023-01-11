@@ -118,17 +118,17 @@ export default class MedicationCalendrHome extends React.Component {
         {Platform.OS === "ios"
           ? "ios"
           : "android" && (
-              <RNDateTimePicker
-                testID="dateTimePicker"
-                value={new Date()}
-                mode="time"
-                is24Hour={false}
-                display="default"
-                // minimumDate={new Date()}
-                // maximumDate={new Date('12/10/2021')}
-                onChange={this.onChange}
-              />
-            )}
+            <RNDateTimePicker
+              testID="dateTimePicker"
+              value={new Date()}
+              mode="time"
+              is24Hour={false}
+              display="default"
+              // minimumDate={new Date()}
+              // maximumDate={new Date('12/10/2021')}
+              onChange={this.onChange}
+            />
+          )}
       </>
     );
   };
@@ -163,7 +163,7 @@ export default class MedicationCalendrHome extends React.Component {
         onConfirm={this.handleDatePicked}
         onCancel={this.hideDateTimePicker}
         mode="time"
-        //  isDarkModeEnabled={true}
+      //  isDarkModeEnabled={true}
       />
     );
   };
@@ -172,8 +172,6 @@ export default class MedicationCalendrHome extends React.Component {
   };
 
   onDateSelected = (date) => {
-    console.log(" onDateSelected ==============================", date);
-
     // this.setState({ selectedDate: date.format('YYYY-MM-DD')});
     this.setState(
       {
@@ -297,7 +295,6 @@ export default class MedicationCalendrHome extends React.Component {
         let splitname;
 
         response.data.medicineDetails.map((item) => {
-          console.log(item, "infetch data ");
           // name.push(item.ForWhome);
           // let find = name.find((nm) => nm == item.ForWhome);
           // console.log(find, "///////", name);
@@ -328,7 +325,6 @@ export default class MedicationCalendrHome extends React.Component {
             MedicationId: item.RemindermId,
             medDelteID: item.medicineMasterId
           };
-          console.log(color, "color");
           temparray.push({
             Time: item.doseTime,
             name: item.ForWhome,
@@ -336,7 +332,6 @@ export default class MedicationCalendrHome extends React.Component {
             data: [value]
           });
         });
-        console.log(name, "names ", "uniquenames", uniquenames);
         this.setState({
           medicationInfo: temparray,
           isLoading: false
@@ -369,9 +364,7 @@ export default class MedicationCalendrHome extends React.Component {
 
     //kiiled state
     //{"data": {"ID": "2416", "Type": "Local Notification", "collapse_key": "com.howzu", "delivered_priority": "high", "from": "510234675595", "google.delivered_priority": "normal", "google.message_id": "0:1641465576877099%3b8d58de3b8d58de", "google.original_priority": "normal", "google.sent_time": 1641465576863, "google.ttl": 2419200, "priority": "high", "remote": "true"}}
-    console.log("******", this.state.notificationdata, "notification data");
     let id = this.state.notificationdata.data.ID;
-    console.log(id, "id =====");
     // this.props.navigation.setParams({ from: null, data: null });
 
     // let medication = realm.objects(MEDICINE_INFO);
@@ -443,7 +436,6 @@ export default class MedicationCalendrHome extends React.Component {
           "MM-DD-YYYY"
         )
       });
-      console.log(response.data, "fetching from backed data");
       this.setState({
         isLoading: false,
         isModalVisible: true
@@ -453,15 +445,8 @@ export default class MedicationCalendrHome extends React.Component {
         let temp1 = {};
 
         let result = response.data.medicineDetails.filter((_id) => {
-          console.log(_id.RemindermId == id, "matching the data");
           return _id.RemindermId == id;
         });
-        console.log(
-          "???????",
-          result,
-          "filtering from backed baased on the id"
-        );
-
         (value.DoseTime = result[0].doseTime),
           (value.IsTaken =
             result[0].MedicationStatus != "" ? result[0].MedicationStatus : ""),
@@ -472,7 +457,6 @@ export default class MedicationCalendrHome extends React.Component {
           (value.MedicationId = result[0].RemindermId),
           (value.medDelteID = result[0].medicineMasterId);
         value.meduserName = result[0].ForWhome;
-        console.log(value, "value after filtering");
         // this.setState({
         //   doseInfo: [value],
         //   isLoading: false,
@@ -500,11 +484,6 @@ export default class MedicationCalendrHome extends React.Component {
   };
   componentDidMount = () => {
     let self = this;
-
-    console.log(
-      "Component Did MOunt ****************Medication Calendar Home****************",
-      this.props.route.params
-    );
     //notifcation
     if (this.props.route.params.from == "notifcation") {
       this.setState(
@@ -566,10 +545,6 @@ export default class MedicationCalendrHome extends React.Component {
     });
   };
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log(
-      " Unsafe componentWillReceiveProps==============================",
-      nextProp.route.params.data
-    );
     if (nextProp.route.params.from == "notifcation") {
       this.setState(
         {
@@ -617,7 +592,7 @@ export default class MedicationCalendrHome extends React.Component {
   }
   ClosePOPup = () => {
     // console.log("ClosePOPup=================");
-    this.setState({ isModalVisible: false, isnotif: false }, () => {});
+    this.setState({ isModalVisible: false, isnotif: false }, () => { });
   };
 
   TakeMedicine = () => {
@@ -640,7 +615,7 @@ export default class MedicationCalendrHome extends React.Component {
           .format("DD-MM-YYYY")
           .toString()
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -656,7 +631,7 @@ export default class MedicationCalendrHome extends React.Component {
 
   SkipMedicineReason = async (reason) => {
     // console.log("SkipMedicineReason=================", reason);
-    this.setState({ isModalVisible: false, onPressPopup: "skip" }, () => {});
+    this.setState({ isModalVisible: false, onPressPopup: "skip" }, () => { });
     var skipreason = "";
     if (reason == "1") {
       skipreason = "Skipped med isn't near me";
@@ -753,7 +728,7 @@ export default class MedicationCalendrHome extends React.Component {
           isnotif: false,
           istaken: true
         },
-        () => {}
+        () => { }
       );
     } else if (reason == "2") {
       takentime = "Taken Now " + moment(new Date()).format("hh:mm A");
@@ -764,13 +739,13 @@ export default class MedicationCalendrHome extends React.Component {
           isnotif: false,
           istaken: true
         },
-        () => {}
+        () => { }
       );
     } else if (reason == "3") {
       takentime = "Taken On (" + this.state.dosetime + ")";
       this.setState(
         { isModalVisible: false, onPressPopup: "take", isnotif: false },
-        () => {}
+        () => { }
       );
     }
 
@@ -788,7 +763,6 @@ export default class MedicationCalendrHome extends React.Component {
         MedicationStatus: "U",
         MedStatus: takentime
       });
-      console.log(response.data, "===after take fetching from backed data");
       this.setState({
         isLoading: false
       });
@@ -836,7 +810,7 @@ export default class MedicationCalendrHome extends React.Component {
         {
           isModalVisible: false
         },
-        () => {}
+        () => { }
       );
     } else {
       id = med.data[0].medDelteID;
@@ -845,7 +819,7 @@ export default class MedicationCalendrHome extends React.Component {
         {
           isModalVisible: false
         },
-        () => {}
+        () => { }
       );
     }
 
@@ -880,11 +854,6 @@ export default class MedicationCalendrHome extends React.Component {
   };
 
   OnPressDoseInfo = (subitem, index, name) => {
-    console.log(
-      "********Sub item Dose info on press=================",
-      subitem,
-      index
-    );
     let data = this.state.medicationInfo[index];
     let temp = {};
     temp.DoseTime = subitem.DoseTime;
@@ -896,7 +865,6 @@ export default class MedicationCalendrHome extends React.Component {
     temp.Time = subitem.Time;
     temp.medDelteID = subitem.medDelteID;
     temp.meduserName = name;
-    console.log(data, "/////////");
     if (subitem.IsTaken == "") {
       this.setState(
         {
@@ -905,7 +873,7 @@ export default class MedicationCalendrHome extends React.Component {
           // doseInfo: subitem,
           onPressPopup: "dose"
         },
-        () => {}
+        () => { }
       );
     }
   };
@@ -921,7 +889,6 @@ export default class MedicationCalendrHome extends React.Component {
     const { StatusBarManager } = NativeModules;
     const STATUSBAR_HEIGHT =
       Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
-    console.log("==={}{}medicationInfo===", this.state.doseInfo.meduserName);
 
     const screenWidth = Math.round(Dimensions.get("window").width);
 
@@ -1392,7 +1359,7 @@ export default class MedicationCalendrHome extends React.Component {
                 <Image
                   source={require("../../icons/micheader.png")}
                   style={{ marginRight: 5, height: 30, width: 30 }}
-                  // resizeMode="cover"
+                // resizeMode="cover"
                 />
               </TouchableOpacity>
             </View>

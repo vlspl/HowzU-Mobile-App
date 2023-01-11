@@ -67,7 +67,6 @@ export default class PatientdashboardComp extends React.Component {
     this.props.navigation.navigate("MyReports", { refresh: true });
   };
   onPressCompareMyReport = () => {
-    console.log("CompareReportsList");
     // this.props.remove();
     this.props.navigation.navigate("CompareReportsList", { refresh: true });
   };
@@ -307,7 +306,6 @@ export default class PatientdashboardComp extends React.Component {
           //   '3 st GET_RECENT_TEST =================',
           //   responesThree.data
           // );
-          console.log("4 st GET_imgres =================", imgres.data);
           // console.log('5 st GET_SUGGESTED_TEST =================',responesFifth.data)
           this.setState({
             isLoading: false,
@@ -405,7 +403,6 @@ export default class PatientdashboardComp extends React.Component {
         })
       )
       .catch((errors) => {
-        console.log(errors.reponse);
         this.setState({ isLoading: false });
         // react on errors.
       });
@@ -419,22 +416,19 @@ export default class PatientdashboardComp extends React.Component {
   };
 
   sliderimgNavigation = async (title) => {
-    console.log(title, ":::::?????>>>LLLLLL");
     if (title == "hydration reminder" || title == "Hydration.png") {
       // this.HydrationNavigtion();
       try {
         const response = await axios.get(Constants.GET_HYDRATION_DETAILS);
 
         if (response.data.Status) {
-          console.log("retrving data");
-
           this.props.navigation.navigate("HydrationScreen", {
             refresh: true
           });
         } else {
           this.props.navigation.navigate("HydGenderScreen", { refresh: true });
         }
-      } catch (error) {}
+      } catch (error) { }
     } else if (title == "medical reminder") {
       this.props.navigation.navigate("MedicationCalendrHome", {
         refresh: true
@@ -502,7 +496,7 @@ export default class PatientdashboardComp extends React.Component {
 
               // borderRadius: 30,
             }}
-            // borderRadius={30}
+          // borderRadius={30}
           />
         </View>
       </TouchableOpacity>
@@ -645,7 +639,7 @@ export default class PatientdashboardComp extends React.Component {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               style={{ backgroundColor: "transparent" }}
-              onScroll={({ nativeEvent }) => {}}
+              onScroll={({ nativeEvent }) => { }}
             >
               {this.state.lifestyledisorder.length > 0 &&
                 this.state.lifestyledisorder.map((item, index) => (
@@ -660,9 +654,9 @@ export default class PatientdashboardComp extends React.Component {
             </ScrollView>
           </View>
           {this.state.lifestyledisorder.length <= 0 &&
-          !this.state.isLoading &&
-          !this.state.searchLoading &&
-          !this.state.refreshing ? (
+            !this.state.isLoading &&
+            !this.state.searchLoading &&
+            !this.state.refreshing ? (
             <Text style={{ flex: 1, margin: 20, color: "gray" }}>
               No Data available in Lifestyle Disorder!
             </Text>
@@ -708,7 +702,7 @@ export default class PatientdashboardComp extends React.Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 style={{ backgroundColor: "transparent" }}
-                onScroll={({ nativeEvent }) => {}}
+                onScroll={({ nativeEvent }) => { }}
               >
                 {this.state.myhealthlist.map((item, index) => (
                   <View key={index}>
@@ -726,9 +720,9 @@ export default class PatientdashboardComp extends React.Component {
                 ))}
               </ScrollView>
               {this.state.myhealthlist.length == 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <View style={{ flexDirection: "column" }}>
                   <Text style={{ flex: 1, margin: 10, color: "gray" }}>
                     No Data Available in My Health!
@@ -797,7 +791,7 @@ export default class PatientdashboardComp extends React.Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 style={{ backgroundColor: "transparent" }}
-                onScroll={({ nativeEvent }) => {}}
+                onScroll={({ nativeEvent }) => { }}
               >
                 <View style={styles.MyhealthcardView}>
                   <TouchableOpacity
@@ -925,7 +919,7 @@ export default class PatientdashboardComp extends React.Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 style={{ backgroundColor: "transparent" }}
-                onScroll={({ nativeEvent }) => {}}
+                onScroll={({ nativeEvent }) => { }}
               >
                 {this.state.recenttestlist.map((item, index) => (
                   <View key={index}>
@@ -945,9 +939,9 @@ export default class PatientdashboardComp extends React.Component {
                 ))}
               </ScrollView>
               {this.state.recenttestlist.length == 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <Text style={{ flex: 1, margin: 10, color: "gray" }}>
                   No Data Available in Recent test!
                 </Text>
@@ -995,7 +989,7 @@ export default class PatientdashboardComp extends React.Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 style={{ backgroundColor: "transparent" }}
-                onScroll={({ nativeEvent }) => {}}
+                onScroll={({ nativeEvent }) => { }}
               >
                 {this.state.Upcommingtestlist.map((item, index) => (
                   <View key={index}>
@@ -1020,9 +1014,9 @@ export default class PatientdashboardComp extends React.Component {
               </ScrollView>
 
               {this.state.Upcommingtestlist.length == 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <Text style={{ flex: 1, margin: 10, color: "gray" }}>
                   No Data available in Upcoming test!
                 </Text>
@@ -1070,7 +1064,7 @@ export default class PatientdashboardComp extends React.Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 style={{ backgroundColor: "transparent" }}
-                onScroll={({ nativeEvent }) => {}}
+                onScroll={({ nativeEvent }) => { }}
               >
                 {this.state.recomendedtestlist.map((item, index) => (
                   <View key={index}>
@@ -1086,9 +1080,9 @@ export default class PatientdashboardComp extends React.Component {
               </ScrollView>
 
               {this.state.recomendedtestlist.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <Text style={{ flex: 1, margin: 10, color: "gray" }}>
                   No Data available in Suggested test!
                 </Text>

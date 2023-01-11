@@ -470,7 +470,6 @@ export default class CheckStatus extends Component {
   };
 
   CheckStatuscall = async () => {
-    console.log(bookingid, "booking id ");
     try {
       let response = await axios.post(Constants.TEST_STATUS + bookingid, {});
       // console.log(response.data.ReportArray, "//////Reporewcnbs ");
@@ -485,12 +484,6 @@ export default class CheckStatus extends Component {
           temp.Flag = "";
           res.push(temp);
         });
-        console.log(res, "-------");
-        console.log(
-          moment(response.data.TestDate, "DD/MM/YY").format("DD MM YYYY"),
-          "@#@#@##@====="
-        );
-
         this.setState({
           isLoading: false,
           bookingstatus: response.data.Bookstatus,
@@ -881,14 +874,14 @@ export default class CheckStatus extends Component {
                                 : "") +
                               (item.Name === "Test Schedule"
                                 ? (item.Date != null
-                                    ? moment(item.Date).format(" DD MMM YY") +
-                                      " at "
-                                    : "") + item.Timeslot
+                                  ? moment(item.Date).format(" DD MMM YY") +
+                                  " at "
+                                  : "") + item.Timeslot
                                 : item.Date != null
-                                ? moment(item.Date).format(
+                                  ? moment(item.Date).format(
                                     " DD MMM YY , hh:mm A"
                                   )
-                                : "")
+                                  : "")
                             }
                             reports={this.state.reports}
                             OpenReportDetail={(i) => this.OpenReportDetail(i)}
@@ -902,8 +895,8 @@ export default class CheckStatus extends Component {
                             date={
                               item.Date != null
                                 ? moment(item.Date).format(
-                                    " DD MMMM YY, hh:mm A"
-                                  )
+                                  " DD MMMM YY, hh:mm A"
+                                )
                                 : ""
                             }
                             reports={this.state.reports}

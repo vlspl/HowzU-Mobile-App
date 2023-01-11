@@ -41,16 +41,6 @@ import { launchImageLibrary } from "react-native-image-picker";
 function IsvalueBetweenRange(RefArray, value) {
   let ref1 = RefArray[0];
   let ref2 = RefArray[1];
-  console.log("ref1==============================", ref1);
-  console.log("ref2==============================", ref2);
-  console.log(
-    "value==============================",
-    value,
-    " parseFloat(value) == parseFloat(ref1)",
-    parseFloat(value) == parseFloat(ref1) &&
-      parseFloat(value) == parseFloat(ref2)
-  );
-
   if (
     parseFloat(value) == parseFloat(ref1) &&
     parseFloat(value) == parseFloat(ref2)
@@ -134,7 +124,6 @@ export default class ReportManualPunch extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log("retriveData././././././././", nextProp.route.params.orgid);
     // this.retriveData();
     if (nextProp.route.params.orgid != undefined) {
       this.setState(
@@ -142,13 +131,12 @@ export default class ReportManualPunch extends React.Component {
           orgid: nextProp.route.params.orgid,
           AllTestListTechnician: []
         },
-        () => {}
+        () => { }
       );
     }
   };
 
   componentDidMount = () => {
-    console.log("componed did ", this.props.route.params.orgid);
     // this.retriveData();
     if (this.props.route.params.orgid != undefined) {
       this.setState(
@@ -156,7 +144,7 @@ export default class ReportManualPunch extends React.Component {
           orgid: this.props.route.params.orgid,
           AllTestListTechnician: []
         },
-        () => {}
+        () => { }
       );
     }
   };
@@ -214,13 +202,6 @@ export default class ReportManualPunch extends React.Component {
   };
 
   ReportManualPunchAPI = async () => {
-    console.log("this.state.labName ===================", this.state.labName);
-    console.log(
-      "this.state.selectedId ===================",
-      this.state.bookingdate
-    );
-    console.log("this.state.testid ===================", this.state.selectedId);
-
     try {
       let response = await axios.post(Constants.MANUAL_REPORTPUNCH, {
         LabName: this.state.labName,
@@ -228,7 +209,6 @@ export default class ReportManualPunch extends React.Component {
         TestId: this.state.selectedId,
         Testdate: this.state.bookingdate
       });
-      console.log("data==============", response.data);
       // this.setState({ isLoading: false });
 
       if (response.data.Status) {
@@ -271,11 +251,6 @@ export default class ReportManualPunch extends React.Component {
   };
 
   GetReportValuesAPI = async () => {
-    console.log(
-      "this.state.BookingId ===================",
-      this.state.selectedId
-    );
-
     try {
       // let response = await axios.post(
       //   Constants.GET_REPORTVALUE + "=" + this.state.BookingId,
@@ -294,14 +269,10 @@ export default class ReportManualPunch extends React.Component {
 
       let response = await axios.post(
         Constants.GET_REPORTVALUES_REFRANGE_PERRESULT +
-          "=" +
-          this.state.selectedId,
+        "=" +
+        this.state.selectedId,
         // this.state.BookingId,
         {}
-      );
-      console.log(
-        "GET_REPORTVALUE==============",
-        JSON.stringify(response.data)
       );
       // this.setState({ isLoading: false });
 
@@ -382,13 +353,9 @@ export default class ReportManualPunch extends React.Component {
         }
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the camera");
-
         this.setState({ isPrescription: false }, () => {
           setTimeout(() => {
             launchImageLibrary(options, (response) => {
-              console.log("Response = @@@@@@@@@@@@@ ", response);
-
               if (response.didCancel) {
                 console.log("User cancelled image picker");
               } else if (response.error) {
@@ -434,20 +401,11 @@ export default class ReportManualPunch extends React.Component {
       this.setState({ isPrescription: false }, () => {
         setTimeout(() => {
           launchImageLibrary(options, (response) => {
-            console.log("Response = @@@@@@@@@@@@@ ", response);
-
             if (response.didCancel) {
               console.log("User cancelled image picker");
             } else if (response.error) {
               console.log("ImagePicker Error: ", response.error);
             } else {
-              console.log(
-                response.assets[0].uri,
-                "Loging the res ======",
-                response.assets[0].type,
-                response.assets[0].fileName,
-                response.assets
-              );
               if (response.assets.fileSize > 5000000) {
                 Toast.show("Please select image size upto 5MB");
               } else {
@@ -585,13 +543,6 @@ export default class ReportManualPunch extends React.Component {
   }
 
   BookAppointments = async () => {
-    console.log(
-      "Before submmiting the data$%^$%$$^AnalyteTempList APi data  =================",
-      this.state.AnalyteTempList,
-      this.state.bookingdate,
-      "TestDate"
-    );
-
     if (this.state.isother) {
       try {
         let response = await axios.post(
@@ -606,8 +557,6 @@ export default class ReportManualPunch extends React.Component {
             ParameterDetails: this.state.AnalyteTempList
           }
         );
-        console.log("data==============", response.data);
-
         if (response.data.Status) {
           this.setState({ isLoading: false });
           Toast.show(response.data.Msg);
@@ -648,16 +597,11 @@ export default class ReportManualPunch extends React.Component {
         // item.ReportPath = '',
         responseData.push(item);
       });
-      console.log(
-        responseData,
-        "=======after assigning the booking id and report id"
-      );
       try {
         let response = await axios.post(Constants.ADD_REPORT, {
           AnalyteDetails: responseData, //this.state.AnalyteTempList,
           Notes: this.state.addressinput
         });
-        console.log("normal report data==============", response.data);
         this.setState({ isLoading: false });
 
         if (response.data.Status) {
@@ -752,11 +696,6 @@ export default class ReportManualPunch extends React.Component {
 
   togglePicker = (resultarray, index) => {
     /// this.setState({isModalVisible: !this.state.isModalVisible});
-    console.log(
-      "resultarray==============================",
-      resultarray,
-      "resultIndex"
-    );
     // console.log('index==============================', index);
 
     //this.getSuggestedTest('');
@@ -924,21 +863,15 @@ export default class ReportManualPunch extends React.Component {
   };
 
   onChangeTextValueDiscription = async (val, index, resultlist) => {
-    console.log("======", val, resultlist);
     resultlist.map((item) => {
       let ReferenceRange =
         item.FemaleRange == "" ? item.MaleRange : item.FemaleRange;
-      console.log("ReferenceRange", ReferenceRange);
       var RefArray = ReferenceRange.split("-");
-      console.log(RefArray, "////");
       let result = IsvalueBetweenSubAnaRefRange(RefArray, val + "");
       if (result == "Yes") {
-        console.log(index, "index");
         this.setState({ resultIndex: index }, () => {
           this.onpickervalueselected(item);
         });
-
-        console.log(item.Result, " item.Result", index);
         // let AnalyteList = [...this.state.AnalyteList];
         // let filledAnalyteList = [...this.state.filledAnalyteList];
 
@@ -957,7 +890,6 @@ export default class ReportManualPunch extends React.Component {
         //   // pickerVisible: !this.state.pickerVisible
         // });
       }
-      console.log(IsvalueBetweenSubAnaRefRange(RefArray, val + ""), "////");
     });
 
     let AnalyteList = [...this.state.AnalyteList];
@@ -1160,7 +1092,7 @@ export default class ReportManualPunch extends React.Component {
               if (item.iszero == "No") {
                 Toast.show(
                   "Please Fill the Value description, Where Result is selected for " +
-                    item.AnalyteName
+                  item.AnalyteName
                 );
               }
               responseData = [];
@@ -1170,7 +1102,7 @@ export default class ReportManualPunch extends React.Component {
               if (item.iszero == "No") {
                 Toast.show(
                   "Please select the result, Where Value description is filled for " +
-                    item.AnalyteName
+                  item.AnalyteName
                 );
               } else {
                 Toast.show("Please select the result for " + item.AnalyteName);
@@ -1298,7 +1230,7 @@ export default class ReportManualPunch extends React.Component {
   };
   ClosePOPup = () => {
     // console.log('ClosePOPup=================');
-    this.setState({ isPrescription: false }, () => {});
+    this.setState({ isPrescription: false }, () => { });
   };
 
   showPicker = () => {
@@ -1315,16 +1247,16 @@ export default class ReportManualPunch extends React.Component {
         {Platform.OS === "ios"
           ? "ios"
           : "android" && (
-              <RNDateTimePicker
-                testID="dateTimePicker"
-                value={new Date()}
-                mode="date"
-                is24Hour={true}
-                display="default"
-                dateFormat="day month year"
-                onChange={this.onChange}
-              />
-            )}
+            <RNDateTimePicker
+              testID="dateTimePicker"
+              value={new Date()}
+              mode="date"
+              is24Hour={true}
+              display="default"
+              dateFormat="day month year"
+              onChange={this.onChange}
+            />
+          )}
       </>
     );
   };
@@ -1336,7 +1268,6 @@ export default class ReportManualPunch extends React.Component {
     // this.backHandler.remove();
   };
   onpickervalueselected = (value) => {
-    console.log(value.Result, "selected value", this.state.resultIndex);
     this.setState(
       {
         selectPicker: value.Result
@@ -1368,9 +1299,7 @@ export default class ReportManualPunch extends React.Component {
     if (isNaN(event)) {
       Toast.show("Please enter only number");
     } else {
-      console.log(event);
       const values = [...this.state.otherreportdetails];
-      console.log(values[i], "////........");
       values[i].Value = event;
       this.setState({ otherreportdetails: values });
     }
@@ -1638,9 +1567,9 @@ export default class ReportManualPunch extends React.Component {
                   }}
                 >
                   {this.state.AllTestList.length <= 0 &&
-                  !this.state.isLoading &&
-                  !this.state.searchLoading &&
-                  !this.state.refreshing ? (
+                    !this.state.isLoading &&
+                    !this.state.searchLoading &&
+                    !this.state.refreshing ? (
                     <>
                       <TouchableOpacity
                         onPress={() => this.handleSelectionOther("Other")}
@@ -1794,8 +1723,8 @@ export default class ReportManualPunch extends React.Component {
                 this.state.ismanualpunchapicalled
                   ? this.setState({ isShowDataPicker: false })
                   : this.setState({
-                      isShowDataPicker: true
-                    });
+                    isShowDataPicker: true
+                  });
               }}
               style={{ justifyContent: "center" }}
             >
@@ -1833,8 +1762,8 @@ export default class ReportManualPunch extends React.Component {
                   this.state.ismanualpunchapicalled
                     ? this.setState({ isShowDataPicker: false })
                     : this.setState({
-                        isShowDataPicker: true
-                      })
+                      isShowDataPicker: true
+                    })
                 }
               >
                 {this.state.bookingdate != "" ? (

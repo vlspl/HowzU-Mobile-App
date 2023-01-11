@@ -179,12 +179,11 @@ export default class MedicationTakenFood extends React.Component {
         endDate: nextProp.route.params.endDate,
         duration: nextProp.route.params.duration
       },
-      () => {}
+      () => { }
     );
   };
 
   componentDidMount = async () => {
-    console.log("last saving", this.props.route.params.color);
     let self = this;
     this.setState(
       {
@@ -213,31 +212,25 @@ export default class MedicationTakenFood extends React.Component {
         duration: this.props.route.params.duration
       },
 
-      () => {}
+      () => { }
     );
     // this.requestNotificationPermission();
   };
 
   onPressSelect = (selectStr) => {
-    console.log("selectStr Medication Taken food=================", selectStr);
     if (selectStr == "Before eating") {
-      this.setState({ takenWithFood: "Before eating" }, () => {});
+      this.setState({ takenWithFood: "Before eating" }, () => { });
     } else if (selectStr == "While eating") {
-      this.setState({ takenWithFood: "While eating" }, () => {});
+      this.setState({ takenWithFood: "While eating" }, () => { });
     } else if (selectStr == "After eating") {
-      this.setState({ takenWithFood: "After eating" }, () => {});
+      this.setState({ takenWithFood: "After eating" }, () => { });
     } else if (selectStr == "Doesnt matter") {
-      this.setState({ takenWithFood: "Doesnt matter" }, () => {});
+      this.setState({ takenWithFood: "Doesnt matter" }, () => { });
     }
   };
 
   SaveMedicationData() {
-    console.log(
-      "********^&^&^&&^&^medication save*&**&*&&*&*&*&* ",
-      Platform.OS
-    );
     moment.defaultFormat = "DD-MM-YYYY HH:mm";
-
     let Startdate = moment(this.state.startDate, moment.defaultFormat).toDate();
     let dostime =
       this.state.firstDoseTime +
@@ -807,10 +800,6 @@ export default class MedicationTakenFood extends React.Component {
 
   FetchMedicationData() {
     // let realm = new Realm({ schema: [medicineInfo, doseInfo, doseStatus] });
-
-    console.log(
-      " FetchMedicationData in Medication taken food  =============================="
-    );
     let selectedDate = moment(new Date(), "YYYY-MM-DDTHH: mm: ss")
       .format("DD-MM-YYYY")
       .toString();
@@ -819,7 +808,6 @@ export default class MedicationTakenFood extends React.Component {
     // });
 
     let medication = realm.objects(MEDICINE_INFO);
-    console.log(JSON.stringify(medication), "*******Medication Saved into DB");
     if (medication.length > 0) {
       this.props.navigation.navigate("MedicationCalendrHome", {
         refresh: true
@@ -832,23 +820,6 @@ export default class MedicationTakenFood extends React.Component {
     // });
   }
   SaveDateToBackedDB = async () => {
-    console.log(
-      this.state.forwhome,
-      "this.state.color",
-      this.state.selectedtcolor,
-      " MedSdate: ",
-      moment(this.state.startDate, "DD/MM/YY").format("MM/DD/YYYY"),
-      " MedDoseDuration:",
-      this.state.duration,
-      "    DoseInterval:",
-      this.state.doseCount,
-      " DoseTime:",
-      this.state.firstDoseTime +
-        "," +
-        this.state.secondDoseTime +
-        "," +
-        this.state.thirdDoseTime
-    );
     try {
       let response = await axios.post(Constants.ADD_MEDICINE_REMINDER, {
         MedName: this.state.tabName,
@@ -868,7 +839,6 @@ export default class MedicationTakenFood extends React.Component {
         ForWhome: this.state.forwhome,
         ColorCode: this.state.selectedtcolor
       });
-      console.log(response, "----");
       if (response.data.Status) {
         this.props.navigation.navigate("MedicationCalendrHome", {
           refresh: true
@@ -894,7 +864,7 @@ export default class MedicationTakenFood extends React.Component {
 
         // let medication = realm.objects(MEDICINE_INFO);
         // console.log(medication, "medicatiob in calling of save data");
-      } catch (e) {}
+      } catch (e) { }
     }
   };
 

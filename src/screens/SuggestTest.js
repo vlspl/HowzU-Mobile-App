@@ -184,7 +184,6 @@ export default class SuggestTest extends PureComponent {
   };
 
   handleSelectionMultiple = (index) => {
-    console.log("TestID==============================");
     var dict = {}; // create an empty array
 
     dict = this.state.AllSuggetstedTest[index];
@@ -296,9 +295,9 @@ export default class SuggestTest extends PureComponent {
               </View>
             </ScrollView>
             {this.state.AllSuggetstedTest.length <= 0 &&
-            !this.state.isLoading &&
-            !this.state.searchLoading &&
-            !this.state.refreshing ? (
+              !this.state.isLoading &&
+              !this.state.searchLoading &&
+              !this.state.refreshing ? (
               <NoDataAvailable
                 onPressRefresh={this.onRefresh}
                 source={require("../../icons/suggestedtestnodata.png")}

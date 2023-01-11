@@ -173,7 +173,6 @@ var wightkg = [
 ];
 
 function range(start, end, step, offset) {
-  console.log("start", start, "end ", end);
   let strt = Math.round(start / 10) * 10;
   // let strt = 10;
   let endel = end;
@@ -181,7 +180,6 @@ function range(start, end, step, offset) {
   // console.log(endel, "endl");
   let s1 = strt;
   let s2 = endel;
-  console.log(s1, "start", s2, "end");
   if (endel == 0 || endel < end) {
     endel = end;
   } else {
@@ -259,7 +257,6 @@ export default class HydrationScreen extends Component {
   };
 
   handleDatePicked = (date) => {
-    console.log("isBedModal", this.state.isBedModal);
     // let formatdate = moment(date).format("ddd, Do MMMM YYYY, hh:mm A");
     let formatdate = moment(date).format("ddd, Do MMMM YYYY");
     let formatdate1 = moment(date).format("hh:mm A");
@@ -309,7 +306,6 @@ export default class HydrationScreen extends Component {
   };
 
   onChange = (event, selectedDate) => {
-    console.log(event, "event");
     const now = new Date(selectedDate);
 
     if (event.type == "set" && this.state.isBedModal == false) {
@@ -342,18 +338,15 @@ export default class HydrationScreen extends Component {
         }
       );
     } else if (event.type == "dismissed" && this.state.isBedModal == false) {
-      console.log(event, "=====**&*&8event");
       this.setState({
         isDateTimePickerVisible: false
       });
     } else if (event.type == "dismissed" && this.state.isBedModal) {
-      console.log(event, "=====**&*&8event");
       this.setState({
         isDateTimePickerVisible: false,
         isBedModal: false
       });
     } else {
-      console.log(event, "event");
       this.setState({
         isDateTimePickerVisible: false,
         isBedModal: false
@@ -362,22 +355,14 @@ export default class HydrationScreen extends Component {
   };
 
   getAsyncData = async () => {
-    console.log("^^^^&^&^&^^^^^^^^^^^^:::::::");
-
     try {
       const value = await AsyncStorage.getItem("Hydration");
       // const hydrationDetail = JSON.parse(value);
       let response = await axios.get(Constants.GET_HYDRATION_DETAILS, {});
-      console.log(response.data, "^&^&^&^&", response.data.Status);
-
       if (response.data.Status) {
         let intdata = response.data.List[0].Intekgoal.replace("ML", "");
 
         let goalfterremoveml = Number(intdata);
-        console.log(
-          goalfterremoveml.toFixed(0),
-          "////????^^^^&^&^&^^^^^^^^^^^^:::::::"
-        );
         this.setState(
           {
             goal: goalfterremoveml.toFixed(0),
@@ -394,7 +379,6 @@ export default class HydrationScreen extends Component {
           }
         );
       } else {
-        console.log("///else part of get async data");
         // Toast.show(response.data.Msg);
       }
     } catch (error) {
@@ -468,8 +452,6 @@ export default class HydrationScreen extends Component {
 
     let res = Number(cup) + Number(this.state.drinkwater);
     let per = Math.floor(100 * (res / this.state.goal));
-    console.log("res", res, "per", per);
-
     this.setState(
       {
         drinkwater: res,
@@ -505,13 +487,10 @@ export default class HydrationScreen extends Component {
     }
   };
   GetDailyWaterIntake = async () => {
-    console.log(this.state.goal, "===GetDailyWaterIntake");
     let date = moment().format("DD/MM/YYYY");
     try {
       const value = await AsyncStorage.getItem("Hydration");
       const hydrationDetail = JSON.parse(value);
-      console.log("hydrationDetail", hydrationDetail);
-
       let response = await axios.post(Constants.GET_WATER_CONSUMTION_DATA, {
         StartDate: date,
         EndDate: date
@@ -567,16 +546,14 @@ export default class HydrationScreen extends Component {
       this.state.todate == ""
         ? moment(lastDayOfMonth).format("YYYY/MM/DD")
         : //moment().endOf("month").format("DD/MM/YYYY")
-          moment(this.state.todate).format("YYYY/MM/DD");
+        moment(this.state.todate).format("YYYY/MM/DD");
 
     // console.log("startOfMonth", startOfMonth, ">>.", "endOfMonth", endOfMonth);
     try {
-      console.log(startOfMonth, "startOfMonth", "endOfMonth", endOfMonth);
       let response = await axios.post(Constants.HYD_HISTORY, {
         StartDate: startOfMonth,
         EndDate: endOfMonth
       });
-      console.log("======////////", response.data);
       let sorteddata = response.data.List;
       // console.log(sorteddata.sort(), "======////////", response.data);
       this.setState({ isLoading: false });
@@ -599,10 +576,7 @@ export default class HydrationScreen extends Component {
           let temp = {};
 
           totaldrink = Number(itm.time);
-          console.log(totaldrink, ":::////>>>");
-
           drinkedwaterperce = Math.floor(100 * (totaldrink / this.state.goal));
-          console.log(drinkedwaterperce, ":::////>>>");
           datesetX.date = itm.date;
 
           xaxiosdata.push(datesetX);
@@ -610,14 +584,6 @@ export default class HydrationScreen extends Component {
         });
 
         let maxvalue = Math.max.apply(null, graph);
-        console.log(
-          maxvalue,
-          "maxvalue *********",
-          "Math.ceil(maxvalue)",
-          Math.ceil(maxvalue),
-          "Math.round(maxvalue)",
-          Math.round(maxvalue)
-        );
         if (maxvalue == 0 && maxvalue < 1) {
           Yaxiosdata = range(0, 1);
         } else {
@@ -653,14 +619,12 @@ export default class HydrationScreen extends Component {
 
   handleHydRecords = async (index) => {
     let hydrecord = this.state.dailyConsumptopnData[index];
-    console.log(hydrecord.WaterConsuId, "////");
     let id = hydrecord.WaterConsuId;
     try {
       let response = await axios.get(
         Constants.DELETE_WATER_CONSUMTION_DATA + "waterConsumptionId=" + id,
         {}
       );
-      console.log(response.data, "dlete");
       this.setState({ isLoading: false });
       if (response.data.Status) {
         this.setState({ isLoading: true });
@@ -716,7 +680,6 @@ export default class HydrationScreen extends Component {
     });
   };
   onChangeSelectFromDate = (event, selectedDate) => {
-    console.log(event, "//////");
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -753,7 +716,6 @@ export default class HydrationScreen extends Component {
     }
   };
   onChangeSelectToDate = (event, selectedDate) => {
-    console.log(event, "//////");
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -807,8 +769,6 @@ export default class HydrationScreen extends Component {
 
     const CUT_OFF = 20;
     // console.log("screenheight", screenheight, "screenScale", screenScale);
-
-    console.log(screenWidth, "screenWidth");
     const Labels = ({ x, y, bandwidth }) =>
       this.state.Hydgraph.map((value, index) => (
         <SvgText
@@ -949,7 +909,6 @@ export default class HydrationScreen extends Component {
                     flexDirection: "row"
                   }}
                   onPress={() => {
-                    console.log("hyd selecteu====");
                     this.setState({ activebtn: "history" });
 
                     this.getHydHistory();
@@ -1122,11 +1081,11 @@ export default class HydrationScreen extends Component {
                                   ? screenWidth >= 374 && screenWidth < 400
                                     ? scale(20)
                                     : screenWidth <= 428 && Platform.OS == "ios"
-                                    ? scale(42)
-                                    : scale(32)
+                                      ? scale(42)
+                                      : scale(32)
                                   : screenWidth > 320 && screenWidth < 364
-                                  ? scale(10)
-                                  : scale(-20)
+                                    ? scale(10)
+                                    : scale(-20)
                             }}
                           >
                             <Text style={styles.header2}> </Text>
@@ -1364,7 +1323,6 @@ export default class HydrationScreen extends Component {
                         date={this.state.todate}
                         isVisible={this.state.isShowDataPicker}
                         onPress={() => {
-                          console.log("pressed");
                           this.setState({
                             isShowDataPicker: !this.state.isShowDataPicker
                           });
@@ -1379,7 +1337,6 @@ export default class HydrationScreen extends Component {
                         date={this.state.todate}
                         isVisible={this.state.isShowDataPicker}
                         onPress={() => {
-                          console.log("pressed");
                           this.setState({
                             isShowDataPicker: !this.state.isShowDataPicker
                           });

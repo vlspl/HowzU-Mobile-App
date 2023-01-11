@@ -82,8 +82,6 @@ export default class MedicationHistory extends React.Component {
       "Component Did MOunt ****************Medication Calendar Home****************",
       this.props.route.params
     );
-
-    console.log(this.state.selectedtName, ":::::");
     this.setState(
       {
         // fromdate: moment(new Date(), " YYYY-MM-DDTHH: mm: ss").format(
@@ -111,13 +109,6 @@ export default class MedicationHistory extends React.Component {
     let ForWhome =
       this.state.selectedtName == "" ? selectedtName : this.state.selectedtName;
     this.setState({ selectedtName: ForWhome });
-    console.log(
-      this.state.selectedtName,
-      "FetchMedicationData///",
-      ForWhome,
-      this.state.fromdate,
-      this.state.todate
-    );
     let temparray = [];
     try {
       let response = await axios.post(Constants.GET_MEDICATION_HISORY, {
@@ -128,15 +119,11 @@ export default class MedicationHistory extends React.Component {
         pageSize: 0,
         Searching: ""
       });
-
-      console.log(response.data, "???????>>>>");
       this.setState({
         isLoading: false
       });
       if (response.data.Status) {
         response.data.medicineDetails.map((item) => {
-          console.log(item, "infetch data ");
-
           const value = item;
           let dosesper = item.TakenDose / item.TotalDose;
 
@@ -312,7 +299,6 @@ export default class MedicationHistory extends React.Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
   onSelectFromDate = (date) => {
-    console.log(date, "onselect from fa");
     this.setState({ fromdate: date, isDateTimePickerVisible: false }, () => {
       if (this.state.todate == "") {
       } else {
@@ -332,7 +318,6 @@ export default class MedicationHistory extends React.Component {
     });
   };
   onChangeSelectFromDate = (event, selectedDate) => {
-    console.log(event, "//////", selectedDate);
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -369,7 +354,6 @@ export default class MedicationHistory extends React.Component {
     }
   };
   onChangeSelectToDate = (event, selectedDate) => {
-    console.log(event, "//////", selectedDate);
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -406,7 +390,6 @@ export default class MedicationHistory extends React.Component {
     }
   };
   onChangeSelectToDate = (event, selectedDate) => {
-    console.log(event, "//////", selectedDate);
     if (event.type == "set") {
       const currentDate = selectedDate || date;
       // setShow(Platform.OS === 'ios');
@@ -444,9 +427,7 @@ export default class MedicationHistory extends React.Component {
   };
   onSelectToDate = (date) => {
     //let info = this.state.ApprovedRequestList[index];
-    console.log("select to date ====================================", date);
     // if (this.state.fromdate == ''){
-
     this.setState({ todate: date, isShowDataPicker: false }, () => {
       if (this.state.fromdate == "") {
       } else {
@@ -476,7 +457,6 @@ export default class MedicationHistory extends React.Component {
   };
   render() {
     const { StatusBarManager } = NativeModules;
-    console.log(this.state.medicationInfo, "llllll");
     return (
       <Container>
         <Loader loading={this.state.isLoading} />

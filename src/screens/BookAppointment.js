@@ -326,7 +326,6 @@ export default class PatientdashboardComp extends React.Component {
         Weekday: day,
         AppointmentType: this.state.appointmenttype
       });
-      console.log("lab data slot ==============", response.data);
       this.setState({ isLoading: false });
 
       if (response.data.Status) {
@@ -393,7 +392,6 @@ export default class PatientdashboardComp extends React.Component {
   };
 
   suggestedBookAppointments = async () => {
-    console.log("-------Sugeested Book Appointment");
     // var dt = this.state.bookingdate.toDateString();
 
     // console.log('LabId =================', this.state.labid);
@@ -443,7 +441,6 @@ export default class PatientdashboardComp extends React.Component {
       if (response.data.Status) {
         // Toast.show(response.data.Msg);
         this.setState({ isLoading: false });
-        console.log(response.data.BookingId, "Booking id ");
         // Toast.show('Navigating to the Payment Page ')
         // this.props.navigation.navigate('Appointments');
         // this.props.navigation.navigate('CheckStatus', {
@@ -508,43 +505,10 @@ export default class PatientdashboardComp extends React.Component {
   };
 
   BookAppointments = async () => {
-    console.log("-------Manually Book Appointment");
-
-    console.log("LabId =================", this.state.labid);
-    console.log("TimeSlot =================", this.state.slottosendforbooking);
-    console.log(
-      " =================timeslotID",
-
-      this.state.selectedtimeslotID
-    );
-    console.log(
-      "Booking date =================",
-      this.state.bookingdate,
-
-      "Its formatted"
-    );
-    console.log("total amount =================", this.state.testprice);
-    console.log("Type =================", this.state.appointmenttype);
-    console.log(
-      "TestIds =================",
-      this.state.testids.replace(/(^,)|(,$)/g, "")
-    );
-    console.log(
-      "SampleCollectionAddress=================",
-      this.state.addressinput
-    );
-    console.log("Test count =================", this.state.testcount);
-    console.log("Docor id", this.state.docid);
-    // console.log('RecommendationId id', this.state.RcomId);
-
     let PaymentMethod = "";
     PaymentMethod = this.state.isonlinePayment ? "Online" : "";
-    console.log("PaymentMethod =================", PaymentMethod);
-
     let testids = this.state.testids.replace(/(^,)|(,$)/g, "");
     let testprices = this.state.testidprices.replace(/(^,)|(,$)/g, "");
-    console.log("Test Ids =================", testids);
-    console.log("Test Prices =================", testprices);
     var data = JSON.stringify({
       LabId: this.state.labid,
       DoctorId: "",
@@ -575,7 +539,6 @@ export default class PatientdashboardComp extends React.Component {
         PaymentMethod: PaymentMethod
       });
       // let response = await axios.post(Constants.BOOK_APPOINTMENT, data);
-      console.log("data==============", response.data);
       this.setState({ loading: false });
 
       if (response.data.Status) {
@@ -682,7 +645,6 @@ export default class PatientdashboardComp extends React.Component {
     const screenWidth = Math.round(Dimensions.get("window").width);
     /// const navigation = useNavigation();
     var valuee = "";
-    console.log(this.state.bookingdate, "book Appoint,enr");
     return (
       <Container>
         <CustomeHeader
@@ -1031,7 +993,7 @@ export default class PatientdashboardComp extends React.Component {
                           margin: 20,
                           marginLeft: 17
                         }}
-                        // numberOfLines={5}
+                      // numberOfLines={5}
                       >
                         {this.state.labaddress}
                       </Text>
@@ -1214,7 +1176,7 @@ export default class PatientdashboardComp extends React.Component {
                     onPress={this.toggleModal}
                   >
                     {this.state.selectedtimeslot === undefined ||
-                    this.state.selectedtimeslot === "" ? (
+                      this.state.selectedtimeslot === "" ? (
                       <Text
                         style={{
                           marginLeft: 12,

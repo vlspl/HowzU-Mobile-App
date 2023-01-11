@@ -171,7 +171,6 @@ export default class AllTestList extends Component {
   };
 
   callpagination = async () => {
-    console.log("Pagination of test list ");
     this.setState(
       {
         paginationLoading: true,
@@ -281,7 +280,7 @@ export default class AllTestList extends Component {
     }
   };
 
-  oncomeback = () => {};
+  oncomeback = () => { };
 
   render() {
     const { data, isLoading } = this.state;
@@ -378,9 +377,9 @@ export default class AllTestList extends Component {
           </View>
 
           {this.state.AllTestList.length <= 0 &&
-          !this.state.isLoading &&
-          !this.state.searchLoading &&
-          !this.state.refreshing ? (
+            !this.state.isLoading &&
+            !this.state.searchLoading &&
+            !this.state.refreshing ? (
             <NoDataAvailable onPressRefresh={this.onRefresh} />
           ) : null}
         </View>

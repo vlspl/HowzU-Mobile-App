@@ -245,7 +245,6 @@ export default class WeightHydScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    console.log(this.state.selectedgender, "weight ===");
     const windowWidth = 100;
 
     return (
@@ -280,11 +279,11 @@ export default class WeightHydScreen extends Component {
                   }}
                   source={
                     this.state.selectedgender == "female" ||
-                    this.state.selectedgender == "Female"
+                      this.state.selectedgender == "Female"
                       ? require("../../../icons/Your-Weight-female.png")
                       : require("../../../icons/Your-Weight-male.png")
                   }
-                  // source={require("../../../icons/Your-Weight-female.png")}
+                // source={require("../../../icons/Your-Weight-female.png")}
                 />
               </View>
               <View

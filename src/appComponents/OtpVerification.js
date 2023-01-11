@@ -109,16 +109,9 @@ const OtpVerification = function (props) {
             try {
               if (message) {
                 const messageArray = message.split("\n");
-                console.log(
-                  messageArray[0],
-                  // messageArray[1],
-                  // messageArray[2],
-                  "//////messageArray "
-                );
                 if (messageArray[0]) {
                   const otp = messageArray[0].split(" ")[1]; //the wrod is
                   const otp1 = messageArray[0].split(" ")[0];
-                  console.log(otp, "otp", otp1);
                   // if (otp1.length === 4) {
                   if (otp.length === 4) {
                     // everyery it's otp bcz the fisrt was # but right noew from backed wih #otp is not reciving so changing it from frontend
@@ -192,7 +185,6 @@ const OtpVerification = function (props) {
   };
 
   const onResendOtpButtonPress = () => {
-    console.log("Resend BUtton pressed");
     props.onResendOtpButtonPress();
     // onPressSendOTPcall();
     // clear last OTP
@@ -206,15 +198,12 @@ const OtpVerification = function (props) {
 
     // resend OTP Api call
     // todo
-    console.log("todo: Resend OTP");
   };
 
   const onSubmitButtonPress = () => {
-    console.log("Submitting  the otp to parent comp from chold");
     // API call
     // todo
     props.onSubmitButtonPress();
-    console.log("todo: Submit OTP");
   };
 
   // this event won't be fired when text changes from '' to '' i.e. backspace is pressed
@@ -228,7 +217,6 @@ const OtpVerification = function (props) {
       const otpArrayCopy = otpArray.concat();
       otpArrayCopy[index] = value;
       setOtpArray(otpArrayCopy);
-      console.log(otpArrayCopy, "/////");
       props.callBack(otpArrayCopy);
       // auto focus to next InputText if value is not blank
       if (value !== "") {
@@ -273,7 +261,6 @@ const OtpVerification = function (props) {
     };
   };
 
-  console.log(submittingOtp, "submitting otp");
   return (
     <View
       style={{
@@ -374,7 +361,7 @@ const OtpVerification = function (props) {
       <View style={{}} />
       {submittingOtp && <ActivityIndicator />}
       {autoSubmitOtpTime > 0 &&
-      autoSubmitOtpTime < AUTO_SUBMIT_OTP_TIME_LIMIT ? (
+        autoSubmitOtpTime < AUTO_SUBMIT_OTP_TIME_LIMIT ? (
         <TimerText text={"Submitting OTP in"} time={autoSubmitOtpTime} />
       ) : null}
 

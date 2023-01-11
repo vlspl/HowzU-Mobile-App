@@ -108,8 +108,6 @@ class TechnicinanRegisteredUsers extends Component {
   };
   OpenReportDetail = (index) => {
     let labinfo = this.state.AllReportList[index];
-
-    console.log("****$$$$%%%%5", labinfo);
     this.props.navigation.navigate("RegUserViewDetails", {
       labinfo: labinfo
     });
@@ -117,11 +115,7 @@ class TechnicinanRegisteredUsers extends Component {
 
   AddReportDetail = (index) => {
     let labinfo = this.state.AllReportList[index];
-
-    console.log("/////****$$$$%%%%5", labinfo);
     let scannedmobileno = this.Decrypt(labinfo.Mobile);
-    console.log("/////****$$$$%%%%5", scannedmobileno, this.state.orgid);
-
     this.props.navigation.navigate("TechAddreport", {
       refresh: "",
       orgid: this.state.orgid,
@@ -151,8 +145,6 @@ class TechnicinanRegisteredUsers extends Component {
         this.setState({ loading: false });
 
         response.data.MyDetails.map((item) => {
-          console.log(item, "////");
-
           responseData.push(item);
         });
 
@@ -256,8 +248,6 @@ class TechnicinanRegisteredUsers extends Component {
   };
   render() {
     const { data, isLoading } = this.state;
-    console.log(this.state.isLoading, "this.state.isLoading my reports ===");
-
     return (
       <Container>
         <Loader loading={this.state.isLoading} />
@@ -349,7 +339,7 @@ class TechnicinanRegisteredUsers extends Component {
                               // placeholderSource={require("../../../icons/Profile-33.png")}
                               placeholderSource={require("../../../icons/registered.png")}
                               placeholderStyle={styles.placeholder}
-                              // borderRadius={20}
+                            // borderRadius={20}
                             />
                           </View>
 
@@ -434,10 +424,10 @@ class TechnicinanRegisteredUsers extends Component {
                 </View>
               </ScrollView>
               {this.state.AllReportList.length <= 0 &&
-              this.state.PendingRequestList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                this.state.PendingRequestList.length <= 0 &&
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable onPressRefresh={this.onRefresh} />
               ) : null}
             </View>

@@ -87,13 +87,6 @@ export default class MedicatnDuration extends React.Component {
 
   handleDatePicked = (date) => {
     let formatdate = moment(date).format("DD/MM/YY");
-
-    console.log(
-      "this.state.startDate",
-      this.state.startDate,
-      "formated",
-      formatdate
-    );
     let defaultdate = moment(this.state.startDate, "DD/MM/YY").format(
       "MM/DD/YYYY"
     );
@@ -104,8 +97,6 @@ export default class MedicatnDuration extends React.Component {
 
     let diff = Math.abs(date1 - date2);
     let diffindays = Math.ceil(diff / (1000 * 60 * 60 * 24)) + 1;
-    console.log(diff + " milliseconds");
-    console.log(diffindays + " days");
     this.setState({
       setPickerDate: formatdate,
       endDate: date,
@@ -186,7 +177,7 @@ export default class MedicatnDuration extends React.Component {
         startDate: nextProp.route.params.startDate,
         comparestartdate: nextProp.route.params.comparestartdate
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -240,7 +231,7 @@ export default class MedicatnDuration extends React.Component {
         startDate: this.props.route.params.startDate,
         comparestartdate: this.props.route.params.comparestartdate
       },
-      () => {}
+      () => { }
     );
   };
 

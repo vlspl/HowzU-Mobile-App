@@ -99,7 +99,6 @@ export default class PaymentHistory extends Component {
             responseData.push(item);
           }
         });
-        console.log(responseData);
         this.setState({
           AllHistoryList: this.removeDuplicate(responseData),
           isLoading: false,
@@ -224,9 +223,9 @@ export default class PaymentHistory extends Component {
               </View>
             </ScrollView>
             {this.state.AllHistoryList.length <= 0 &&
-            !this.state.isLoading &&
-            !this.state.searchLoading &&
-            !this.state.refreshing ? (
+              !this.state.isLoading &&
+              !this.state.searchLoading &&
+              !this.state.refreshing ? (
               <NoDataAvailable
                 onPressRefresh={this.onRefresh}
                 source={require("../../icons/payamenthistorynodata.jpg")}

@@ -503,8 +503,6 @@ export default class SharedReportstatus extends Component {
 
   onComplete = () => {
     updatestatus = "Complete";
-
-    console.log("ShareReonCompleteportstatus=================");
     const myObjStr = this.state.selectedIds.toString();
     if (this.state.selectedIds.length == 0) {
       Toast.show("Please Select Test");
@@ -769,9 +767,9 @@ export default class SharedReportstatus extends Component {
                 </View>
               </ScrollView>
               {this.state.AllReportList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable onPressRefresh={this.onRefresh} />
               ) : null}
             </View>
@@ -918,7 +916,7 @@ export default class SharedReportstatus extends Component {
                 justifyContent: "center",
               }}
               onPress={this.onHolding}
-              // onPress={this.onComplete}
+            // onPress={this.onComplete}
             >
               <Text
                 style={{

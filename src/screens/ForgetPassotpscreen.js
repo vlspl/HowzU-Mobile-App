@@ -83,8 +83,6 @@ export default class ForgetPassotpscreen extends Component {
           this.state.otp[3]
         // OTP: this.state.otp
       });
-      console.log(response.data);
-
       if (response.data.Status) {
         this.setState({ loading: false });
         //this.saveData()
@@ -147,8 +145,6 @@ export default class ForgetPassotpscreen extends Component {
     }
   };
   callbackForOTP = (otpfromchild) => {
-    console.log("otpfromchild==>", otpfromchild.length);
-
     this.setState({ otp: otpfromchild });
   };
   render() {

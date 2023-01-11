@@ -106,7 +106,6 @@ export default class PatientSharedReport extends Component {
   };
   OpenReportDetail = (index) => {
     let labinfo = this.state.AllReportList[index];
-    console.log("index====================================", index, labinfo);
     let temp = {};
     temp = labinfo;
     temp.PatientId = this.state.patientid;
@@ -332,7 +331,7 @@ export default class PatientSharedReport extends Component {
                   <RefreshControl
                     refreshing={this.state.refreshing}
                     onRefresh={this.onRefresh}
-                    //colors='red'
+                  //colors='red'
                   />
                 }
               >
@@ -359,9 +358,9 @@ export default class PatientSharedReport extends Component {
                 </View>
               </ScrollView>
               {this.state.AllReportList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable onPressRefresh={this.onRefresh} />
               ) : null}
             </View>

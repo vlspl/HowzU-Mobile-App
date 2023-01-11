@@ -6,7 +6,7 @@ async function getMyObject() {
   try {
     const jsonValue = await AsyncStorage.getItem(Constants.TOKEN_KEY);
     return jsonValue != null ? jsonValue : null;
-  } catch (e) {}
+  } catch (e) { }
 }
 
 export default axios.interceptors.request.use(async (req) => {
@@ -26,7 +26,6 @@ export default axios.interceptors.request.use(async (req) => {
     req.url == Constants.GET_SENDOTP
   ) {
   } else {
-    console.log("********sending*********", req);
     // console.log('::::::::::', 'Bearer ' + userData);
     req.headers.Authorization = "Bearer " + userData;
     //  console.log("::::::::::","Bearer "+req)

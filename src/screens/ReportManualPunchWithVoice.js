@@ -124,7 +124,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
     console.log("onSpeechEndHandler: ", e);
   };
   onSpeechResultsHandler = (e) => {
-    console.log("onSpeechResultsHandler: ", e, "input", this.state.inputname);
     let sen = e.value[0];
     if (this.state.inputname == "selecttest") {
       this.setState(
@@ -152,11 +151,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
     } else if (this.state.inputname == "otherparamnm") {
       let id = this.state.idtohernm;
       let val = this.state.valothernm;
-      console.log(
-        id,
-        "other input to handle id",
-        this.state.otherreportdetails
-      );
       this.setState(
         {
           speech: sen
@@ -170,7 +164,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
       let id = this.state.idtohernm;
       let val = this.state.valothernm;
       let wordtonum = wordsToNumbers(sen);
-      console.log(wordtonum, "numsjs");
       this.setState(
         {
           speech: sen
@@ -184,11 +177,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
       let id = this.state.idtohernm;
       let val = this.state.valothernm;
       let wordtonum = wordsToNumbers(sen);
-      console.log(
-        id,
-        "other input to handle id",
-        this.state.otherreportdetails
-      );
       this.setState(
         {
           speech: sen
@@ -201,11 +189,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
     } else if (this.state.inputname == "otherunit") {
       let id = this.state.idtohernm;
       let val = this.state.valothernm;
-      console.log(
-        id,
-        "other input to handle id",
-        this.state.otherreportdetails
-      );
       this.setState(
         {
           speech: sen
@@ -219,11 +202,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
       let id = this.state.idtohernm;
       let val = this.state.valothernm;
       let wordtonum = wordsToNumbers(sen);
-      console.log(
-        id,
-        "other input to handle id",
-        this.state.otherreportdetails
-      );
       this.setState(
         {
           speech: sen
@@ -236,11 +214,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
     } else if (this.state.inputname == "otherres") {
       let id = this.state.idtohernm;
       let val = this.state.valothernm;
-      console.log(
-        id,
-        "other input to handle id",
-        this.state.otherreportdetails
-      );
       this.setState(
         {
           speech: sen
@@ -293,8 +266,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
     });
   };
   getSuggestedTest = async (empty) => {
-    console.log(this.state.pageNo, "this.state.pageno");
-
     try {
       let response = await axios.post(
         Constants.GET_REPORT_MANUAL_PUCH_TEST_LIST,
@@ -345,13 +316,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
   };
 
   ReportManualPunchAPI = async () => {
-    console.log("this.state.labName ===================", this.state.labName);
-    console.log(
-      "this.state.selectedId ===================",
-      this.state.bookingdate
-    );
-    console.log("this.state.testid ===================", this.state.selectedId);
-
     try {
       let response = await axios.post(Constants.MANUAL_REPORTPUNCH, {
         LabName: this.state.labName,
@@ -359,7 +323,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
         TestId: this.state.selectedId,
         Testdate: this.state.bookingdate
       });
-      console.log("data==============", response.data);
       // this.setState({ isLoading: false });
 
       if (response.data.Status) {
@@ -402,11 +365,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
   };
 
   GetReportValuesAPI = async () => {
-    console.log(
-      "this.state.BookingId ===================",
-      this.state.BookingId
-    );
-
     try {
       // let response = await axios.post(
       //   Constants.GET_REPORTVALUE + "=" + this.state.BookingId,
@@ -415,8 +373,8 @@ export default class ReportManualPunchWithVoice extends React.Component {
       //new
       let response = await axios.post(
         Constants.GET_REPORTVALUES_UPDATED_ANALYTE_SUBANALYTE +
-          "=" +
-          this.state.selectedId,
+        "=" +
+        this.state.selectedId,
         // this.state.BookingId,
         {}
       );
@@ -500,11 +458,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
   }
 
   BookAppointments = async () => {
-    console.log(
-      "AnalyteTempList APi data  =================",
-      this.state.AnalyteTempList
-    );
-
     if (this.state.isother) {
       try {
         let response = await axios.post(
@@ -519,8 +472,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
             ParameterDetails: this.state.AnalyteTempList
           }
         );
-        console.log("data==============", response.data);
-
         if (response.data.Status) {
           this.setState({ isLoading: false });
           Toast.show(response.data.Msg);
@@ -567,7 +518,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
           AnalyteDetails: responseData, //this.state.AnalyteTempList,
           Notes: this.state.addressinput
         });
-        console.log("normal report data==============", response.data);
         this.setState({ isLoading: false });
 
         if (response.data.Status) {
@@ -603,7 +553,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
   };
 
   handleSelectionMultiple = (testid, testname) => {
-    console.log("TestID==============================", testid);
     this.setState(
       {
         selectedId: testid,
@@ -787,12 +736,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
   }
 
   onPressSubmit = () => {
-    console.log(
-      "onPressSubmit response=================",
-      this.state.testName,
-      this.state.isother
-    );
-
     if (this.state.labName == "") {
       Toast.show("Please enter Lab Name");
     } else if (!isNaN(this.state.labName)) {
@@ -940,7 +883,7 @@ export default class ReportManualPunchWithVoice extends React.Component {
               if (item.iszero == "No") {
                 Toast.show(
                   "Please Fill the Value description, Where Result is selected for " +
-                    item.AnalyteName
+                  item.AnalyteName
                 );
               }
               responseData = [];
@@ -950,7 +893,7 @@ export default class ReportManualPunchWithVoice extends React.Component {
               if (item.iszero == "No") {
                 Toast.show(
                   "Please select the result, Where Value description is filled for " +
-                    item.AnalyteName
+                  item.AnalyteName
                 );
               } else {
                 Toast.show("Please select the result for " + item.AnalyteName);
@@ -1103,7 +1046,7 @@ export default class ReportManualPunchWithVoice extends React.Component {
   };
   ClosePOPup = () => {
     // console.log('ClosePOPup=================');
-    this.setState({ isPrescription: false }, () => {});
+    this.setState({ isPrescription: false }, () => { });
   };
 
   showPicker = () => {
@@ -1120,16 +1063,16 @@ export default class ReportManualPunchWithVoice extends React.Component {
         {Platform.OS === "ios"
           ? "ios"
           : "android" && (
-              <RNDateTimePicker
-                testID="dateTimePicker"
-                value={new Date()}
-                mode="date"
-                is24Hour={true}
-                display="default"
-                dateFormat="day month year"
-                onChange={this.onChange}
-              />
-            )}
+            <RNDateTimePicker
+              testID="dateTimePicker"
+              value={new Date()}
+              mode="date"
+              is24Hour={true}
+              display="default"
+              dateFormat="day month year"
+              onChange={this.onChange}
+            />
+          )}
       </>
     );
   };
@@ -1171,17 +1114,13 @@ export default class ReportManualPunchWithVoice extends React.Component {
     if (isNaN(event)) {
       Toast.show("Please enter only number");
     } else {
-      console.log(event);
       const values = [...this.state.otherreportdetails];
-      console.log(values[i], "////........");
       values[i].Value = event;
       this.setState({ otherreportdetails: values });
     }
   };
 
   onMicPressForOtherReportOption = async (id, input) => {
-    console.log(" onMicPress=========///////?????stratr recognisinf ");
-
     this.setState(
       {
         inputname: input,
@@ -1194,10 +1133,8 @@ export default class ReportManualPunchWithVoice extends React.Component {
     );
   };
   handleChangeParamname = (i, event) => {
-    console.log("@>?>?", i, event);
     const values = [...this.state.otherreportdetails];
     values[i].ParameterName = event;
-    console.log(values, "handle param name");
     this.setState({ otherreportdetails: values });
     // this._destroyRecognizer();
   };
@@ -1214,14 +1151,10 @@ export default class ReportManualPunchWithVoice extends React.Component {
     // this._destroyRecognizer();
   };
   handleChangeMin = (i, event) => {
-    console.log(event, "////to hanlde min values ");
     let convertonum = wordsToNumbers(event);
-    console.log(event, "////to hanlde min values ", convertonum);
-
     if (isNaN(convertonum)) {
       Toast.show("Please enter only number in minimum range");
     } else {
-      console.log("////handle min", i, event);
       const values = [...this.state.otherreportdetails];
       values[i].MinRange = convertonum;
       this.setState({ otherreportdetails: values });
@@ -1257,7 +1190,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
     this.setState({ otherreportdetails: values });
   };
   _startRecognizing = async () => {
-    console.log(" =========///////?????stratr recognisinf ");
     this.setState({
       started: "",
       end: "",
@@ -1274,8 +1206,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
     }
   };
   onMicPress = async (inputname) => {
-    console.log(" onMicPress=========///////?????stratr recognisinf ");
-
     if (this.state.inputname == "selecttest") {
       this.setState(
         {
@@ -1420,14 +1350,6 @@ export default class ReportManualPunchWithVoice extends React.Component {
     );
   };
   render() {
-    console.log(
-      this.state.isAnalyteList == true || this.state.isother == true,
-      "other ---====",
-      "this.state.isAnalyteList",
-      this.state.isAnalyteList,
-      "this.state.isother",
-      this.state.isother
-    );
     const screenWidth = Math.round(Dimensions.get("window").width);
     return (
       <View style={styles.MainContainer}>
@@ -1567,7 +1489,7 @@ export default class ReportManualPunchWithVoice extends React.Component {
                   }}
                 >
                   {this.state.isstarted &&
-                  this.state.inputname == "selecttest" ? (
+                    this.state.inputname == "selecttest" ? (
                     <>
                       <ActivityIndicator size="large" color="#3062ae" />
                       <TouchableOpacity
@@ -1705,9 +1627,9 @@ export default class ReportManualPunchWithVoice extends React.Component {
                   }}
                 >
                   {this.state.AllTestList.length <= 0 &&
-                  !this.state.isLoading &&
-                  !this.state.searchLoading &&
-                  !this.state.refreshing ? (
+                    !this.state.isLoading &&
+                    !this.state.searchLoading &&
+                    !this.state.refreshing ? (
                     <>
                       <TouchableOpacity
                         onPress={() => this.handleSelectionOther("Other")}
@@ -1923,8 +1845,8 @@ export default class ReportManualPunchWithVoice extends React.Component {
                 this.state.ismanualpunchapicalled
                   ? this.setState({ isShowDataPicker: false })
                   : this.setState({
-                      isShowDataPicker: true
-                    });
+                    isShowDataPicker: true
+                  });
               }}
               style={{ justifyContent: "center" }}
             >
@@ -1963,8 +1885,8 @@ export default class ReportManualPunchWithVoice extends React.Component {
                   this.state.ismanualpunchapicalled
                     ? this.setState({ isShowDataPicker: false })
                     : this.setState({
-                        isShowDataPicker: true
-                      })
+                      isShowDataPicker: true
+                    })
                 }
               >
                 {this.state.bookingdate != "" ? (
@@ -2138,7 +2060,7 @@ export default class ReportManualPunchWithVoice extends React.Component {
                         }}
                       ></View>
                       {this.state.isstarted &&
-                      this.state.inputname == "testname" ? (
+                        this.state.inputname == "testname" ? (
                         <>
                           <ActivityIndicator size="large" color="#3062ae" />
                           <TouchableOpacity
@@ -2358,7 +2280,7 @@ export default class ReportManualPunchWithVoice extends React.Component {
                               }}
                             ></View>
                             {this.state.isstarted &&
-                            this.state.inputname == "otherparamnm" ? (
+                              this.state.inputname == "otherparamnm" ? (
                               <>
                                 <ActivityIndicator
                                   size="large"
@@ -2756,7 +2678,7 @@ export default class ReportManualPunchWithVoice extends React.Component {
                               }}
                             ></View>
                             {this.state.isstarted &&
-                            this.state.inputname == "otherres" ? (
+                              this.state.inputname == "otherres" ? (
                               <>
                                 <ActivityIndicator
                                   size="large"

@@ -51,14 +51,14 @@ function getDayOfWeek(date) {
   return isNaN(dayOfWeek)
     ? null
     : [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ][dayOfWeek];
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ][dayOfWeek];
 }
 
 function gettimezone(str) {
@@ -113,17 +113,17 @@ export default class RescheduleBookAppointment extends React.Component {
         {Platform.OS === "ios"
           ? "ios"
           : "android" && (
-              <RNDateTimePicker
-                testID="dateTimePicker"
-                value={new Date()}
-                mode="date"
-                is24Hour={true}
-                display="default"
-                minimumDate={new Date()}
-                maximumDate={new Date("12/10/2021")}
-                onChange={this.onChange}
-              />
-            )}
+            <RNDateTimePicker
+              testID="dateTimePicker"
+              value={new Date()}
+              mode="date"
+              is24Hour={true}
+              display="default"
+              minimumDate={new Date()}
+              maximumDate={new Date("12/10/2021")}
+              onChange={this.onChange}
+            />
+          )}
       </>
     );
   };
@@ -244,11 +244,6 @@ export default class RescheduleBookAppointment extends React.Component {
     this.backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       this.hardwarebBackAction
-    );
-    console.log(
-      "componentDidMount Reschedule the ==============================",
-      // this.props.navigation,
-      this.props.route.params.labinfo.SampleCollectionAddress
     );
     if (this.props.route.params.from == "manually") {
       this.setState({
@@ -458,7 +453,6 @@ export default class RescheduleBookAppointment extends React.Component {
     this.backHandler.remove();
   };
   render() {
-    console.log(this.state.selectedtimeslot, "timeslot");
     const screenWidth = Math.round(Dimensions.get("window").width);
     return (
       <Container>
@@ -979,7 +973,7 @@ export default class RescheduleBookAppointment extends React.Component {
                 >
                   <TouchableOpacity onPress={this.toggleModal}>
                     {this.state.selectedtimeslot === undefined ||
-                    this.state.selectedtimeslot == "" ? (
+                      this.state.selectedtimeslot == "" ? (
                       <Text
                         style={{
                           marginLeft: 12,

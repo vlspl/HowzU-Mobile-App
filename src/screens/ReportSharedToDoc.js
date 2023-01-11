@@ -179,13 +179,6 @@ export default class ReportSharedToDoc extends Component {
     }
   };
   shareReportCall = async () => {
-    console.log("DoctorId ==============", this.state.DoctorId);
-    console.log(
-      "selectedIds ==============",
-      this.state.selectedIds.toString(),
-      "this.state",
-      this.state.selectedIdswithflag
-    );
     let normalids = [],
       oldreportids = [];
     const myObjStr = this.state.selectedIds.toString();
@@ -271,7 +264,6 @@ export default class ReportSharedToDoc extends Component {
       }
     }
     if (normalids.length > 0 && oldreportids.length == 0) {
-      console.log("::://///slddsk");
       this.setState({ isLoading: true });
       try {
         let response = await axios.post(Constants.Add_SHAREREPORT, {
@@ -561,7 +553,7 @@ export default class ReportSharedToDoc extends Component {
                   <RefreshControl
                     refreshing={this.state.refreshing}
                     onRefresh={this.onRefresh}
-                    //colors='red'
+                  //colors='red'
                   />
                 }
               >
@@ -676,15 +668,15 @@ export default class ReportSharedToDoc extends Component {
                 </View>
               </ScrollView>
               {this.state.AllReportList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable onPressRefresh={this.onRefresh} />
               ) : null}
             </View>
           </View>
           {this.state.selectedIds != "" &&
-          this.state.oldreportselecteIds == "" ? (
+            this.state.oldreportselecteIds == "" ? (
             <TouchableOpacity onPress={this.sharePress}>
               <View
                 style={{
@@ -708,7 +700,7 @@ export default class ReportSharedToDoc extends Component {
             </TouchableOpacity>
           ) : null}
           {this.state.oldreportselecteIds != "" &&
-          this.state.selectedIds == "" ? (
+            this.state.selectedIds == "" ? (
             <TouchableOpacity onPress={this.oldreporsharePress}>
               <View
                 style={{
@@ -732,7 +724,7 @@ export default class ReportSharedToDoc extends Component {
             </TouchableOpacity>
           ) : null}
           {this.state.oldreportselecteIds != "" &&
-          this.state.selectedIds != "" ? (
+            this.state.selectedIds != "" ? (
             <View
               style={{
                 backgroundColor: "#275BB4",

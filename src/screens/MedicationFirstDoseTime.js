@@ -99,7 +99,7 @@ export default class MedicationFirstDoseTime extends React.Component {
         forwhome: nextProp.route.params.forwhome,
         selectedtcolor: nextProp.route.params.color
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -119,7 +119,7 @@ export default class MedicationFirstDoseTime extends React.Component {
         doseCount: this.props.route.params.doseCount,
         selectedtcolor: this.props.route.params.color
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -138,13 +138,13 @@ export default class MedicationFirstDoseTime extends React.Component {
   onPressSelect = (selectStr) => {
     // console.log("selectStr=================", selectStr);
     if (selectStr == "Morning") {
-      this.setState({ dose: "Morning" }, () => {});
+      this.setState({ dose: "Morning" }, () => { });
     } else if (selectStr == "Noon") {
-      this.setState({ dose: "Noon" }, () => {});
+      this.setState({ dose: "Noon" }, () => { });
     } else if (selectStr == "Evening") {
-      this.setState({ dose: "Evening" }, () => {});
+      this.setState({ dose: "Evening" }, () => { });
     } else if (selectStr == "Night") {
-      this.setState({ dose: "Night" }, () => {});
+      this.setState({ dose: "Night" }, () => { });
     }
   };
 
@@ -211,21 +211,11 @@ export default class MedicationFirstDoseTime extends React.Component {
       now.getMinutes(),
       now.getSeconds()
     );
-    console.log(date, "date");
     if (event.type == "set") {
       const currentDate = selectedDate;
       let selctedtime = moment(currentDate).format("DD-MM-YYYY hh:mm:ss");
       let formatdate = moment(currentDate).format("hh:mm A");
       // .replace(/\-/g, '/');
-      console.log(
-        "selctedtime",
-        selctedtime,
-        "************",
-        selectedDate,
-        "selected time",
-        selctedtime,
-        "elected time"
-      );
       this.setState({
         isShowDataPicker: false,
         // firstDoseAlrm:date,

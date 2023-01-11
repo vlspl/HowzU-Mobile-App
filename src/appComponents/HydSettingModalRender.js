@@ -14,7 +14,6 @@ import DynamicallySelectedPicker from "react-native-dynamically-selected-picker"
 import Rediobutton from "./Rediobutton";
 import Slider from "react-native-slider";
 const SettingModalRender = (props) => {
-  console.log(props.value, "hydmodal");
   return (
     <RNModal visible={props.visible} transparent style={{ flex: 1, margin: 0 }}>
       <View style={styles.centeredView}>
@@ -206,7 +205,7 @@ const SettingModalRender = (props) => {
                           }}
                           buttonimg={require("../../icons/radio-off.png")}
                           gender="Male"
-                          // from="Hyd"
+                        // from="Hyd"
                         ></Rediobutton>
                       )}
                       {props.value == "Female" ? (

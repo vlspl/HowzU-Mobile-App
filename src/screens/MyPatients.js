@@ -125,8 +125,6 @@ export default class MyPatients extends Component {
         pageSize: Constants.PER_PAGE_RECORD,
         Searching: this.state.searchString
       });
-      console.log("GET_PATIENT_LIST  data==============", response.data);
-
       this.setState({ isLoading: false });
       if (response.data.Status) {
         // this.state.AllMyPatients = [
@@ -305,7 +303,6 @@ export default class MyPatients extends Component {
   };
 
   render() {
-    console.log(this.state.isLoading, "isLoading");
     return (
       <Container>
         <Loader loading={this.state.isLoading} />
@@ -464,9 +461,9 @@ export default class MyPatients extends Component {
               </View>
             </ScrollView>
             {this.state.AllMyPatients.length <= 0 &&
-            !this.state.isLoading &&
-            !this.state.searchLoading &&
-            !this.state.refreshing ? (
+              !this.state.isLoading &&
+              !this.state.searchLoading &&
+              !this.state.refreshing ? (
               <NoDataAvailable onPressRefresh={this.onRefresh} />
             ) : null}
           </View>

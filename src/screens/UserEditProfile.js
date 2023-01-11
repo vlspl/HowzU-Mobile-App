@@ -99,11 +99,6 @@ export default class UserEditProfile extends Component {
 
   componentDidMount() {
     // this.retrieveData();
-    console.log(
-      "componentDidMount Patient=====Profile==============================",
-      this.props.route
-    );
-
     if (this.props.route.params.role == "doctor") {
       // console.log(
       //   "componentDidMount Patient=====Profile=============================="
@@ -152,16 +147,9 @@ export default class UserEditProfile extends Component {
         }
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the camera");
-
         this.setState({ isModalVisible: false }, () => {
           setTimeout(() => {
             launchImageLibrary(options, (response) => {
-              console.log(
-                "Response = @@@@@@@@@@@@@ ",
-                response.assets[0].fileSize
-              );
-
               if (response.didCancel) {
                 console.log("User cancelled image picker");
               } else if (response.error) {
@@ -207,20 +195,11 @@ export default class UserEditProfile extends Component {
       this.setState({ isModalVisible: false }, () => {
         setTimeout(() => {
           launchImageLibrary(options, (response) => {
-            console.log("Response = @@@@@@@@@@@@@ ", response);
-
             if (response.didCancel) {
               console.log("User cancelled image picker");
             } else if (response.error) {
               console.log("ImagePicker Error: ", response.error);
             } else {
-              console.log(
-                response.assets[0].uri,
-                "Loging the res ======",
-                response.assets[0].type,
-                response.assets[0].fileName,
-                response.assets
-              );
               let prescriptionPic = [];
               prescriptionPic.push({
                 uri: response.assets[0] ? response.assets[0].uri : response.uri,
@@ -231,8 +210,6 @@ export default class UserEditProfile extends Component {
                   ? response.assets[0].fileName
                   : response.fileName
               });
-
-              console.log(prescriptionPic, "prescritopn pic");
               this.setState(
                 {
                   isLoading: true,
@@ -250,7 +227,6 @@ export default class UserEditProfile extends Component {
           });
         }, 500);
       });
-      console.log("You can use the camera");
     }
   };
 
@@ -299,8 +275,6 @@ export default class UserEditProfile extends Component {
           })
           .catch((err) => {
             Toast.show("Something Went Wrong, Please Try Again Later");
-
-            console.log(err, "Camera ERRor ");
           });
       }, 500);
     });
@@ -345,7 +319,6 @@ export default class UserEditProfile extends Component {
             }
           })
           .catch((err) => {
-            console.log("err", err);
             alert(err, "alert messaeg");
             this.setState({
               prescriptionPic: "",
@@ -359,7 +332,6 @@ export default class UserEditProfile extends Component {
 
   uploadPrescription = () => {
     var that = this;
-    console.log("================Uplading the  Prescription to server");
     this.setState({ isUploading: true });
     let form = new FormData();
 
@@ -375,7 +347,6 @@ export default class UserEditProfile extends Component {
         type: this.state.prescriptionPic[0].type
       });
     }
-    console.log(JSON.stringify(form), "JSON String fiy for uplaod img///");
     axios({
       method: "post",
       url: Constants.UPLOAD_PROFILE,
@@ -385,7 +356,6 @@ export default class UserEditProfile extends Component {
         "Content-Type": "multipart/form-data"
       },
       onUploadProgress(progressEvent) {
-        console.log({ progressEvent });
         that.setState({
           size: progressEvent.total,
           progresss: progressEvent.loaded / progressEvent.total
@@ -394,7 +364,6 @@ export default class UserEditProfile extends Component {
     })
       .then((response) => {
         var responseObj = JSON.parse(response.data);
-        console.log(responseObj, "Uplaod Prifie Pic");
         if (responseObj.Status) {
           this.setState(
             {
@@ -402,22 +371,18 @@ export default class UserEditProfile extends Component {
               isLoading: false,
               isUploading: false
             },
-            () => {}
+            () => { }
           );
         } else {
-          console.log(" else  response =================", responseObj);
         }
       })
       .catch((e) => {
         Toast.show("Something Went Wrong, Please Try Again Later");
-
-        console.log("error response=================", e);
       });
   };
   async getDoctorProfileDetail() {
     try {
       const response = await axios.get(Constants.GET_DOCTOR_PROFILE);
-      console.log(response.data, "getting profile pic");
       this.setState({ isLoading: false });
       //Toast.show(response.data.Msg)
       let responseData = this.state.userDetails;
@@ -517,8 +482,7 @@ export default class UserEditProfile extends Component {
   }
 
   ClosePOPup = () => {
-    console.log("ClosePOPup=================");
-    this.setState({ isModalVisible: false }, () => {});
+    this.setState({ isModalVisible: false }, () => { });
   };
   onSubmit = () => {
     const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -544,23 +508,6 @@ export default class UserEditProfile extends Component {
   };
 
   updateUserProfile = async () => {
-    console.log(
-      " Address: ",
-      this.state.address,
-      "  Pincode:",
-      this.state.pincode,
-      "  City: ",
-      this.state.city,
-      "  ProfileIamge: ",
-      this.state.imagePath,
-      "  Aadharcard: ",
-      this.state.Aadharnumber,
-      "  HealthId: ",
-      this.state.HealthId,
-      "  EmailId:",
-      this.state.email
-    );
-    console.log(this.state.activebtn, "edit profiel");
     if (this.state.activebtn == "doctor") {
       //  http://endpoint.visionarylifescience.com/Doctor/UpdateDoctor
       try {
@@ -604,8 +551,6 @@ export default class UserEditProfile extends Component {
         //   "Network Error,Please check you're internet connection or try again later"
         // );
         Toast.show("Something Went Wrong, Please Try Again Later");
-
-        console.log(errors, "user edit proifle erro");
         // Toast.show(errors);
         this.setState({
           isLoading: false
@@ -625,7 +570,6 @@ export default class UserEditProfile extends Component {
           HealthId: this.state.HealthId,
           EmailId: this.state.email
         });
-        console.log("data==============", response.data);
         this.setState({ isLoading: false });
         if (response.data.Status) {
           // console.log(response.data.Status, "Navigation ");

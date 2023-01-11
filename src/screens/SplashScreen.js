@@ -96,13 +96,11 @@ export default class SplashScreen extends React.Component {
       }
     } catch (error) {
       Toast.show("Something Went Wrong, Please Try Again Later");
-
-      console.log(error, ".../.../. errorrr");
       // Error retrieving data
     }
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() { }
   render() {
     return (
       <View style={{ flex: 1 }}>

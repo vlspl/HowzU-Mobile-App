@@ -41,7 +41,6 @@ export default class BMIResult extends Component {
   }
 
   calculate = (height, weight) => {
-    console.log(height, weight, "@@@@");
     //calculation
     // var result =
     //   (parseFloat(weight) * 10000) / (parseFloat(height) * parseFloat(height));
@@ -445,7 +444,7 @@ export default class BMIResult extends Component {
                 refresh: "refresh"
               })
             }
-            // onPress={() => this.props.navigation.goBack(null)}
+          // onPress={() => this.props.navigation.goBack(null)}
           >
             <Text style={[styles.loginText, { marginLeft: 20 }]}>Cancel</Text>
           </TouchableOpacity>

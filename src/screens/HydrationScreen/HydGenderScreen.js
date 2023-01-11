@@ -61,7 +61,6 @@ export default class HydGenderScreen extends Component {
     try {
       items["gender"] = this.state.activebtn;
       await AsyncStorage.setItem("Hydration", JSON.stringify(items));
-      console.log("BMI SAVe GENDER==================", JSON.stringify(items));
       this.props.navigation.navigate("WeightHydScreen", { refresh: true });
     } catch (e) {
       // console.log(e);
@@ -128,7 +127,7 @@ export default class HydGenderScreen extends Component {
                         ? require("../../../icons/hyd-male.png")
                         : require("../../../icons/male-not-active.png")
                     }
-                    // source={require("../../../icons/boy-in-circle.png")}
+                  // source={require("../../../icons/boy-in-circle.png")}
                   />
 
                   <Text
@@ -176,7 +175,7 @@ export default class HydGenderScreen extends Component {
                         ? require("../../../icons/hyd-female.png")
                         : require("../../../icons/female-not-active.png")
                     }
-                    // source={require("../../../icons/girl-in-circle.png")}
+                  // source={require("../../../icons/girl-in-circle.png")}
                   />
                   <Text
                     style={{

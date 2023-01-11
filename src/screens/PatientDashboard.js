@@ -82,8 +82,6 @@ class PatientDashboard extends React.Component {
     });
     AsyncStorage.getItem(Constants.USER_ROLE).then((value) => {
       let valuelowrcase = value.toLowerCase();
-      console.log(activebtrole, "**********Patent Dashboardcurrent role");
-
       this.setState({
         userrole: valuelowrcase,
         // activebtn: valuelowrcase == 'doctor' ? 'doctor' : 'patient',
@@ -92,10 +90,10 @@ class PatientDashboard extends React.Component {
           activebtrole == "employee"
             ? "employee"
             : activebtrole == "doctor"
-            ? "doctor"
-            : activebtrole == "technician"
-            ? "technician"
-            : "patient",
+              ? "doctor"
+              : activebtrole == "technician"
+                ? "technician"
+                : "patient",
         isloading: false
       });
     });
@@ -159,7 +157,6 @@ class PatientDashboard extends React.Component {
       // optional setup which updates Firebase analytics campaign
       // "banner". This also needs setting up before hand
     });
-    console.log(link, ":::::///");
     return link;
   };
   appOpen = async () => {
@@ -204,12 +201,12 @@ class PatientDashboard extends React.Component {
       setPermissions,
       cancelPressedNotification
     );
-    function setPermissions() {}
+    function setPermissions() { }
     function onRegister(token) {
       self.registerFCMToken(token);
     }
 
-    function cancelPressedNotification() {}
+    function cancelPressedNotification() { }
     // function onOpenKilledStateNotification(notification) {
     //   console.log(
     //     "------killed",
@@ -343,7 +340,6 @@ class PatientDashboard extends React.Component {
     //   // Remove the notification
     // });
     function onNotification(notify, callOpen) {
-      console.log(notify.Type, "callopent //...");
       notificationObj = notify;
       if (Platform.OS === "android" && callOpen === true) {
         if (notify.data.Type === "Family Member") {
@@ -352,8 +348,6 @@ class PatientDashboard extends React.Component {
           });
         } else if (notify.data.Type === "Local Notification") {
           //  Local Notification
-          console.log("Local Notification");
-
           NaviagtionObj.navigation.navigate("MedicationCalendrHome", {
             from: "notifcation",
             data: notify.data
@@ -422,7 +416,6 @@ class PatientDashboard extends React.Component {
     function onOpenNotification(notify) {
       if (Platform.OS === "ios") {
         if (notificationObj != null) {
-          console.log(notificationObj, "os ios //");
           if (notificationObj.data.Type === "Family Member") {
             NaviagtionObj.navigation.navigate("FamilyMemberList", {
               from: "notifcation"
@@ -489,10 +482,6 @@ class PatientDashboard extends React.Component {
                 from: "notifcation"
               });
             } else if (notify.data.Type === "Local Notification") {
-              console.log(
-                "KKKKKKKKKKKKK Local Notification killed state",
-                notify.data
-              );
               let data = {};
               data.data = notify.data;
               NaviagtionObj.navigation.navigate("MedicationCalendrHome", {
@@ -543,7 +532,6 @@ class PatientDashboard extends React.Component {
               });
             }
           } else {
-            console.log(notify, "no data present ");
             if (notify.Type === "Family Member") {
               NaviagtionObj.navigation.navigate("FamilyMemberList", {
                 from: "notifcation"
@@ -554,7 +542,6 @@ class PatientDashboard extends React.Component {
               let data = {};
               data.data = notify;
               data.ID = notify.ID;
-              console.log("&&*&*&*&*&*&Local Notification", notify);
               NaviagtionObj.navigation.navigate("MedicationCalendrHome", {
                 from: "notifcation",
                 data: data
@@ -618,11 +605,8 @@ class PatientDashboard extends React.Component {
         }
         notificationObj = null;
       } else {
-        console.log("android =======", notify);
         if (notify.userInteraction == true) {
-          console.log("******** =======", notify);
           if (notificationObj != null) {
-            console.log("******** =======", notificationObj, "notificationObj");
             if (notificationObj.data.Type === "Family Member") {
               NaviagtionObj.navigation.navigate("FamilyMemberList", {
                 from: "notifcation"
@@ -683,13 +667,11 @@ class PatientDashboard extends React.Component {
               });
             }
           } else {
-            console.log("******** else part =======", notify);
             if (notify.data.Type === "Family Member") {
               NaviagtionObj.navigation.navigate("FamilyMemberList", {
                 from: "notifcation"
               });
             } else if (notify.data.Type === "Local Notification") {
-              console.log("Local Notification", notify.data);
               let data = {};
               // data = notify.data;
               data.data = notify.data;
@@ -881,8 +863,6 @@ class PatientDashboard extends React.Component {
   onPressLogoutYes = async () => {
     try {
       response = await axios.post(Constants.FIREBASE_REGISTER_TOKEN + null);
-
-      console.log("fcm token on logo]=t  ==============", response.data);
     } catch (errors) {
       //Toast.show("Something Went Wrong, Please Try Again Later");
       console.log(errors, "errors");
@@ -1277,7 +1257,7 @@ class PatientDashboard extends React.Component {
         </View>
 
         {this.state.activebtn == "patient" ||
-        this.state.activebtn == "employee" ? (
+          this.state.activebtn == "employee" ? (
           <CustomFooter
             onPressBookTest={this.onPressBookTest}
             onPressProfile={this.onPressProfile}

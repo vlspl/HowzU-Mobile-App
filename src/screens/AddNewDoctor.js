@@ -35,7 +35,6 @@ export default class AddNewDoctor extends Component {
   }
 
   onTextChanged(text) {
-    console.log(isNaN(text), "mobile");
     if (isNaN(text)) {
       Toast.show("Please enter only number");
     } else {
@@ -68,8 +67,6 @@ export default class AddNewDoctor extends Component {
         Education: this.state.degree,
         Clinic_name: this.state.clinic
       });
-
-      console.log(response.data);
       if (response.data.Status) {
         Toast.show(response.data.Msg);
         this.props.navigation.navigate("MyDoctors", { refresh: true });
@@ -142,7 +139,7 @@ export default class AddNewDoctor extends Component {
           <ScrollView
             alwaysBounceVertical={false}
             showsHorizontalScrollIndicator={false}
-            // style={{ backgroundColor: "white" }}
+          // style={{ backgroundColor: "white" }}
           >
             <ImageBackground
               source={require("../../icons/Are-u-a-Doctor-background.png")}

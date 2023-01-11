@@ -465,10 +465,6 @@ export default class BMIWeight extends Component {
           Constants.BMIDETAIL_KEY,
           JSON.stringify(items)
         );
-        console.log(
-          "this.state.bmiweight==================",
-          this.state.bmiweight
-        );
         this.props.navigation.navigate("BMIFeet", { refresh: "refresh" });
       } catch (e) {
         //alert('Failed to save the data to the storage')

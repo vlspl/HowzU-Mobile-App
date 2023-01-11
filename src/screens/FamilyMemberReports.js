@@ -134,8 +134,6 @@ export default class FamilyMemberReports extends Component {
           Familymemberid: this.state.Familymemberid
         }
       );
-
-      console.log("data==============", response.data);
       // console.log("------old", oldreportresponse.data);
       this.setState({ loading: false });
 
@@ -358,7 +356,7 @@ export default class FamilyMemberReports extends Component {
                   <RefreshControl
                     refreshing={this.state.refreshing}
                     onRefresh={this.onRefresh}
-                    //colors='red'
+                  //colors='red'
                   />
                 }
               >
@@ -389,9 +387,9 @@ export default class FamilyMemberReports extends Component {
                 </View>
               </ScrollView>
               {this.state.AllReportList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable onPressRefresh={this.onRefresh} />
               ) : null}
             </View>

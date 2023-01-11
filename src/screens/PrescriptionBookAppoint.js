@@ -53,14 +53,14 @@ function getDayOfWeek(date) {
   return isNaN(dayOfWeek)
     ? null
     : [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ][dayOfWeek];
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ][dayOfWeek];
 }
 
 function gettimezone(str) {
@@ -150,14 +150,14 @@ export default class PrescriptionBookAppoint extends React.Component {
         onCancel={this.hideDateTimePicker}
         minimumDate={new Date()}
         display="spinner"
-        // isDarkModeEnabled={false}
+      // isDarkModeEnabled={false}
       />
     );
   };
 
   ClosePOPup = () => {
     // console.log("ClosePOPup=================");
-    this.setState({ isPrescription: false }, () => {});
+    this.setState({ isPrescription: false }, () => { });
   };
 
   //Decrypt
@@ -181,10 +181,6 @@ export default class PrescriptionBookAppoint extends React.Component {
     var that = this;
     this.setState({ isLoading: true });
     let form = new FormData();
-    console.log(" name =================", this.state.prescriptionPic[0].name);
-    console.log(" uri =================", this.state.prescriptionPic[0].uri);
-    console.log(" type =================", this.state.prescriptionPic[0].type);
-
     form.append("", {
       name: this.state.prescriptionPic[0].name,
       uri:
@@ -205,7 +201,6 @@ export default class PrescriptionBookAppoint extends React.Component {
         "Content-Type": "multipart/form-data"
       },
       onUploadProgress(progressEvent) {
-        console.log(progressEvent, "Prescription Upload Progress");
         that.setState({
           size: progressEvent.total,
           progresss: progressEvent.loaded / progressEvent.total
@@ -213,10 +208,7 @@ export default class PrescriptionBookAppoint extends React.Component {
       }
     })
       .then((response) => {
-        console.log(" else  response data =================", response.data);
         var responseObj = JSON.parse(response.data);
-        console.log(" else  response Path =================", responseObj.Path);
-
         if (responseObj.Status) {
           this.setState(
             {
@@ -248,8 +240,6 @@ export default class PrescriptionBookAppoint extends React.Component {
           issubmit: false
         });
         Toast.show("Something Went Wrong, Please Try Again Later");
-
-        console.log("error response=================", e);
       });
   };
 
@@ -439,14 +429,6 @@ export default class PrescriptionBookAppoint extends React.Component {
   };
 
   BookAppointments = async () => {
-    console.log("labid =================", this.state.labid);
-    console.log("TimeSlot =================", this.state.selectedtimeslot);
-    console.log("Booking date =================", this.state.bookingdate);
-    console.log("Type =================", this.state.appointmenttype);
-    console.log("path =================", this.state.imagePath);
-    console.log("address", this.state.addressinput);
-    console.log("slot", this.state.slottosendforbooking);
-    console.log("slot id", this.state.selectedtimeslotID);
     try {
       let response = await axios.post(Constants.TESTBOOK_PRESCRIPTION, {
         LabId: this.state.labid,
@@ -458,7 +440,6 @@ export default class PrescriptionBookAppoint extends React.Component {
         SampleCollectionAddress: this.state.addressinput,
         SlotId: this.state.selectedtimeslotID
       });
-      console.log(" BookAppointmentsdata==============", response.data);
       this.setState({ isLoading: false });
       if (response.data.Status) {
         this.setState({ isLoading: false, issubmit: false });
@@ -492,7 +473,6 @@ export default class PrescriptionBookAppoint extends React.Component {
       Toast.show("Something Went Wrong, Please Try Again Later");
 
       this.setState({ isLoading: false });
-      console.log(errors, " prescritopnn Network Error");
     }
   };
 
@@ -523,15 +503,13 @@ export default class PrescriptionBookAppoint extends React.Component {
                   prescriptionUri: response.uri,
                   prescriptionName: prescriptionPic[0].name
                 },
-                () => {}
+                () => { }
               );
             }
             // console.log(response, 'from camera');
           })
           .catch((err) => {
             Toast.show("Something Went Wrong, Please Try Again Later");
-
-            console.log(err, "Camera ERRor ");
           });
       }, 1000);
     });
@@ -549,7 +527,6 @@ export default class PrescriptionBookAppoint extends React.Component {
           // size: 5000000,
         })
           .then((response) => {
-            console.log(response.size, "from libary", response.mime);
             if (response.size > 5000000) {
               Toast.show("Please select image size upto 5MB");
             } else {
@@ -568,7 +545,6 @@ export default class PrescriptionBookAppoint extends React.Component {
             }
           })
           .catch((err) => {
-            console.log("err", err);
             alert(err, "alert messaeg");
             this.setState({
               prescriptionPic: "",
@@ -639,24 +615,16 @@ export default class PrescriptionBookAppoint extends React.Component {
           }, 500);
         });
       } else {
-        console.log("You can use the camera");
       }
     } else {
       this.setState({ isPrescription: false, isLoading: false }, () => {
         setTimeout(() => {
           launchImageLibrary(options, (response) => {
-            console.log(
-              response.assets.fileSize,
-              "Response = @@@@@@@@@@@@@ ",
-              response.assets[0].fileSize > Number(5000000) //31385490<5000000
-            );
-
             if (response.didCancel) {
               console.log("User cancelled image picker");
             } else if (response.error) {
               console.log("ImagePicker Error: ", response.error);
             } else {
-              console.log("*******!@!@!@@@@@@@@@@@@@@@", response, "/////");
               if (response.assets[0].fileSize > 5000000) {
                 Toast.show("Please select image size upto 5MB");
               } else {
@@ -1287,7 +1255,7 @@ export default class PrescriptionBookAppoint extends React.Component {
                 >
                   <TouchableOpacity onPress={this.toggleModal}>
                     {this.state.selectedtimeslot === undefined ||
-                    this.state.selectedtimeslot == "" ? (
+                      this.state.selectedtimeslot == "" ? (
                       <Text
                         style={{
                           marginLeft: 12,
@@ -1345,7 +1313,7 @@ export default class PrescriptionBookAppoint extends React.Component {
                 onPress={() => {
                   this.setState({ isPrescription: true });
                 }}
-                // onPress={this.chooseFile.bind(this)}
+              // onPress={this.chooseFile.bind(this)}
               >
                 <Image
                   source={require("../../icons/Upload-image-here.png")}

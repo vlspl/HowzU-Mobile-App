@@ -131,7 +131,6 @@ export default class NotifactionMainScreen extends React.Component {
     localNotificationService.configure(onOpenNotification);
 
     function onRegister(token) {
-      console.log("Token", token);
       self.registerFCMToken(token);
     }
 

@@ -89,10 +89,7 @@ export default class VaccineCertificateScreen extends Component {
     // });
   };
   checkPermission = async (downloadurl) => {
-    console.log(downloadurl, "downloadurl;;;;;");
     if (downloadurl.includes("certifiate")) {
-      console.log("======>?>?<?<?downloadurl;;;;;");
-
       this.webview.stopLoading();
       if (Platform.OS === "ios") {
         this.downloadImage(downloadurl);
@@ -126,8 +123,6 @@ export default class VaccineCertificateScreen extends Component {
   downloadImage = (downloadurl) => {
     // const directoryFile = RNFS.ExternalStorageDirectoryPath + "/DownloadFile/";
     const directoryFile = RNFS.DocumentDirectoryPath + "/DownloadFile/";
-
-    console.log("inside  downlaod", downloadurl, "to downlaod", directoryFile);
     if (RNFS.exists(directoryFile)) {
       RNFS.unlink(directoryFile)
         .then(() => {
@@ -135,7 +130,6 @@ export default class VaccineCertificateScreen extends Component {
         })
         // `unlink` will throw an error, if the item to unlink does not exist
         .catch((err) => {
-          console.log("CANT DELETE", err.message);
           this.setState({ showError: true });
         });
 
@@ -168,7 +162,6 @@ export default class VaccineCertificateScreen extends Component {
           })
           .then((res) => {
             // the path should be dirs.DocumentDir + 'path-to-file.anything'
-            console.log("&*&*&*&*The file saved to ", res.path());
 
             //Acabou o download do arquivo
             this.setState({
@@ -244,8 +237,6 @@ export default class VaccineCertificateScreen extends Component {
   }
 
   render() {
-    console.log(this.state.newUrl, "new ///");
-
     // const { data, isLoading } = this.state;
     const uri = "https://selfregistration.cowin.gov.in/";
     let downloadurl =
@@ -327,8 +318,6 @@ export default class VaccineCertificateScreen extends Component {
               //   alert(event.nativeEvent.data);
               // }}
               onNavigationStateChange={(event) => {
-                console.log(event, ";;;;;///");
-
                 this.checkPermission(event.url.trim());
                 // if (event.url !== uri) {
                 //   console.log(" i am in the if ;;;;;///");

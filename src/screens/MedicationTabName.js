@@ -67,7 +67,6 @@ export default class MedicationTabName extends React.Component {
   retrieveData() {
     AsyncStorage.getItem(Constants.USER_ROLE).then((value) => {
       let valuelowrcase = value.toLowerCase();
-      console.log("Role Dashboard screen ==================", valuelowrcase);
       this.setState({
         userrole: valuelowrcase,
         activebtn: valuelowrcase == "doctor" ? "doctor" : "patient",
@@ -101,7 +100,7 @@ export default class MedicationTabName extends React.Component {
         forwhome: nextProp.route.params.forWhome,
         selectedtcolor: nextProp.route.params.color
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -115,7 +114,7 @@ export default class MedicationTabName extends React.Component {
         forwhome: this.props.route.params.forWhome,
         selectedtcolor: this.props.route.params.color
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -129,10 +128,6 @@ export default class MedicationTabName extends React.Component {
       Toast.show("Please enter tablet name");
     } else {
       try {
-        console.log(
-          "this.state.bmiweight==================",
-          this.state.tabName
-        );
         this.props.navigation.navigate("MedicatnTakeFor", {
           forwhome: this.state.forwhome,
           tabName: this.state.tabName,
@@ -154,7 +149,6 @@ export default class MedicationTabName extends React.Component {
       let data = response.data.data.filter((itm) => {
         return itm.drug_name == this.state.tabName;
       });
-      console.log(data, "after allying dilsmdioswio===");
       // console.log(response.data.data, "tabs///////");
       this.setState({ isLoading: false });
       this.setState({ isModalVisible: true });
@@ -202,7 +196,6 @@ export default class MedicationTabName extends React.Component {
   );
 
   onTextChanged(text) {
-    console.log("text on chnage ");
     if (text == "") {
       this.setState({ tabName: text, isErr: false });
     }
@@ -210,7 +203,6 @@ export default class MedicationTabName extends React.Component {
     if (!isNaN(text)) {
       this.setState({ isErr: true });
     } else {
-      console.log("else else ");
       this.setState({ isLoadingSecond: true });
       if (this.state.typingTimeout) {
         clearTimeout(this.state.typingTimeout);

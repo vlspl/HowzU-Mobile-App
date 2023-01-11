@@ -88,20 +88,15 @@ function IsvalueBetweenRange(RefArray, value) {
 }
 
 function findMaxArrayLenght(data1, data2, data3) {
-  console.log(data1, data2, data3);
   let arra1 = data1;
   let arra2 = data2;
   let arra3 = data3;
   let lar = data1;
-  console.log(lar > data2);
   if (lar < data2) {
-    console.log("lar > data2");
     lar = data2;
   } else if (lar < data3) {
-    console.log("else lar > data3");
     lar = data3;
   }
-  console.log(lar, "lar");
   return lar;
 }
 export default class TrendAnagraphScreen extends React.Component {
@@ -197,8 +192,6 @@ export default class TrendAnagraphScreen extends React.Component {
   //   return a;
   // }, []);
   removeDuplicate = (datalist) => {
-    console.log(datalist.sampleData, "datalist");
-
     // return datalist.filter((item) => (item.y == 0 ? false : ids.push(item.id)));
   };
   Decrypt = (encryptStr) => {
@@ -220,18 +213,12 @@ export default class TrendAnagraphScreen extends React.Component {
   };
 
   async ReportDetailCall() {
-    console.log(
-      "///////////////////////this.state.flag",
-      this.state.flag == "OldReport"
-    );
     this.setState({ isLoading: true }); //OldReport
     if (this.state.flag == "OldReport") {
       try {
         const response = await axios.post(Constants.COMPARE_OLDREPORTGRAPH, {
           ParameterName: this.state.testname
         });
-        console.log(response.data, "my tend grapj  data ");
-
         this.setState({ isLoading: false });
         if (response.data.Status) {
           let responseData = [];
@@ -396,12 +383,9 @@ export default class TrendAnagraphScreen extends React.Component {
       }
     } else {
       try {
-        console.log(this.state.testid, "test id ");
         const response = await axios.get(
           Constants.COMPARE_REPORTGRAPH + "TestId=" + this.state.testid
         );
-
-        console.log(">>><<<<<<", response.data, "for the lab reports ");
         this.setState({ isLoading: false });
         if (response.data.Status) {
           let responseData = [];
@@ -424,30 +408,18 @@ export default class TrendAnagraphScreen extends React.Component {
             dataplot = [];
             dataplot2 = [];
             dataplot3 = [];
-            console.log(
-              "dataplot",
-              dataplot,
-              "dataplot2",
-              dataplot2,
-              "dataplot3",
-              dataplot3
-            );
             refrange = "";
             RefArray = [];
 
             refrange = element.Female != "" ? element.Female : element.Male;
             RefArray = refrange.split("-");
-
-            console.log(element, "subanlyet==");
             dt = element.TestDate.split(",");
-            console.log(dt, "after splic test dteag==");
             let temp = {};
             let linedata = [];
             temp.Analyte = element.Analyte;
             temp.Subanalyte = element.SubAnalyte;
             values = [];
             for (let i = 0; i < dt.length; i++) {
-              console.log(dt[i], "==========/////date ", element);
               let yaxios = Number(this.Decrypt(dt[i + 1]));
               let value = isNaN(yaxios) ? 0 : yaxios;
 
@@ -458,7 +430,6 @@ export default class TrendAnagraphScreen extends React.Component {
               let cnt = 0;
 
               values.push(value);
-              console.log("////", Inrange);
               tmp1.y = 0;
               tmp1.x = moment(dt[i], "DD/MM/YYYY").format("DD MMM YY");
               AllDatedataplot.push(tmp1);
@@ -480,7 +451,6 @@ export default class TrendAnagraphScreen extends React.Component {
 
               i++;
             }
-            console.log(index, "element map index");
             let dummy = {};
             dummy.x = " ";
             dummy.y = 0;
@@ -491,14 +461,10 @@ export default class TrendAnagraphScreen extends React.Component {
             const data2 = dataplot2.unshift(newAray);
             const data3 = dataplot3.unshift(newAray);
             // }
-            console.log(lognestlen, "lognestlen");
-            console.log(data1, data2, data3);
             let lognestlen = findMaxArrayLenght(data1, data2, data3);
 
             if (dataplot.length > 1) {
-              console.log(dataplot.flat(), "////*****dataplot");
               let un = dataplot; //this.removeDuplicate(dataplot);
-              console.log(un.flat(), "first array 1 if////*****dataplot");
 
               let data = [
                 {
@@ -510,9 +476,7 @@ export default class TrendAnagraphScreen extends React.Component {
               linedata.push(data);
             }
             if (dataplot3.length > 1) {
-              console.log(dataplot3, "dataplot3");
               let un = dataplot3; // this.removeDuplicate(dataplot3);
-              console.log(un.flat(), "3rd array if////*****dataplot");
 
               let data3 = [
                 {
@@ -524,9 +488,7 @@ export default class TrendAnagraphScreen extends React.Component {
               linedata.push(data3);
             }
             if (dataplot2.length > 1) {
-              console.log(dataplot2, "dataplot2");
               let un = dataplot2; //this.removeDuplicate(dataplot2);
-              console.log(un.flat(), "2nd array  if////*****dataplot");
 
               let data2 = [
                 {
@@ -538,10 +500,7 @@ export default class TrendAnagraphScreen extends React.Component {
               linedata.push(data2);
             }
             if (AllDatedataplot.length > 1) {
-              console.log(AllDatedataplot, "all data plots");
               let un = AllDatedataplot; //this.removeDuplicate(dataplot2);
-              console.log(un.flat(), "2nd array  if////*****dataplot");
-
               let data4 = [
                 {
                   seriesName: "series4",
@@ -552,7 +511,6 @@ export default class TrendAnagraphScreen extends React.Component {
               linedata.push(data4);
             }
             let sortdata = linedata.flat().sort(function (a, b) {
-              console.log(b.data.length, "----", a.data.length);
               return b.data.length - a.data.length;
             });
 
@@ -563,11 +521,6 @@ export default class TrendAnagraphScreen extends React.Component {
 
             responseData.push(temp);
           });
-          console.log(
-            JSON.stringify(responseData),
-            "desendingsortarrydata******Yaxiosdata"
-          );
-
           this.setState({
             allgraphdata: xaxiosdata,
             min: RefArray[0],
@@ -963,7 +916,6 @@ export default class TrendAnagraphScreen extends React.Component {
                       height={310}
                       showEvenNumberXaxisLabel={true}
                       customValueRenderer={(index, point) => {
-                        console.log(index, "index", point);
                         if (index == 0) return null;
                         return (
                           <View style={{ flex: 1, marginTop: 150 }}>

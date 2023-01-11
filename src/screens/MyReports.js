@@ -419,8 +419,6 @@ class MyReports extends Component {
 
   render() {
     const { data, isLoading } = this.state;
-    console.log(this.state.isLoading, "this.state.isLoading my reports ===");
-
     return (
       <Container>
         <Loader loading={this.state.isLoading} />
@@ -592,41 +590,41 @@ class MyReports extends Component {
                 </View>
               </ScrollView>
               {this.state.AllReportList.length <= 0 &&
-              this.state.PendingRequestList.length <= 0 &&
-              !this.state.isLoading &&
-              !this.state.searchLoading &&
-              !this.state.refreshing ? (
+                this.state.PendingRequestList.length <= 0 &&
+                !this.state.isLoading &&
+                !this.state.searchLoading &&
+                !this.state.refreshing ? (
                 <NoDataAvailable
                   onPressRefresh={this.onRefresh}
                   source={require("../../icons/nodatamyreport.png")}
 
-                  // source={require("../../icons/nodatafoundreport.jpeg")}
+                // source={require("../../icons/nodatafoundreport.jpeg")}
                 />
               ) : // <View
-              //   style={{
-              //     height: "100%",
-              //     width: "100%",
-              //     backgroundColor: "white",
-              //     alignItems: "center",
-              //     justifyContent: "center",
-              //     marginTop: 0
-              //     // margin: 10
-              //   }}
-              // >
-              //   <Image
-              //     source={require("../../icons/nodatafoundreport.jpeg")}
-              //     style={{
-              //       height: 300,
-              //       width: "100%"
-              //     }}
-              //   />
-              //   <TouchableOpacity onPress={this.onRefresh}>
-              //     {/* <Text style={{ color: "green", backgroundColor: "white" }}>
-              //       click to refresh
-              //     </Text> */}
-              //   </TouchableOpacity>
-              // </View>
-              null}
+                //   style={{
+                //     height: "100%",
+                //     width: "100%",
+                //     backgroundColor: "white",
+                //     alignItems: "center",
+                //     justifyContent: "center",
+                //     marginTop: 0
+                //     // margin: 10
+                //   }}
+                // >
+                //   <Image
+                //     source={require("../../icons/nodatafoundreport.jpeg")}
+                //     style={{
+                //       height: 300,
+                //       width: "100%"
+                //     }}
+                //   />
+                //   <TouchableOpacity onPress={this.onRefresh}>
+                //     {/* <Text style={{ color: "green", backgroundColor: "white" }}>
+                //       click to refresh
+                //     </Text> */}
+                //   </TouchableOpacity>
+                // </View>
+                null}
             </View>
           </View>
         </View>

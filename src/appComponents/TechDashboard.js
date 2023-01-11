@@ -52,10 +52,6 @@ export default class TechDashboard extends React.Component {
   };
 
   UNSAFE_componentWillReceiveProps = (nextProp) => {
-    console.log(
-      " Doc Dash  UNSAFE_componentWillReceiveProps ==============================",
-      nextProp
-    );
     this.setState({ isLoading: true, userDetails: [] }, () => {
       this.GetDashboardAPicall();
       this.getProfileDetail();
@@ -73,7 +69,6 @@ export default class TechDashboard extends React.Component {
   async getProfileDetail() {
     try {
       const response = await axios.get(Constants.GET_USERPROFILE);
-      console.log(response.data, "edit profile getting profile pic");
       this.setState({ isLoading: false });
       let name = "";
       if (response.data.Status) {
@@ -86,7 +81,6 @@ export default class TechDashboard extends React.Component {
           name = item.Org_Name;
           seetingitms.push(tmp);
         });
-        console.log(name, "::{{{}{}{}{");
         this.setState(
           {
             userSettingDetails: seetingitms,
@@ -94,7 +88,7 @@ export default class TechDashboard extends React.Component {
             org_nm: name,
             isLoading: false
           },
-          () => {}
+          () => { }
         );
       } else {
         // console.log(response.data.Msg, "else ");
@@ -110,15 +104,8 @@ export default class TechDashboard extends React.Component {
     // console.log("../../wesle smfnffm..././././././.", this.state.activebtn);
   }
   async GetDashboardAPicall() {
-    console.log(
-      "GetDashboardAPicall =================http://endpoint.visionarylifesciences.in/Enterprise/GetHelthCampDashboardCount",
-      "catual",
-      Constants.GET_TECH_DASH_COUNT
-    );
-
     try {
       const response = await axios.get(Constants.GET_TECH_DASH_COUNT);
-      console.log(response.data, "GetDashboardAPicalle pic");
       this.setState({ isLoading: false });
 
       if (response.data.Status) {
@@ -130,7 +117,7 @@ export default class TechDashboard extends React.Component {
             complete: response.data.TestDoneCount,
             isLoading: false
           },
-          () => {}
+          () => { }
         );
       } else {
         // console.log(response.data.Msg, "else ");

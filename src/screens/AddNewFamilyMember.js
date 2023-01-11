@@ -154,7 +154,6 @@ export default class AddNewFamilyMember extends Component {
   }
 
   async SignupAPicall() {
-    console.log(this.state.Mobile, "////");
     try {
       let response = await axios.post(Constants.ADD_NEWMEMBER, {
         FullName: this.state.FullName,
@@ -169,7 +168,6 @@ export default class AddNewFamilyMember extends Component {
         Pincode: this.state.PinCode,
         ChannelPartnerCode: this.state.channelcode
       });
-      console.log(response.data, "new family memeber regi");
       this.setState({ loading: false });
 
       if (response.data.Status) {
@@ -621,7 +619,7 @@ export default class AddNewFamilyMember extends Component {
                 icon={require("../../icons/aadharicon.png")}
                 onchangeTxt={(text) => this.onChangedAdhar(text)}
 
-                // onchangeTxt={(text) => this.setState({ adharNumber: text })}
+              // onchangeTxt={(text) => this.setState({ adharNumber: text })}
               ></TextInputCard>
 
               <InputWithReqField
