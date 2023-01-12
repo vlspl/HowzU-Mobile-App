@@ -402,7 +402,7 @@ export default class UserEditProfile extends Component {
               isLoading: false,
               isUploading: false
             },
-            () => {}
+            () => { }
           );
         } else {
           console.log(" else  response =================", responseObj);
@@ -518,7 +518,7 @@ export default class UserEditProfile extends Component {
 
   ClosePOPup = () => {
     console.log("ClosePOPup=================");
-    this.setState({ isModalVisible: false }, () => {});
+    this.setState({ isModalVisible: false }, () => { });
   };
   onSubmit = () => {
     const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -805,9 +805,9 @@ export default class UserEditProfile extends Component {
                             imageStyle={{ borderRadius: 55 }}
                           >
                             <TouchableOpacity
-                              onPress={() => {
-                                this.setState({ isModalVisible: true });
-                              }}
+                            // onPress={() => {
+                            //   this.setState({ isModalVisible: true });
+                            // }}
                             >
                               <View
                                 style={{
