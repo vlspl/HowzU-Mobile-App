@@ -511,7 +511,7 @@ export default class LoginScreen extends Component {
                       {"LOGIN WITH MOBILE NUMBER  " + ""}
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     style={{
                       backgroundColor: "#1B2B34",
                       marginTop: verticalScale(15),
@@ -536,7 +536,7 @@ export default class LoginScreen extends Component {
                     >
                       {"Google Sign-In  " + ""}
                     </Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                   {/* <Button
                     title="Google Sign-In"
                     onPress={this.onGoogleButtonPress}
@@ -561,7 +561,7 @@ export default class LoginScreen extends Component {
                     </Text>
                     <TouchableOpacity
                       onPress={() => navigate("RegisterScreen")}
-                      // onPress={() => navigate("AreUDoc")}
+                    // onPress={() => navigate("AreUDoc")}
                     >
                       <Text
                         style={{

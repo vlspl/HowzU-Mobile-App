@@ -55,7 +55,7 @@ export default class ChooseBookingScreen extends Component {
         userDetails: [],
         isLoading: true
       },
-      () => {}
+      () => { }
     );
     var role = AsyncStorage.getItem(Constants.ACCOUNT_ROLE);
     this.props.navigation.reset("PatientDashboard", {
@@ -91,7 +91,7 @@ export default class ChooseBookingScreen extends Component {
           }}
         >
           <TouchableOpacity
-            onPress={this.OpenLabList}
+            // onPress={this.OpenLabList}
             style={{
               height: 140,
               width: 140,
@@ -116,7 +116,9 @@ export default class ChooseBookingScreen extends Component {
           <Text style={{ marginTop: 10, fontSize: 17, fontWeight: "bold" }}>
             Upload Prescription
           </Text>
-
+          <Text style={{ marginTop: 10, fontSize: 17, fontWeight: "bold", color: "#275BB4" }}>
+            Coming Soon...
+          </Text>
           <TouchableOpacity
             onPress={this.OpenTestList}
             style={{
