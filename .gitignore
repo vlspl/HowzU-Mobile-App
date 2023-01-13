@@ -63,3 +63,4 @@ buck-out/
 .scannerwork
 
 *.hprof
+android/app/upload-keystore.jks

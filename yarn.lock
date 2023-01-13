@@ -29,7 +29,7 @@
   "resolved" "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.20.10.tgz"
   "version" "7.20.10"
 
-"@babel/core@*", "@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.12.0", "@babel/core@^7.13.0", "@babel/core@7.12.3":
+"@babel/core@*", "@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.12.0", "@babel/core@^7.13.0", "@babel/core@^7.7.5", "@babel/core@7.12.3":
   "integrity" "sha512-0qXcZYKZp3/6N2jKYVxZv0aNCsxTSVCiK72DTiTYZAu7sjg73W0/aynWjMbiGd87EQL4WyA8reiJVh92AVla9g=="
   "resolved" "https://registry.npmjs.org/@babel/core/-/core-7.12.3.tgz"
   "version" "7.12.3"
@@ -136,27 +136,6 @@
     "semver" "^6.3.0"
 
 "@babel/core@^7.4.0-0":
-  "version" "7.20.12"
-  dependencies:
-    "@ampproject/remapping" "^2.1.0"
-    "@babel/code-frame" "^7.18.6"
-    "@babel/generator" "^7.20.7"
-    "@babel/helper-compilation-targets" "^7.20.7"
-    "@babel/helper-module-transforms" "^7.20.11"
-    "@babel/helpers" "^7.20.7"
-    "@babel/parser" "^7.20.7"
-    "@babel/template" "^7.20.7"
-    "@babel/traverse" "^7.20.12"
-    "@babel/types" "^7.20.7"
-    "convert-source-map" "^1.7.0"
-    "debug" "^4.1.0"
-    "gensync" "^1.0.0-beta.2"
-    "json5" "^2.2.2"
-    "semver" "^6.3.0"
-
-"@babel/core@^7.7.5":
-  "integrity" "sha512-XsMfHovsUYHFMdrIHkZphTN/2Hzzi78R08NuHfDBehym2VsPDL6Zn/JAD/JQdnRvbSsbQc4mVaU1m6JgtTEElg=="
-  "resolved" "https://registry.npmjs.org/@babel/core/-/core-7.20.12.tgz"
   "version" "7.20.12"
   dependencies:
     "@ampproject/remapping" "^2.1.0"
@@ -1552,7 +1531,7 @@
     "source-map" "^0.6.1"
     "write-file-atomic" "^3.0.0"
 
-"@jest/types@^25.5.0":
+"@jest/types@^25.5.0", "@jest/types@^26.6.2":
   "integrity" "sha512-OXD0RgQ86Tu3MazKo8bnrkDRaDXXMGUqd+kTtLtK1Zb7CRzQcaSRPPPV37SvYTdevXEBVxe0HXylEjs8ibkmCw=="
   "resolved" "https://registry.npmjs.org/@jest/types/-/types-25.5.0.tgz"
   "version" "25.5.0"
@@ -1561,17 +1540,6 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^15.0.0"
     "chalk" "^3.0.0"
-
-"@jest/types@^26.6.2":
-  "integrity" "sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ=="
-  "resolved" "https://registry.npmjs.org/@jest/types/-/types-26.6.2.tgz"
-  "version" "26.6.2"
-  dependencies:
-    "@types/istanbul-lib-coverage" "^2.0.0"
-    "@types/istanbul-reports" "^3.0.0"
-    "@types/node" "*"
-    "@types/yargs" "^15.0.0"
-    "chalk" "^4.0.0"
 
 "@jest/types@^27.5.1":
   "integrity" "sha512-Cx46iJ9QpwQTjIdq5VJu2QTMMs3QlEjI0x1QbBP5W1+nMzyc2XmimiRR/CbX9TO0cPTeUlxWMOu8mslYsJ8DEw=="
@@ -1832,33 +1800,33 @@
   dependencies:
     "invariant" "^2.2.4"
 
-"@react-native-firebase/analytics@^10.3.0":
-  "integrity" "sha512-6fw3TwV7PbdelLND0yBqrnneHxGzqaXtCMLUYaklO55iCBi8dzX2eT3ouyI3IvtS/qYrF7ruEpvMeM4gUVcdqw=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/analytics/-/analytics-10.8.1.tgz"
-  "version" "10.8.1"
+"@react-native-firebase/analytics@10.3.0":
+  "integrity" "sha512-D9emLDt5jhGvqd/WP+md0CNkUdvn+MOmSTeepR3+FXJpfykqW8j0mSoK01GRI2XsHH8WhPe5iWzHOJ+1xv5b5w=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/analytics/-/analytics-10.3.0.tgz"
+  "version" "10.3.0"
 
-"@react-native-firebase/app@^10.3.0", "@react-native-firebase/app@10.8.1", "@react-native-firebase/app@15.7.1":
-  "integrity" "sha512-EHbFGCbRdZMxSbdq5YCc47E9C+ckzsMeZdknJbSddTYJ9JxPDiorUyoHFOUCAHS2ZoklhpdlrU5zGNzxpBgDUw=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/app/-/app-10.8.1.tgz"
-  "version" "10.8.1"
+"@react-native-firebase/app@10.3.0":
+  "integrity" "sha512-4/45zCJm3YLD5YlgTlF2ZDEd3CM6pjCZtx3OYI0hxsdq2//UdeZTgg6Byu3vxk7GTf3jY/E+IBoX8hPDcFU2/Q=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/app/-/app-10.3.0.tgz"
+  "version" "10.3.0"
   dependencies:
     "opencollective-postinstall" "^2.0.1"
     "superstruct" "^0.6.2"
 
-"@react-native-firebase/auth@^15.1.1":
-  "integrity" "sha512-KtxVcoIpZX5aT0rNaHWo733dP8cCZUBNV90FboapyvasQ5qZdMu+xS2yYe8FdimUlMlzGhMmLyXTxghGmVIZjw=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/auth/-/auth-15.7.1.tgz"
-  "version" "15.7.1"
+"@react-native-firebase/auth@10.3.0":
+  "integrity" "sha512-Wn/PqdhPAHeYwmIeArKGsXDbWyPgwPxZZqPlB6LgLz4AVVLKgeP2yyW6jHlAgT9AzypOz9bctZnWIKn4z+j6Dg=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/auth/-/auth-10.3.0.tgz"
+  "version" "10.3.0"
 
-"@react-native-firebase/dynamic-links@^10.3.0":
-  "integrity" "sha512-9kIXYqJeVYKaquTeOiqw6OzKs630KBWUAtw1LC27XDYAuwQdVD/+92x9Ka0qV3vvIEH4YdXb2B2TC4yUb1wBVQ=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/dynamic-links/-/dynamic-links-10.8.1.tgz"
-  "version" "10.8.1"
+"@react-native-firebase/dynamic-links@10.3.0":
+  "integrity" "sha512-2iM+w2bssYH1mmW7OPB4fSn3CY9baqSP5SKqOj4vX2cf0pnejtIPhBnkgdulLT3W9nEtJ5AluU596faBVW1+NQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/dynamic-links/-/dynamic-links-10.3.0.tgz"
+  "version" "10.3.0"
 
-"@react-native-firebase/messaging@^10.3.1":
-  "integrity" "sha512-DVgibb4XERG+5TQQiHKJ1qF+5cbpfiKGRFze9WcbE+FxSYwNMIzyt6u3l7WMBLz6wXcqAq3zLRo6SBbSt37uDw=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/messaging/-/messaging-10.8.1.tgz"
-  "version" "10.8.1"
+"@react-native-firebase/messaging@10.3.1":
+  "integrity" "sha512-Ls1nkmP5YvD3nV5Vq7gwxu77TgaVGwuDc8jZB2AgpPWc1mse8/xkqRMuZ/ZXd3oPfuUiu1dlxET9SB2YrAR/Mw=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/messaging/-/messaging-10.3.1.tgz"
+  "version" "10.3.1"
 
 "@react-native-google-signin/google-signin@^8.0.0":
   "integrity" "sha512-y56SDxupkN4nvIsmvnq11OqDMLJKTihbwT4dUtnPZ+FCOO4uX62zCpCyXub5o7/N12Ei8KCHC2umd8OHpMdRFg=="
@@ -8143,7 +8111,7 @@
   "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.8.2.tgz"
   "version" "2.8.2"
 
-"pretty-format@^25.5.0":
+"pretty-format@^25.5.0", "pretty-format@^26.6.2":
   "integrity" "sha512-kbo/kq2LQ/A/is0PQwsEHM7Ca6//bGPPvU6UnsdDRSKTWxT/ru/xb88v4BJf6a69H+uTytOEsTusT9ksd/1iWQ=="
   "resolved" "https://registry.npmjs.org/pretty-format/-/pretty-format-25.5.0.tgz"
   "version" "25.5.0"
@@ -8153,7 +8121,7 @@
     "ansi-styles" "^4.0.0"
     "react-is" "^16.12.0"
 
-"pretty-format@^26.0.0", "pretty-format@^26.6.2":
+"pretty-format@^26.0.0":
   "integrity" "sha512-7AeGuCYNGmycyQbCqd/3PWH4eOoX/OiCa0uphp57NVTeAGdJGaAliecxwBDHYQCIvrW7aDBZCYeNTP/WX69mkg=="
   "resolved" "https://registry.npmjs.org/pretty-format/-/pretty-format-26.6.2.tgz"
   "version" "26.6.2"
