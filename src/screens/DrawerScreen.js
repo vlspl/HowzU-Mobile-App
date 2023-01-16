@@ -8,12 +8,12 @@ import {
   TouchableOpacity,
   ImageBackground,
   BackHandler,
-  Modal,
   TouchableHighlight,
   Platform,
   UIManager,
   StyleSheet
 } from "react-native";
+import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 // import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -70,6 +70,26 @@ import {
 //     padding: 16
 //   }
 // });
+const styles = StyleSheet.create({
+  modalView: {
+    flexDirection: "column",
+    width: "80%",
+    backgroundColor: "white",
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: 15
+  },
+  buttonStyle: {
+    backgroundColor: "#275BB4",
+    borderRadius: 12,
+    width: 60
+  },
+  textStyle: {
+    textAlign: "center",
+    fontSize: 15,
+    margin: 10,
+  },
+});
 const CustomeDrawerItem = (props) => (
   <TouchableOpacity
     style={{
@@ -120,6 +140,7 @@ export default class DrawerScreen extends React.Component {
       orgid: 0,
       expanded: false,
       hydrationdetailsexist: false,
+      isModalVisible: false,
       menu: [
         {
           title: "Test Booking",
@@ -314,7 +335,7 @@ export default class DrawerScreen extends React.Component {
 
         this.setState(
           { userProfileDetails: responseData, isLoading: false },
-          () => {}
+          () => { }
         );
       } catch (error) {
         // Toast.show("Something Went Wrong, Please Try Again Later");
@@ -331,7 +352,7 @@ export default class DrawerScreen extends React.Component {
         });
 
         // console.log(responseData, "ResponseData======");
-        this.setState({ userProfileDetails: responseData }, () => {});
+        this.setState({ userProfileDetails: responseData }, () => { });
         // console.log(response.data, '****Drawer  user profile');
       } catch (err) {
         // Toast.show("Something Went Wrong, Please Try Again Later");
@@ -570,6 +591,9 @@ export default class DrawerScreen extends React.Component {
     }
     return items;
   };
+  onPressprivacyPolicy = () => {
+    this.props.navigation.navigate("PrivacyPolicy");
+  };
   render() {
     // console.log(this.state.orgid, "User Profile Detail");
     // if (this.state.isloading && this.state.userProfileDetails.length > 0) {
@@ -594,7 +618,40 @@ export default class DrawerScreen extends React.Component {
             }}
           />
         )} */}
-
+        <Modal isVisible={this.state.isModalVisible}>
+          <View
+            style={styles.modalView}
+          >
+            <View
+            >
+              <Text
+                style={styles.textStyle}
+              >
+                Are You Sure You want to delete your account?
+              </Text>
+            </View>
+            <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+              <TouchableOpacity style={styles.buttonStyle} onPress={this.onPressLogoutYes}>
+                <Text
+                  style={{ ...styles.textStyle, color: "white" }}
+                  numberOfLines={1}
+                >
+                  Yes
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonStyle} onPress={() => {
+                this.setState({ isModalVisible: false });
+              }}>
+                <Text
+                  style={{ ...styles.textStyle, color: "white" }}
+                  numberOfLines={1}
+                >
+                  No
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
         <View
           style={{
             backgroundColor: "#275BB4",
@@ -734,7 +791,6 @@ export default class DrawerScreen extends React.Component {
               </View> */}
           </View>
         </View>
-
         {this.state.userrole == "doctor" ? (
           <DrawerContentScrollView
             {...this.props}
@@ -776,10 +832,10 @@ export default class DrawerScreen extends React.Component {
                   refresh: true
                 });
               }}
-              // onPressItem={this.onPressDrawerItem.bind(
-              //   this,
-              //   'DocDashSharedList'
-              // )}
+            // onPressItem={this.onPressDrawerItem.bind(
+            //   this,
+            //   'DocDashSharedList'
+            // )}
             />
             <CustomeDrawerItem
               itemName="Suggested Tests"
@@ -805,11 +861,23 @@ export default class DrawerScreen extends React.Component {
               }}
             />
             <CustomeDrawerItem
+              itemName="Privacy Policy"
+              img={require("../../icons/privacy_policy_icon.png")}
+              onPressItem={this.onPressprivacyPolicy}
+            />
+            <CustomeDrawerItem
               itemName="LOGOUT"
               // img={require("../../icons/logout-b.png")}
               // img={require("../../icons/logout.png")}
               img={require("../../icons/logoutmenu.png")}
               onPressItem={this.onPressLogoutYes}
+            />
+            <CustomeDrawerItem
+              itemName="Delete Account"
+              img={require("../../icons/delete_icon.png")}
+              onPressItem={() => {
+                this.setState({ isModalVisible: true });
+              }}
             />
           </DrawerContentScrollView>
         ) : this.state.userrole == "technician" ? (
@@ -826,7 +894,6 @@ export default class DrawerScreen extends React.Component {
                 })
               }
             />
-
             <CustomeDrawerItem
               itemName="About Us"
               // img={require("../../icons/about-us-g.png")}
@@ -839,11 +906,23 @@ export default class DrawerScreen extends React.Component {
               }}
             />
             <CustomeDrawerItem
+              itemName="Privacy Policy"
+              img={require("../../icons/privacy_policy_icon.png")}
+              onPressItem={this.onPressprivacyPolicy}
+            />
+            <CustomeDrawerItem
               itemName="LOGOUT"
               // img={require("../../icons/logout-b.png")}
               // img={require("../../icons/logout.png")}
               img={require("../../icons/logoutmenu.png")}
               onPressItem={this.onPressLogoutYes}
+            />
+            <CustomeDrawerItem
+              itemName="Delete Account"
+              img={require("../../icons/delete_icon.png")}
+              onPressItem={() => {
+                this.setState({ isModalVisible: true });
+              }}
             />
           </DrawerContentScrollView>
         ) : (
@@ -1058,11 +1137,23 @@ export default class DrawerScreen extends React.Component {
               }}
             />
             <CustomeDrawerItem
+              itemName="Privacy Policy"
+              img={require("../../icons/privacy_policy_icon.png")}
+              onPressItem={this.onPressprivacyPolicy}
+            />
+            <CustomeDrawerItem
               itemName="Log Out"
               // img={require("../../icons/logout-b.png")}
               // img={require("../../icons/logout.png")}
               img={require("../../icons/logoutmenu.png")}
               onPressItem={this.onPressLogoutYes}
+            />
+            <CustomeDrawerItem
+              itemName="Delete Account"
+              img={require("../../icons/delete_icon.png")}
+              onPressItem={() => {
+                this.setState({ isModalVisible: true });
+              }}
             />
           </DrawerContentScrollView>
         )}
