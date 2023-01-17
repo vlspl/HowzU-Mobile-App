@@ -162,8 +162,8 @@ android {
         applicationId "com.howzu"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 38
-        versionName "2.1.6"
+        versionCode 39
+        versionName "2.1.7"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         missingDimensionStrategy 'react-native-camera', 'general'
