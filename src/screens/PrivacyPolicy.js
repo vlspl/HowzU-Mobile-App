@@ -51,7 +51,7 @@ export default class PrivacyPolicy extends Component {
     return <Loader loading={this.state.isLoading} />;
   }
 
-  CheckStatuscall = async () => {};
+  CheckStatuscall = async () => { };
 
   render() {
     //const { navigate } = this.props.navigation;
@@ -70,7 +70,7 @@ export default class PrivacyPolicy extends Component {
           style={{ flex: 1 }}
           source={{
             // uri: "http://visionarylifesciences.com/privacy-policy.html",
-            uri: "https://howzu.co.in/privacy-policy.html"
+            uri: "https://howzu.co.in/privacy-policy.aspx"
           }}
           renderLoading={this.LoadingIndicatorView}
         />
