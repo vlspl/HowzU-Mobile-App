@@ -1,10 +1,10 @@
 import React from "react";
-import notifee, {
-  RepeatFrequency,
-  TimestampTrigger,
-  TriggerType,
-  EventType
-} from "@notifee/react-native";
+// import notifee, {
+//   RepeatFrequency,
+//   TimestampTrigger,
+//   TriggerType,
+//   EventType
+// } from "@notifee/react-native";
 
 import {
   FlatList,
@@ -33,7 +33,7 @@ import axios from "axios";
 import { fcmService } from "../appComponents/FCMservice";
 import PushNotification from "react-native-push-notification";
 import { localNotificationService } from "../appComponents/LocalNotificationService";
-import { notifyLocalNotificationsService } from "../appComponents/notifiylocal";
+// import { notifyLocalNotificationsService } from "../appComponents/notifiylocal";
 const screenWidth = Math.round(Dimensions.get("window").width);
 const { StatusBarManager } = NativeModules;
 import analytics from "@react-native-firebase/analytics";
@@ -92,10 +92,10 @@ class PatientDashboard extends React.Component {
           activebtrole == "employee"
             ? "employee"
             : activebtrole == "doctor"
-            ? "doctor"
-            : activebtrole == "technician"
-            ? "technician"
-            : "patient",
+              ? "doctor"
+              : activebtrole == "technician"
+                ? "technician"
+                : "patient",
         isloading: false
       });
     });
@@ -204,12 +204,12 @@ class PatientDashboard extends React.Component {
       setPermissions,
       cancelPressedNotification
     );
-    function setPermissions() {}
+    function setPermissions() { }
     function onRegister(token) {
       self.registerFCMToken(token);
     }
 
-    function cancelPressedNotification() {}
+    function cancelPressedNotification() { }
     // function onOpenKilledStateNotification(notification) {
     //   console.log(
     //     "------killed",
@@ -1277,7 +1277,7 @@ class PatientDashboard extends React.Component {
         </View>
 
         {this.state.activebtn == "patient" ||
-        this.state.activebtn == "employee" ? (
+          this.state.activebtn == "employee" ? (
           <CustomFooter
             onPressBookTest={this.onPressBookTest}
             onPressProfile={this.onPressProfile}

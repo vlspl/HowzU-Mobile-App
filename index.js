@@ -9,7 +9,7 @@ import { name as appName } from "./app.json";
 import { Text, TextInput } from "react-native";
 
 import messaging from "@react-native-firebase/messaging";
-import notifee, { EventType } from "@notifee/react-native";
+// import notifee, { EventType } from "@notifee/react-native";
 import CalendarStrip from "react-native-calendar-strip";
 // import {fcmService} from "../vls-react-native/src/appComponents/FCMservice";
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {

@@ -2,23 +2,23 @@ import React, { useState, useEffect } from "react";
 // import { Root } from "native-base";
 import MainRoute from "./src/routes/MainRoutes";
 
-import axios from "./src/utils/AxiosInterseptorRequest";
-import notifee, {
-  EventType,
-  IOSAuthorizationStatus,
-} from "@notifee/react-native";
-import { notifyLocalNotificationsService } from "./src/appComponents/notifiylocal";
-import AsyncStorage from "@react-native-community/async-storage";
+// import axios from "./src/utils/AxiosInterseptorRequest";
+// import notifee, {
+//   EventType,
+//   IOSAuthorizationStatus,
+// } from "@notifee/react-native";
+// import { notifyLocalNotificationsService } from "./src/appComponents/notifiylocal";
+// import AsyncStorage from "@react-native-community/async-storage";
 
-notifee.onBackgroundEvent(async ({ type, detail }) => {
-  const { notification, pressAction } = detail;
-  console.log(
-    notification,
-    " on bg event for android in app.js notifcation",
-    pressAction,
-    "pressAction"
-  );
-});
+// notifee.onBackgroundEvent(async ({ type, detail }) => {
+//   const { notification, pressAction } = detail;
+//   console.log(
+//     notification,
+//     " on bg event for android in app.js notifcation",
+//     pressAction,
+//     "pressAction"
+//   );
+// });
 
 export default () => {
   const [loading, setLoading] = useState(true);

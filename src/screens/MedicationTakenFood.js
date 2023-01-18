@@ -23,13 +23,13 @@ import PushNotification from "react-native-push-notification";
 import Toast from "react-native-tiny-toast";
 import axios from "axios";
 
-import notifee, {
-  TimestampTrigger,
-  TriggerType,
-  TimeUnit,
-  RepeatFrequency
-} from "@notifee/react-native";
-import { notifyLocalNotificationsService } from "../appComponents/notifiylocal";
+// import notifee, {
+//   TimestampTrigger,
+//   TriggerType,
+//   TimeUnit,
+//   RepeatFrequency
+// } from "@notifee/react-native";
+// import { notifyLocalNotificationsService } from "../appComponents/notifiylocal";
 import {
   MEDICINE_INFO,
   medicineInfo,
@@ -179,7 +179,7 @@ export default class MedicationTakenFood extends React.Component {
         endDate: nextProp.route.params.endDate,
         duration: nextProp.route.params.duration
       },
-      () => {}
+      () => { }
     );
   };
 
@@ -213,7 +213,7 @@ export default class MedicationTakenFood extends React.Component {
         duration: this.props.route.params.duration
       },
 
-      () => {}
+      () => { }
     );
     // this.requestNotificationPermission();
   };
@@ -221,13 +221,13 @@ export default class MedicationTakenFood extends React.Component {
   onPressSelect = (selectStr) => {
     console.log("selectStr Medication Taken food=================", selectStr);
     if (selectStr == "Before eating") {
-      this.setState({ takenWithFood: "Before eating" }, () => {});
+      this.setState({ takenWithFood: "Before eating" }, () => { });
     } else if (selectStr == "While eating") {
-      this.setState({ takenWithFood: "While eating" }, () => {});
+      this.setState({ takenWithFood: "While eating" }, () => { });
     } else if (selectStr == "After eating") {
-      this.setState({ takenWithFood: "After eating" }, () => {});
+      this.setState({ takenWithFood: "After eating" }, () => { });
     } else if (selectStr == "Doesnt matter") {
-      this.setState({ takenWithFood: "Doesnt matter" }, () => {});
+      this.setState({ takenWithFood: "Doesnt matter" }, () => { });
     }
   };
 
@@ -284,15 +284,15 @@ export default class MedicationTakenFood extends React.Component {
               }
               PushNotification.checkPermissions((permission) => {
                 if (permission) {
-                  notifyLocalNotificationsService.onCreateTriggerNotification(
-                    add1day,
-                    this.state.tabName,
-                    this.state.firstDoseTime,
-                    MedicationId,
-                    Doseid,
-                    DoseStatusid,
-                    Platform.OS
-                  );
+                  // notifyLocalNotificationsService.onCreateTriggerNotification(
+                  //   add1day,
+                  //   this.state.tabName,
+                  //   this.state.firstDoseTime,
+                  //   MedicationId,
+                  //   Doseid,
+                  //   DoseStatusid,
+                  //   Platform.OS
+                  // );
                   // PushNotification.localNotificationSchedule({
                   //   channelId: "sound-channel-id", // (required)
                   //   title: "Hi,it's time for your medication ",
@@ -370,15 +370,15 @@ export default class MedicationTakenFood extends React.Component {
               }
               PushNotification.checkPermissions((permission) => {
                 if (permission) {
-                  notifyLocalNotificationsService.onCreateTriggerNotification(
-                    this.state.secondDoseAlrm,
-                    this.state.tabName,
-                    this.state.secondDoseTime,
-                    MedicationId,
-                    Doseid,
-                    DoseStatusid,
-                    Platform.OS
-                  );
+                  // notifyLocalNotificationsService.onCreateTriggerNotification(
+                  //   this.state.secondDoseAlrm,
+                  //   this.state.tabName,
+                  //   this.state.secondDoseTime,
+                  //   MedicationId,
+                  //   Doseid,
+                  //   DoseStatusid,
+                  //   Platform.OS
+                  // );
                   // PushNotification.localNotificationSchedule({
                   //   channelId: "sound-channel-id", // (required)
                   //   title: "Hi,it's time for your medication ",
@@ -452,15 +452,15 @@ export default class MedicationTakenFood extends React.Component {
               }
               PushNotification.checkPermissions((permission) => {
                 if (permission) {
-                  notifyLocalNotificationsService.onCreateTriggerNotification(
-                    this.state.thirdDoseAlrm,
-                    this.state.tabName,
-                    this.state.thirdDoseTime,
-                    MedicationId,
-                    Doseid,
-                    DoseStatusid,
-                    Platform.OS
-                  );
+                  // notifyLocalNotificationsService.onCreateTriggerNotification(
+                  //   this.state.thirdDoseAlrm,
+                  //   this.state.tabName,
+                  //   this.state.thirdDoseTime,
+                  //   MedicationId,
+                  //   Doseid,
+                  //   DoseStatusid,
+                  //   Platform.OS
+                  // );
                   // PushNotification.localNotificationSchedule({
                   //   channelId: "sound-channel-id", // (required)
                   //   title: "Hi,it's time for your medication ",
@@ -553,15 +553,15 @@ export default class MedicationTakenFood extends React.Component {
               }
               PushNotification.checkPermissions((permission) => {
                 if (permission) {
-                  notifyLocalNotificationsService.onCreateTriggerNotification(
-                    this.state.firstDoseAlrm,
-                    this.state.tabName,
-                    this.state.firstDoseTime,
-                    MedicationId,
-                    Doseid,
-                    DoseStatusid,
-                    Platform.OS
-                  );
+                  // notifyLocalNotificationsService.onCreateTriggerNotification(
+                  //   this.state.firstDoseAlrm,
+                  //   this.state.tabName,
+                  //   this.state.firstDoseTime,
+                  //   MedicationId,
+                  //   Doseid,
+                  //   DoseStatusid,
+                  //   Platform.OS
+                  // );
                   // PushNotification.localNotificationSchedule({
                   //   channelId: "sound-channel-id", // (required)
                   //   title: "Hi,it's time for your medication ",
@@ -631,15 +631,15 @@ export default class MedicationTakenFood extends React.Component {
               }
               PushNotification.checkPermissions((permission) => {
                 if (permission) {
-                  notifyLocalNotificationsService.onCreateTriggerNotification(
-                    this.state.secondDoseAlrm,
-                    this.state.tabName,
-                    this.state.secondDoseTime,
-                    MedicationId,
-                    Doseid,
-                    DoseStatusid,
-                    Platform.OS
-                  );
+                  // notifyLocalNotificationsService.onCreateTriggerNotification(
+                  //   this.state.secondDoseAlrm,
+                  //   this.state.tabName,
+                  //   this.state.secondDoseTime,
+                  //   MedicationId,
+                  //   Doseid,
+                  //   DoseStatusid,
+                  //   Platform.OS
+                  // );
                   // PushNotification.localNotificationSchedule({
                   //   channelId: "sound-channel-id", // (required)
                   //   title: "Hi,it's time for your medication ",
@@ -709,15 +709,15 @@ export default class MedicationTakenFood extends React.Component {
               }
               PushNotification.checkPermissions((permission) => {
                 if (permission) {
-                  notifyLocalNotificationsService.onCreateTriggerNotification(
-                    this.state.thirdDoseAlrm,
-                    this.state.tabName,
-                    this.state.thirdDoseTime,
-                    MedicationId,
-                    Doseid,
-                    DoseStatusid,
-                    Platform.OS
-                  );
+                  // notifyLocalNotificationsService.onCreateTriggerNotification(
+                  //   this.state.thirdDoseAlrm,
+                  //   this.state.tabName,
+                  //   this.state.thirdDoseTime,
+                  //   MedicationId,
+                  //   Doseid,
+                  //   DoseStatusid,
+                  //   Platform.OS
+                  // );
                   // PushNotification.localNotificationSchedule({
                   //   channelId: "sound-channel-id", // (required)
                   //   title: "Hi,it's time for your medication ",
@@ -844,10 +844,10 @@ export default class MedicationTakenFood extends React.Component {
       this.state.doseCount,
       " DoseTime:",
       this.state.firstDoseTime +
-        "," +
-        this.state.secondDoseTime +
-        "," +
-        this.state.thirdDoseTime
+      "," +
+      this.state.secondDoseTime +
+      "," +
+      this.state.thirdDoseTime
     );
     try {
       let response = await axios.post(Constants.ADD_MEDICINE_REMINDER, {
@@ -894,7 +894,7 @@ export default class MedicationTakenFood extends React.Component {
 
         // let medication = realm.objects(MEDICINE_INFO);
         // console.log(medication, "medicatiob in calling of save data");
-      } catch (e) {}
+      } catch (e) { }
     }
   };
 
